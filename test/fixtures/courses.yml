@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: Pre-algebra
+  description: Boring stuff about math.
+  subject_id: 1
+  
+two:
+  title: Geology of Washington State
+  description: Boring stuff about rocks.
+  subject_id: 2
