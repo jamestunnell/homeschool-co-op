@@ -1,0 +1,29 @@
+<%= form_for(@adult) do |f| %>
+  <% if @adult.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@adult.errors.count, "error") %> prohibited this adult from being saved:</h2>
+
+      <ul>
+      <% @adult.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :first %><br>
+    <%= f.text_field :first %>
+  </div>
+  <div class="field">
+    <%= f.label :last %><br>
+    <%= f.text_field :last %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :children
+
+  resources :adults
+
   resources :courses
 
   resources :subjects

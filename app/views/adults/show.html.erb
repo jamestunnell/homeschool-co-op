@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>First:</strong>
+  <%= @adult.first %>
+</p>
+
+<p>
+  <strong>Last:</strong>
+  <%= @adult.last %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @adult.email %>
+</p>
+
+<%= link_to 'Edit', edit_adult_path(@adult) %> |
+<%= link_to 'Back', adults_path %>
