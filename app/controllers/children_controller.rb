@@ -1,48 +1,27 @@
 class ChildrenController < ApplicationController
   before_action :set_child, only: [:show, :edit, :update, :destroy]
-
-  # GET /children
-  # GET /children.json
-  def index
-    @children = Child.all
-  end
-
-  # GET /children/1
-  # GET /children/1.json
+  
   def show
   end
-
-  # GET /children/new
-  def new
-    @child = Child.new
-  end
-
-  # GET /children/1/edit
+  
   def edit
   end
-
-  # POST /children
-  # POST /children.json
+  
   def create
-    @child = Child.new(child_params)
-
-    respond_to do |format|
-      if @child.save
-        format.html { redirect_to @child, notice: 'Child was successfully created.' }
-        format.json { render :show, status: :created, location: @child }
-      else
-        format.html { render :new }
-        format.json { render json: @child.errors, status: :unprocessable_entity }
-      end
-    end
+    @adult = Adult.find(params[:adult_id])
+    
+    if @adult.children.create(child_params)
+      redirect_to @adult, notice: "Child was successfully added."
+    else
+      redirect_to @adult, alert: "Failed to add child"
+    end    
   end
-
-  # PATCH/PUT /children/1
-  # PATCH/PUT /children/1.json
+  
   def update
     respond_to do |format|
+      adult = @child.adult
       if @child.update(child_params)
-        format.html { redirect_to @child, notice: 'Child was successfully updated.' }
+        format.html { redirect_to adult, notice: 'Child was successfully updated.' }
         format.json { render :show, status: :ok, location: @child }
       else
         format.html { render :edit }
@@ -50,13 +29,12 @@ class ChildrenController < ApplicationController
       end
     end
   end
-
-  # DELETE /children/1
-  # DELETE /children/1.json
+  
   def destroy
+    adult = @child.adult
     @child.destroy
     respond_to do |format|
-      format.html { redirect_to children_url, notice: 'Child was successfully destroyed.' }
+      format.html { redirect_to adult, notice: 'Child was successfully removed.' }
       format.json { head :no_content }
     end
   end

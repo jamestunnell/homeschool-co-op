@@ -25,9 +25,12 @@ ActiveRecord::Schema.define(version: 20150201150747) do
     t.string   "first"
     t.string   "last"
     t.date     "birth_date"
+    t.integer  "adult_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "children", ["adult_id"], name: "index_children_on_adult_id"
 
   create_table "courses", force: :cascade do |t|
     t.string   "title"

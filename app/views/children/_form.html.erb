@@ -23,6 +23,10 @@
     <%= f.label :birth_date %><br>
     <%= f.date_select :birth_date, start_year: (Time.now.to_date.year-18), end_year: Time.now.to_date.year %>
   </div>
+  <div class="field">
+    <%= f.label :parent %><br>
+    <%= f.collection_select(:adult_id, Adult.all, :id, :full_name, prompt: true) %><br>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
