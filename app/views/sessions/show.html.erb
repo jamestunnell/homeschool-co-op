@@ -1,0 +1,8 @@
+<div class="page-header">
+<h2><%= [@session.term, @session.kind, range_with_dash(@session.year_range)].join(" ") %></h2>
+</div>
+<p><strong>Start date: </strong><%= @session.start_date %></p>
+<p><strong>End date: </strong><%= @session.end_date %></p>
+
+<%= link_to 'Edit', edit_session_path(@session), :class => 'btn btn-default' %>
+<%= link_to 'Back', sessions_path, :class => 'btn btn-default' %>

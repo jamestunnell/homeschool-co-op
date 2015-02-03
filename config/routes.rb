@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :sessions
+
   resources :adults do
     resources :children, :only => [:create]
   end
