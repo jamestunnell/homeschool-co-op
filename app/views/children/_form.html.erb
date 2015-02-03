@@ -1,54 +1,11 @@
-<%= form_for @child, :html => { :class => "form-horizontal child" } do |f| %>
-
-    <% if @child.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@child.errors.count, "error") %> prohibited this child from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @child.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="control-group">
-    <%= f.label :first, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :first, :class => 'form-control' %>
-    </div>
-    <%= error_span(@child[:first]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :last, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last, :class => 'form-control' %>
-    </div>
-    <%= error_span(@child[:last]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :birth_date, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.date_select :birth_date, :class => 'form-control',
-                      :start_year => (Time.now.to_date.year-18), :end_year => Time.now.to_date.year %>
-    </div>
-    <%= error_span(@child[:birth_date]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :adult_id, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.collection_select :adult_id, Adult.all, :id, :full_name,
-                              :class => 'form-control', :prompt => true %>
-    </div>
-    <%= error_span(@child[:adult_id]) %>
-  </div>
-
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            children_path, :class => 'btn btn-default' %>
-
+<%= simple_form_for(@child, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.input :first %>
+  <%= f.input :last %>
+  <%= f.input :birth_date,
+              :start_year => (Time.now.to_date.year-18),
+              :end_year => Time.now.to_date.year,
+              :discard_day => true, order: [:month, :year] %>
+  <%= f.association :adult, :label_method => :full_name, :include_blank => false %>
+  <%= f.button :submit, :class => 'btn btn-primary' %>
+  <%= link_to "Cancel", children_path, :class => 'btn btn-default' %>
 <% end %>

@@ -1,45 +1,7 @@
-<%= form_for @adult, :html => { :class => "form-horizontal adult" } do |f| %>
-
-    <% if @adult.errors.any? %>
-    <div id="error_expl" class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= pluralize(@adult.errors.count, "error") %> prohibited this adult from being saved:</h3>
-      </div>
-      <div class="panel-body">
-        <ul>
-        <% @adult.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  <% end %>
-
-  <div class="control-group">
-    <%= f.label :first, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :first, :class => 'form-control' %>
-    </div>
-    <%= error_span(@adult[:first]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :last, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :last, :class => 'form-control' %>
-    </div>
-    <%= error_span(@adult[:last]) %>
-  </div>
-  <div class="control-group">
-    <%= f.label :email, :class => 'control-label' %>
-    <div class="controls">
-      <%= f.text_field :email, :class => 'form-control' %>
-    </div>
-    <%= error_span(@adult[:email]) %>
-  </div>
-
-
-  <%= f.submit nil, :class => 'btn btn-primary' %>
-  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-            adults_path, :class => 'btn btn-default' %>
-
+<%= simple_form_for(@adult, html: { class: 'form-horizontal' }) do |f| %>
+  <%= f.input :first %>
+  <%= f.input :last %>
+  <%= f.input :email %>
+  <%= f.button :submit, :class => 'btn btn-primary' %>
+  <%= link_to "Cancel", children_path, :class => 'btn btn-default' %>
 <% end %>

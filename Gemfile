@@ -18,6 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.1.0'
 # Needed for bootstrap
 gem 'therubyracer', platforms: :ruby
+gem 'simple_form'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

@@ -1,6 +1,7 @@
 class Child < ActiveRecord::Base
   belongs_to :adult
-
+  validates :first, presence: true
+  
   def full_name
     "#{first} #{last}"
   end
