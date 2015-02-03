@@ -1,27 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>School</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ellensburg Homeschool Co-op</title>
+  
+  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js" type="text/javascript"></script>
+  <![endif]-->
+  
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= nav_bar(:brand => "Ellensburg Homeschool Co-op",
-            :brand_link => root_path, :responsive => true) do %>
-  <%= menu_group :pull => :right do %>
-    <%= menu_item "Home", root_path %>
-    <%= menu_item "Subjects", subjects_path %>
-    <%= menu_item "Courses", courses_path %>
-    <%= menu_item "Adults", adults_path %>
-    <%= menu_item "Children", children_path %>
+  <%= nav_bar(:brand => "Ellensburg Homeschool Co-op",
+              :brand_link => root_path, :responsive => true) do %>
+    <%= menu_group :pull => :right do %>
+      <%= menu_item "Home", root_path %>
+      <%= menu_item "Sessions", sessions_path %>
+      <%= menu_item "Subjects", subjects_path %>
+      <%= menu_item "Courses", courses_path %>
+      <%= menu_item "Adults", adults_path %>
+      <%= menu_item "Children", children_path %>
+    <% end %>
   <% end %>
-<% end %>
 
-<div class="container">
-  <%= yield %>  
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <%= bootstrap_flash %>
+        <%= yield %>
+      </div>
+<!--      <div class="col-lg-3">
+        <div class="well sidebar-nav">
+          <h3>Sidebar</h3>
+          <ul class="nav nav-list">
+            <li class="nav-header">Sidebar</li>
+            <li><%= link_to "Link1", "/path1"  %></li>
+            <li><%= link_to "Link2", "/path2"  %></li>
+            <li><%= link_to "Link3", "/path3"  %></li>
+          </ul>
+        </div>
+      </div>-->
+    </div>
+  </div>
+  <footer class="footer"><!-- sticky footer -->
+    <div class="container">
+      <p>&copy; Ellensburg Homeschool Co-op 2015</p>
+    </div>
+  </footer>
 
 </body>
 </html>
