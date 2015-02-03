@@ -1,19 +1,25 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Child -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>First:</strong>
-  <%= @child.first %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:first) %>:</strong></dt>
+  <dd><%= @child.first %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:last) %>:</strong></dt>
+  <dd><%= @child.last %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
+  <dd><%= @child.birth_date %></dd>
+  <dt><strong>Parent:</strong></dt>
+  <dd><%= @child.adult.full_name %></dd>
+</dl>
 
-<p>
-  <strong>Last:</strong>
-  <%= @child.last %>
-</p>
-
-<p>
-  <strong>Birth date:</strong>
-  <%= @child.birth_date %>
-</p>
-
-<%= link_to 'Edit', edit_child_path(@child) %> |
-<%= link_to 'Back to Parent', adult_path(@child.adult) %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              children_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_child_path(@child), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              child_path(@child),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

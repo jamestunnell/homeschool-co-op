@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :adults do
     resources :children, :only => [:create]
   end
-  resources :children, :only => [:show,:edit,:update,:destroy]
+  resources :children
 
   resources :courses
 
