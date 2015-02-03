@@ -8,6 +8,14 @@
 </head>
 <body>
 
+<%= nav_bar(:brand => "Ellensburg Homeschool Co-op",
+            :brand_link => root_path, :responsive => true) do %>
+  <%= menu_group :pull => :right do %>
+    <%= menu_item "Home", root_path %>
+    <%= menu_item "Courses", courses_path %>
+  <% end %>
+<% end %>
+
 <div class="container">
   <%= yield %>  
 </div>

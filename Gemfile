@@ -10,6 +10,8 @@ gem 'pg', group: :production # req'd for Heroku
 gem 'rails_12factor', group: :production # req'd for Heroku
 # Use LESS for stylesheets, and bootstrap for styling
 gem 'less-rails-bootstrap'
+# Adds nice generators and helpers for bootstrap
+gem 'twitter-bootstrap-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
