@@ -8,14 +8,14 @@ gem 'sqlite3', group: [:development,:test]
 # Use postgresql as the production database for Active Record
 gem 'pg', group: :production # req'd for Heroku
 gem 'rails_12factor', group: :production # req'd for Heroku
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+# Use LESS for stylesheets, and bootstrap for styling
+gem 'less-rails-bootstrap'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.1.0'
-# See https://github.com/sstephenson/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
+# Needed for bootstrap
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
