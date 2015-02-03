@@ -2,13 +2,11 @@ class SessionsController < ApplicationController
   before_action :set_session, only: [:show, :edit, :update, :destroy]
 
   # GET /sessions
-  # GET /sessions.json
   def index
     @sessions = Session.all
   end
 
   # GET /sessions/1
-  # GET /sessions/1.json
   def show
   end
 
@@ -22,7 +20,6 @@ class SessionsController < ApplicationController
   end
 
   # POST /sessions
-  # POST /sessions.json
   def create
     @session = Session.new(session_params)
 
@@ -34,7 +31,6 @@ class SessionsController < ApplicationController
   end
 
   # PATCH/PUT /sessions/1
-  # PATCH/PUT /sessions/1.json
   def update
     if @session.update(session_params)
       redirect_to @session, notice: 'Session was successfully updated.'
@@ -44,13 +40,9 @@ class SessionsController < ApplicationController
   end
 
   # DELETE /sessions/1
-  # DELETE /sessions/1.json
   def destroy
     @session.destroy
-    respond_to do |format|
-      format.html { redirect_to sessions_url, notice: 'Session was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to sessions_url, notice: 'Session was successfully destroyed.'
   end
 
   private
