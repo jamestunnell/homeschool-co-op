@@ -1,16 +1,17 @@
 Rails.application.routes.draw do
-  resources :sessions
+  get '/home', to: "static_pages#home", as: 'home'
+  get '/about', to: "static_pages#about", as: 'about'
+  get '/contact', to: "static_pages#contact", as: 'contact'
+  get '/register', to: "static_pages#register", as: 'register'
+  root 'static_pages#home'
 
+  resources :sessions
   resources :adults do
     resources :children, :only => [:create]
   end
   resources :children
-
   resources :courses
-
   resources :subjects
-  
-  root 'courses#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
