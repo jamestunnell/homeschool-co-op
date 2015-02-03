@@ -17,7 +17,7 @@
       <tr>
         <td><%= link_to child.full_name, child_path(child) %></td>
         <td><%= child.years_old %></td>
-        <td><%= child.adult.full_name %></td>
+        <td><%= link_to child.adult.full_name, child.adult %></td>
         <td><%= l child.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

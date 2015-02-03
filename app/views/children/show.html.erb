@@ -11,7 +11,7 @@
   <dt><strong><%= model_class.human_attribute_name(:birth_date) %>:</strong></dt>
   <dd><%= @child.birth_date %></dd>
   <dt><strong>Parent:</strong></dt>
-  <dd><%= @child.adult.full_name %></dd>
+  <dd><%= link_to @child.adult.full_name, @child.adult %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),
