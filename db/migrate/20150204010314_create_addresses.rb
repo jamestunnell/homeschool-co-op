@@ -5,7 +5,7 @@ class CreateAddresses < ActiveRecord::Migration
       t.string :city
       t.integer :state
       t.string :zip
-      t.integer :building_id, index: true
+      t.references :building
       
       t.timestamps null: false
     end

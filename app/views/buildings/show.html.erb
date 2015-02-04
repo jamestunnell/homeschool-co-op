@@ -1,19 +1,36 @@
-<%- model_class = Building -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+  <h2><%= @building.name %> building</h2>
 </div>
 
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:name) %>:</strong></dt>
-  <dd><%= @building.name %></dd>
-</dl>
+<h3>Address</h3>
+<p><%= @building.address.street %></p>
+<p><%= @building.address.city %>, <%= @building.address.state %> <%= @building.address.zip %></p>
 
-<%= link_to t('.back', :default => t("helpers.links.back")),
-              buildings_path, :class => 'btn btn-default'  %>
-<%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_building_path(@building), :class => 'btn btn-default' %>
-<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              building_path(@building),
-              :method => 'delete',
-              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-              :class => 'btn btn-danger' %>
+<h3>Rooms</h3>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Capacity</th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @building.rooms.each do |room| %>
+      <tr>
+        <td><%= link_to room.name, room_path(room) %></td>
+        <td>???</td>
+        <td>
+          <%= link_to "Edit", edit_room_path(room), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Destroy", room_path(room), :method => :delete,
+                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back", buildings_path, :class => 'btn btn-default'  %>
+<%= link_to "Edit", edit_building_path(@building), :class => 'btn btn-default' %>
+<%= link_to "Destroy", building_path(@building), :method => 'delete',
+              :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>
