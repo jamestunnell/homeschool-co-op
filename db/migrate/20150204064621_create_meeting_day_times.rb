@@ -8,6 +8,6 @@ class CreateMeetingDayTimes < ActiveRecord::Migration
 
       t.timestamps null: false
     end
-    add_foreign_key :meeting_time_days, :sections
+    add_foreign_key :meeting_day_times, :sections
   end
 end
