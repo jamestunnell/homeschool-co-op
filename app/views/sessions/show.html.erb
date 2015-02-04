@@ -1,8 +1,45 @@
 <div class="page-header">
-<h2><%= [@session.term, @session.kind, range_with_dash(@session.year_range)].join(" ") %></h2>
+<h2><%= @session.name %></h2>
 </div>
 <p><strong>Start date: </strong><%= @session.start_date %></p>
 <p><strong>End date: </strong><%= @session.end_date %></p>
 
-<%= link_to 'Edit', edit_session_path(@session), :class => 'btn btn-default' %>
-<%= link_to 'Back', sessions_path, :class => 'btn btn-default' %>
+<%= link_to 'All Sessions', sessions_path, :class => 'btn btn-default' %>
+<%= link_to 'Edit Session', edit_session_path(@session), :class => 'btn btn-default' %>
+<%= link_to 'Add Section', new_session_section_path(@session), :class => 'btn btn-primary' %>
+
+<h3>Sections</h3>
+<% if @session.sections.any? %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Instructor</th>
+      <th>Room</th>
+      <th>Meeting Day/Time</th>
+      <th>Fee</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @session.sections.each do |section| %>
+      <tr>
+        <td><%= section.course.subject.name %> <%= section.course.title %></td>
+        <td><%= section.adult ? section.adult.full_name : "None" %></td>
+        <td><%= section.room.name %></td>
+        <td><%= section.meeting_day_time.to_s%></td>
+        <td><%= number_to_currency(section.fee) %></td>
+        <td>
+          <%= link_to "Show", session_section_path(@session,section), :class => "btn btn-default btn-xs" %>
+          <%= link_to "Edit", edit_session_section_path(@session,section), :class => "btn btn-default btn-xs" %>
+          <%= link_to "Destroy", session_section_path(@session,section),
+                      :method => :delete, :class => "btn btn-danger btn-xs",
+                      :data => { :confirm => 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<p>There are no sections in this session.</p>
+<% end %>

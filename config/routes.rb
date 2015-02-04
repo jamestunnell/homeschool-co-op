@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
-  resources :rooms
-
-  resources :buildings
-
   get '/home', to: "static_pages#home", as: 'home'
   get '/about', to: "static_pages#about", as: 'about'
   get '/contact', to: "static_pages#contact", as: 'contact'
   get '/register', to: "static_pages#register", as: 'register'
   root 'static_pages#home'
 
-  resources :sessions
+  resources :rooms
+  resources :buildings
+  resources :sessions do
+    resources :sections, :only => [:create, :new, :show, :edit, :destroy, :update]
+  end
+  
   resources :adults do
     resources :children, :only => [:create]
   end

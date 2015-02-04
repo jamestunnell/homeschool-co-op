@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204014740) do
+ActiveRecord::Schema.define(version: 20150204064621) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 20150204014740) do
   add_index "courses", ["subject_id"], name: "index_courses_on_subject_id"
   add_index "courses", ["title"], name: "index_courses_on_title", unique: true
 
+  create_table "meeting_day_times", force: :cascade do |t|
+    t.integer  "day"
+    t.time     "start_time"
+    t.time     "end_time"
+    t.integer  "section_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "meeting_day_times", ["section_id"], name: "index_meeting_day_times_on_section_id"
+
   create_table "rooms", force: :cascade do |t|
     t.string   "name"
     t.integer  "building_id"
@@ -67,6 +78,21 @@ ActiveRecord::Schema.define(version: 20150204014740) do
   end
 
   add_index "rooms", ["name"], name: "index_rooms_on_name", unique: true
+
+  create_table "sections", force: :cascade do |t|
+    t.decimal  "fee"
+    t.integer  "session_id"
+    t.integer  "room_id"
+    t.integer  "adult_id"
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "sections", ["adult_id"], name: "index_sections_on_adult_id"
+  add_index "sections", ["course_id"], name: "index_sections_on_course_id"
+  add_index "sections", ["room_id"], name: "index_sections_on_room_id"
+  add_index "sections", ["session_id"], name: "index_sections_on_session_id"
 
   create_table "sessions", force: :cascade do |t|
     t.integer  "term"
