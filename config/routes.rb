@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/register', to: "static_pages#register", as: 'register'
   root 'static_pages#home'
 
+  resources :contact_forms, :only => [:create]
+
   resources :buildings do
     resources :rooms, :only => [:create, :new]
   end

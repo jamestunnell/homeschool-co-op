@@ -33,6 +33,14 @@
         links above.  If you are interested in teaching a class, please visit the
         "Contacts" page and email our Program  Administrator  with your name, a
         class description and your qualifications.</p>
+        
+        <h4>Not participating in Co-Op?</h4>
+        <p>If you are a Kittitas County homeschooler, this is still the place to
+        connect with other families. Our homeschool community has  field trips,
+        park days, learning events, and other fun activities in addition to co-op
+        classes. Most of these are posted on the "Ellensburg Homeschoolers" Facebook
+        page (see link at top of page), but we will also occasionally post them here,
+        including pictures from these events.</p>
       </div>
     </div>
   </div>
@@ -64,9 +72,17 @@
         <p>We are always searching for class and workshop ideas. If you would like to
         make a suggestion, use this form to contact our planning committee!</p>
         
-        <h4>Contact Us - TODO</h4>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Contact Us</h4>
+          </div>
+          <div class="panel-body">
+            <%= simple_form_for ContactForm.new do |f| %>
+              <%= render :partial => 'contact_forms/fields', :locals => { :f => f } %>
+            <% end %>
+          </div>
+        </div>
         <br>
-        
         <%= image_tag "cwu-event.jpg", size: "305x227", style:"box-shadow: 0px 4px 10px #505050; display: block; margin-left: auto; margin-right: auto"%>
       </div>
     </div>

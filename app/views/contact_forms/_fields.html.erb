@@ -1,0 +1,5 @@
+<%= f.input :name, :required => false %>
+<%= f.input :email, :required => false %>
+<%= f.input :message, :as => :text, :required => false %>
+<%= f.input :nickname, :as => :hidden, :hint => 'Leave this field blank!' %>
+<%= f.button :submit, 'Send message' %>
