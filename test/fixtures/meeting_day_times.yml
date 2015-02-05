@@ -1,13 +1,22 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
+  id: 1
   day: 1
-  start_time: 2015-02-03 22:46:21
-  end_time: 2015-02-03 22:46:21
-  section_id: 
+  start_time: 2015-02-03 10:00:00
+  end_time: 2015-02-03 11:00:00
+  section_id: 1
 
 two:
+  id: 2
   day: 1
-  start_time: 2015-02-03 22:46:21
-  end_time: 2015-02-03 22:46:21
-  section_id: 
+  start_time: 2015-02-03 09:00:00
+  end_time: 2015-02-03 09:50:00
+  section_id: 2
+
+three:
+  id: 3
+  day: 1
+  start_time: 2015-02-03 11:00:00
+  end_time: 2015-02-03 11:50:00
+  section_id: 3

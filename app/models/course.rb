@@ -1,5 +1,8 @@
 class Course < ActiveRecord::Base
   belongs_to :subject
+  validates_presence_of :title
   
-  def has_subject?; !subject_id.nil?; end
+  def type
+    workshop ? "Workshop" : "Class"
+  end
 end

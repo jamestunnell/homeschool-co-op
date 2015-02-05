@@ -8,6 +8,7 @@
       <th>Subject</th>
       <th>Title</th>
       <th>Description</th>
+      <th>Type</th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -18,6 +19,7 @@
         <td><%= course.subject.abbrev %></td>
         <td><%= link_to course.title, course_path(course) %></td>
         <td><%= course.description %></td>
+        <td><%= course.type %></td>
         <td><%=l course.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

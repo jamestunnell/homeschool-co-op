@@ -14,7 +14,7 @@
     <% @sessions.each do |session| %>
       <tr>
         <td><%= session.term %></td>
-        <td><%= session.kind %></td>
+        <td><%= session.type %></td>
         <td><%= range_with_dash(session.year_range) %></td>
         <td>
           <%= link_to "Show", session, :class => "btn btn-default btn-xs" %>

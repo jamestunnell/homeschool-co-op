@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205014858) do
+ActiveRecord::Schema.define(version: 20150205054224) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 20150205014858) do
     t.integer  "subject_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.boolean  "workshop"
   end
 
   add_index "courses", ["subject_id"], name: "index_courses_on_subject_id"
@@ -107,11 +108,11 @@ ActiveRecord::Schema.define(version: 20150205014858) do
 
   create_table "sessions", force: :cascade do |t|
     t.integer  "term"
-    t.integer  "kind"
     t.date     "start_date"
     t.date     "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "workshop"
   end
 
   create_table "subjects", force: :cascade do |t|
