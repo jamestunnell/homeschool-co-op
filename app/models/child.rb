@@ -1,7 +1,8 @@
 class Child < ActiveRecord::Base
   belongs_to :adult
   validates :first, presence: true
-  
+  has_many :enrollments, as: :enrollable
+
   def full_name
     "#{first} #{last}"
   end

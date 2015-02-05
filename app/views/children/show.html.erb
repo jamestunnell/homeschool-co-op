@@ -7,8 +7,36 @@
   <dd><%= @child.birth_date %></dd>
 </dl>
 
-<%= link_to "Back to Parent", @child.adult, :class => 'btn btn-default'  %>
-<%= link_to "Edit", edit_adult_child_path(@child.adult, @child), :class => 'btn btn-default' %>
-<%= link_to "Remove", adult_child_path(@child.adult, @child), :method => 'delete',
-              :data => { :confirm => 'Are you sure?' },
-              :class => 'btn btn-danger' %>
+<h3>Enrollments</h3>
+<% if @child.enrollments.any? %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Course</th>
+      <th>Session</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @child.enrollments.each do |enrollment| %>
+      <tr>
+        <td><%= enrollment.section.course.title %></td>
+        <td><%= enrollment.section.session.name %></td>
+        <td>
+          <%= link_to "Show", enrollment_path(enrollment), :class => "btn btn-default btn-xs" %>
+          <%= link_to "Edit", edit_enrollment_path(enrollment), :class => "btn btn-default btn-xs" %>
+          <%= link_to "Remove", enrollment_path(enrollment),
+                      :method => :delete, :class => "btn btn-danger btn-xs",
+                      :data => { :confirm => 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<p>No enrollments have been added.</p>
+<% end %>
+
+<%= link_to "Back", @child.adult, :class => 'btn btn-default'  %>
+<%= link_to "Edit", edit_child_path(@child), :class => 'btn btn-default' %>
+<%= link_to 'Add Enrollment', new_child_enrollment_path(@child), :class => 'btn btn-primary' %>

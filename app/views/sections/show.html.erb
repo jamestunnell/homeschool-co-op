@@ -16,6 +16,6 @@
 </dl>
 
 <%= link_to "Back", session_path(@section.session), :class => 'btn btn-default'  %>
-<%= link_to "Edit", edit_session_section_path(@section.session, @section), :class => 'btn btn-default' %>
-<%= link_to "Destroy", session_section_path(@section.session, @section), :method => 'delete',
+<%= link_to "Edit", edit_section_path(@section.session, @section), :class => 'btn btn-default' %>
+<%= link_to "Destroy", section_path(@section.session, @section), :method => 'delete',
             :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>

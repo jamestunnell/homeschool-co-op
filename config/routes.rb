@@ -6,16 +6,23 @@ Rails.application.routes.draw do
   root 'static_pages#home'
 
   resources :buildings do
-    resources :rooms, :only => [:create, :new, :show, :edit, :destroy, :update]
+    resources :rooms, :only => [:create, :new]
   end
+  resources :rooms, :only => [:show, :edit, :destroy, :update]
   
   resources :sessions do
-    resources :sections, :only => [:create, :new, :show, :edit, :destroy, :update]
+    resources :sections, :only => [:create, :new]
   end
+  resources :sections, :only => [:show, :edit, :destroy, :update]
   
   resources :adults do
-    resources :children, :only => [:create, :new, :show, :edit, :destroy, :update]
+    resources :children, :only => [:create, :new]
+    resources :enrollments, :only => [:create, :new]
   end
+  resources :children, :only => [:show, :edit, :destroy, :update] do
+    resources :enrollments, :only => [:create, :new]
+  end
+  resources :enrollments, :only => [:show, :edit, :destroy, :update]
   
   resources :courses
   resources :subjects
