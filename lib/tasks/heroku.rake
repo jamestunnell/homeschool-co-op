@@ -2,7 +2,9 @@ require 'open3'
 
 def heroku_cmd_line(cmd)
   Open3.popen3(cmd) do |stdin, stdout, stderr, wait_thr|
-    puts stderr.read
+    while line = stderr.gets
+      puts line
+    end
   end
 end
 
