@@ -1,5 +1,5 @@
 <%= simple_form_for [@section.session, @section], :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.association :session, readonly: true %>
+  <%= f.association :session, as: :hidden %>
   <%= f.association :course, include_blank: false %>
   <%= f.association :adult, :label_method => :full_name %>
   <%= f.association :room, :label_method => lambda {|x| "#{x.name} at #{x.building.name} building"} %>

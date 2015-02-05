@@ -1,10 +1,6 @@
 class ChildrenController < ApplicationController
   before_action :set_child, only: [:show, :edit, :update, :destroy]
   
-  def index
-    @children = Child.all
-  end
-  
   def show
   end
   
@@ -12,14 +8,10 @@ class ChildrenController < ApplicationController
   end
   
   def new
-    @child = Child.new
+    @child = Child.new(adult_id: params[:adult_id])
   end
   
   def create
-    if(params.has_key? :adult_id)
-      params[:child][:adult_id] = params[:adult_id]
-    end
-    
     @child = Child.new(child_params)
     if @child.save
       redirect_to @child.adult, notice: "Child was successfully added."

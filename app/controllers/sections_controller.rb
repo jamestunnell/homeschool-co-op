@@ -21,7 +21,7 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
 
     if @section.save
-      redirect_to [@section.session,@section], notice: 'Section was successfully created.'
+      redirect_to @section.session, notice: 'Section was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class SectionsController < ApplicationController
   # PATCH/PUT /sessions/:session_id/sections/:id
   def update
     if @section.update(section_params)
-      redirect_to [@section.session, @section], notice: 'Section was successfully updated.'
+      redirect_to @section.session, notice: 'Section was successfully updated.'
     else
       render :edit
     end
@@ -40,7 +40,7 @@ class SectionsController < ApplicationController
   def destroy
     session = @section.session
     @section.destroy
-    redirect_to session_url(session), notice: 'Section was successfully destroyed.'
+    redirect_to session, notice: 'Section was successfully destroyed.'
   end
 
   private

@@ -1,42 +1,35 @@
 <div class="page-header">
 <h2><%= @adult.full_name %></h2>
 <%= link_to 'Edit Information', edit_adult_path(@adult), :class => 'btn btn-default' %>
+<%= link_to 'Add Child', new_adult_child_path(@adult), :class => 'btn btn-primary' %>
 </div>
 
+<h3>Children</h3>
 <% if @adult.children.any? %>
-  <h3>Children</h3>
-  
-  <% @adult.children.each do |child| %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= child.full_name %></h3>
-    </div>
-    <div class="panel-body">
-      <p>
-        <%= link_to 'Show', child, :class => 'btn btn-default' %>
-        <%= link_to 'Edit', edit_child_path(child), :class => 'btn btn-default' %>
-        <%= link_to 'Destroy', child, :method => :delete, :data => { confirm: 'Are you sure?' }, :class => 'btn btn-danger' %>
-      </p>
-    </div>
-  </div>
-  <% end %>
-<% end %>
-
-<h4>Add Child</h4>
-<%= form_for [@adult,@adult.children.build] do |f| %>
-  <div class="field">
-    <%= f.label :first %><br>
-    <%= f.text_field :first %>
-  </div>
-  <div class="field">
-    <%= f.label :last %><br>
-    <%= f.text_field :last %>
-  </div>
-  <div class="field">
-    <%= f.label :birth_date %><br>
-    <%= f.date_select :birth_date, start_year: (Time.now.to_date.year-18), end_year: Time.now.to_date.year %>
-  </div>
-  <div class='actions'>
-    <%= f.submit %>
-  </div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @adult.children.each do |child| %>
+      <tr>
+        <td><%= child.full_name %></td>
+        <td><%= child.years_old %></td>
+        <td>
+          <%= link_to "Show", adult_child_path(@adult,child), :class => "btn btn-default btn-xs" %>
+          <%= link_to "Edit", edit_adult_child_path(@adult,child), :class => "btn btn-default btn-xs" %>
+          <%= link_to "Remove", adult_child_path(@adult,child),
+                      :method => :delete, :class => "btn btn-danger btn-xs",
+                      :data => { :confirm => 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% else %>
+<p>No children have been added.</p>
 <% end %>
