@@ -38,6 +38,8 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
- 
-  CONFIG = YAML.load_file("#{Rails.root}/config/application.yml")
+  
+  YAML.load_file(APP_CONFIG_FILE).each do |k,v|
+    ENV[k] = v
+  end
 end
