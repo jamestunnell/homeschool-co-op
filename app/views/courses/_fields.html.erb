@@ -1,0 +1,5 @@
+<%= f.input :title %>
+<%= f.input :description %>
+<%= f.input :subject_id, as: :hidden %>
+<%= f.button :submit, :class => 'btn btn-primary' %>
+<%= link_to "Cancel", subject_path(@course.subject), :class => 'btn btn-default' %>

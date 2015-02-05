@@ -1,0 +1,9 @@
+<%= f.input :first %>
+<%= f.input :last %>
+<%= f.input :birth_date,
+            :start_year => (Time.now.to_date.year-18),
+            :end_year => Time.now.to_date.year,
+            :discard_day => true, order: [:month, :year] %>
+<%= f.association :adult, as: :hidden %>
+<%= f.button :submit, :class => 'btn btn-primary' %>
+<%= link_to "Cancel", @child.adult, :class => 'btn btn-default' %>

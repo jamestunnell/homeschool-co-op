@@ -1,0 +1,4 @@
+<%= f.input :name %>
+<%= f.association :building, as: :hidden %>
+<%= f.button :submit, :class => 'btn-primary' %>
+<%= link_to "Cancel", @room.building, :class => 'btn btn-default' %>
