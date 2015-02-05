@@ -1,6 +1,6 @@
 class Adult < ActiveRecord::Base
-  has_many :children
-  has_many :enrollments, as: :enrollable
+  has_many :children, dependent: :destroy
+  has_many :enrollments, as: :enrollable, dependent: :destroy
   def full_name
     "#{first} #{last}"
   end

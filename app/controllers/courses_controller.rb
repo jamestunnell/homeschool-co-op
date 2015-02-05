@@ -12,7 +12,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/new
   def new
-    @course = Course.new
+    @course = Subject.find(params[:subject_id]).courses.build
   end
 
   # GET /courses/1/edit
@@ -24,7 +24,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     if @course.save
-      redirect_to @course, notice: 'Course was successfully created.'
+      redirect_to @course.subject, notice: 'Course was successfully created.'
     else
       render :new
     end
@@ -41,8 +41,9 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/1
   def destroy
+    subject = @course.subject
     @course.destroy
-    format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
+    redirect_to subject, notice: 'Course was successfully destroyed.'
   end
 
   private

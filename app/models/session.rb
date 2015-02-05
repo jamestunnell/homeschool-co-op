@@ -1,6 +1,6 @@
 class Session < ActiveRecord::Base
   enum term: [ "Fall", "Winter", "Spring", "Summer" ]
-  has_many :sections
+  has_many :sections, dependent: :destroy
   
   def year_range
     start_date.year..end_date.year
