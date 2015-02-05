@@ -21,6 +21,8 @@ gem 'turbolinks'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # gems for email/contact form
 gem 'mail_form'
+# send emails using Mailgun API
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
