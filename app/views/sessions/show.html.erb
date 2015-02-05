@@ -4,10 +4,6 @@
 <p><strong>Start date: </strong><%= @session.start_date %></p>
 <p><strong>End date: </strong><%= @session.end_date %></p>
 
-<%= link_to 'All Sessions', sessions_path, :class => 'btn btn-default' %>
-<%= link_to 'Edit Session', edit_session_path(@session), :class => 'btn btn-default' %>
-<%= link_to 'Add Section', new_session_section_path(@session), :class => 'btn btn-primary' %>
-
 <h3>Sections</h3>
 <% if @session.sections.any? %>
 <table class="table table-striped">
@@ -43,3 +39,7 @@
 <% else %>
 <p>There are no sections in this session.</p>
 <% end %>
+
+<%= link_to 'Back', sessions_path, :class => 'btn btn-default' %>
+<%= link_to 'Edit', edit_session_path(@session), :class => 'btn btn-default' %>
+<%= link_to 'Add Section', new_session_section_path(@session), :class => 'btn btn-primary' %>

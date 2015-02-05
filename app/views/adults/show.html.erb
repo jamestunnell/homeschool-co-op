@@ -1,7 +1,5 @@
 <div class="page-header">
 <h2><%= @adult.full_name %></h2>
-<%= link_to 'Edit Information', edit_adult_path(@adult), :class => 'btn btn-default' %>
-<%= link_to 'Add Child', new_adult_child_path(@adult), :class => 'btn btn-primary' %>
 </div>
 
 <h3>Children</h3>
@@ -33,3 +31,6 @@
 <% else %>
 <p>No children have been added.</p>
 <% end %>
+
+<%= link_to 'Edit', edit_adult_path(@adult), :class => 'btn btn-default' %>
+<%= link_to 'Add Child', new_adult_child_path(@adult), :class => 'btn btn-primary' %>

@@ -1,48 +1,44 @@
 class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
-  # GET /rooms
-  def index
-    @rooms = Room.all
-  end
-
-  # GET /rooms/1
+  # GET /buildings/:building_id/rooms/:id
   def show
   end
 
-  # GET /rooms/new
+  # GET /buildings/:building_id/rooms/new
   def new
-    @room = Room.new
+    @room = Room.new(building_id: params[:building_id])
   end
 
-  # GET /rooms/1/edit
+  # GET /buildings/:building_id/rooms/:id/edit
   def edit
   end
 
-  # POST /rooms
+  # POST /buildings/:building_id/rooms
   def create
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to @room, notice: 'Room was successfully created.'
+      redirect_to @room.building, notice: 'Room was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /rooms/1
+  # PATCH/PUT buildings/:building_id/rooms/:id
   def update
     if @room.update(room_params)
-      redirect_to @room, notice: 'Room was successfully updated.'
+      redirect_to @room.building, notice: 'Room was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /rooms/1
+  # DELETE buildings/:building_id/rooms/:id
   def destroy
+    building = @room.building
     @room.destroy
-    redirect_to rooms_url, notice: 'Room was successfully destroyed.'
+    redirect_to building, notice: 'Room was successfully destroyed.'
   end
 
   private

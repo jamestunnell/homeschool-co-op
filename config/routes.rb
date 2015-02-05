@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   get '/register', to: "static_pages#register", as: 'register'
   root 'static_pages#home'
 
-  resources :rooms
-  resources :buildings
+  resources :buildings do
+    resources :rooms, :only => [:create, :new, :show, :edit, :destroy, :update]
+  end
+  
   resources :sessions do
     resources :sections, :only => [:create, :new, :show, :edit, :destroy, :update]
   end
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   resources :adults do
     resources :children, :only => [:create, :new, :show, :edit, :destroy, :update]
   end
+  
   resources :courses
   resources :subjects
 

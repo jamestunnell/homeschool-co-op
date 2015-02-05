@@ -4,7 +4,5 @@
 </div>
 <p></p>
 
-<%= link_to "Back", rooms_path, :class => 'btn btn-default'  %>
-<%= link_to "Edit", edit_room_path(@room), :class => 'btn btn-default' %>
-<%= link_to "Destroy", room_path(@room), :method => 'delete',
-            :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>
+<%= link_to "Back", @room.building, :class => 'btn btn-default'  %>
+<%= link_to "Edit", edit_building_room_path(@room.building, @room), :class => 'btn btn-default' %>
