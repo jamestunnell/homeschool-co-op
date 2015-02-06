@@ -13,7 +13,7 @@
   <thead>
     <tr>
       <th>Course</th>
-      <th>Session</th>
+      <th>Term</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -21,7 +21,7 @@
     <% @child.enrollments.each do |enrollment| %>
       <tr>
         <td><%= enrollment.section.course.title %></td>
-        <td><%= enrollment.section.session.name %></td>
+        <td><%= enrollment.section.term.name %></td>
         <td>
           <%= link_to "Show", enrollment_path(enrollment), :class => "btn btn-default btn-xs" %>
           <%= link_to "Edit", edit_enrollment_path(enrollment), :class => "btn btn-default btn-xs" %>

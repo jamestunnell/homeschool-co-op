@@ -1,11 +1,11 @@
 <div class="page-header">
-<h2><%= @session.name %></h2>
+<h2><%= @term.name %></h2>
 </div>
-<p><strong>Start date: </strong><%= @session.start_date %></p>
-<p><strong>End date: </strong><%= @session.end_date %></p>
+<p><strong>Start date: </strong><%= @term.start_date %></p>
+<p><strong>End date: </strong><%= @term.end_date %></p>
 
 <h3>Sections</h3>
-<% if @session.sections.any? %>
+<% if @term.sections.any? %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -18,7 +18,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @session.sections.each do |section| %>
+    <% @term.sections.each do |section| %>
       <tr>
         <td><%= section.course.subject.name %> <%= section.course.title %></td>
         <td><%= section.adult ? section.adult.full_name : "None" %></td>
@@ -37,9 +37,9 @@
   </tbody>
 </table>
 <% else %>
-<p>There are no sections in this session.</p>
+<p>There are no sections in this term.</p>
 <% end %>
 
-<%= link_to 'Back', sessions_path, :class => 'btn btn-default' %>
-<%= link_to 'Edit', edit_session_path(@session), :class => 'btn btn-default' %>
-<%= link_to 'Add Section', new_session_section_path(@session), :class => 'btn btn-primary' %>
+<%= link_to 'Back', terms_path, :class => 'btn btn-default' %>
+<%= link_to 'Edit', edit_term_path(@term), :class => 'btn btn-default' %>
+<%= link_to 'Add Section', new_term_section_path(@term), :class => 'btn btn-primary' %>

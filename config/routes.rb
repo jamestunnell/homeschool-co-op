@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
   resources :rooms, :only => [:show, :edit, :destroy, :update]
   
-  resources :sessions do
+  resources :terms do
     resources :sections, :only => [:create, :new]
   end
   resources :sections, :only => [:show, :edit, :destroy, :update]

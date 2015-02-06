@@ -23,9 +23,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mail_form'
 # send emails using Mailgun API
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+# Authenticate models with devise
+#gem 'devise'
 
 # Use Unicorn as the app server
 # gem 'unicorn'

@@ -1,4 +1,4 @@
-<%= f.association :session, as: :hidden %>
+<%= f.association :term, as: :hidden %>
 <%= f.association :course, include_blank: false %>
 <%= f.association :adult, :label_method => :full_name %>
 <%= f.association :room, :label_method => lambda {|x| "#{x.name} at #{x.building.name} building"} %>
@@ -9,4 +9,4 @@
 <% end %>
 <%= f.input :fee %>
 <%= f.button :submit, :class => 'btn-primary' %>
-<%= link_to "Cancel", @section.session, :class => 'btn btn-default' %>
+<%= link_to "Cancel", @section.term, :class => 'btn btn-default' %>

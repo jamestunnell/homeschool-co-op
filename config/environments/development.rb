@@ -42,4 +42,10 @@ Rails.application.configure do
   YAML.load_file(APP_CONFIG_FILE).each do |k,v|
     ENV[k] = v
   end
+  
+  # must be configured for Devise to work properly
+  config.action_mailer.default_url_options =  { :host  => 'localhost:3000' }
+ 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: '127.0.0.1', :port => 1025 }
 end

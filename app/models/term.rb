@@ -1,4 +1,4 @@
-class Session < ActiveRecord::Base
+class Term < ActiveRecord::Base
   enum term: [ "Fall", "Winter", "Spring", "Summer" ]
   has_many :sections, dependent: :destroy
   

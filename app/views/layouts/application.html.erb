@@ -19,16 +19,17 @@
 
   <%= nav_bar(:brand => "Ellensburg Homeschool Co-op",
               :brand_link => root_path, :responsive => true) do %>
-    <%= menu_group :pull => :right do %>
+    <%= menu_group :pull => :left do %>
       <%= menu_item "Home", root_path %>
       <%= menu_item "About", about_path %>
       <%= menu_item "Register", register_path %>
       <%= menu_item "Contact", contact_path %>
-      <%= menu_item "Sessions", sessions_path %>
+      <%= menu_item "Terms", terms_path %>
       <%= menu_item "Subjects", subjects_path %>
       <%= menu_item "Adults", adults_path %>
       <%= menu_item "Buildings", buildings_path %>
     <% end %>
+    
   <% end %>
 
   <div class="container">

@@ -1,5 +1,5 @@
 class Section < ActiveRecord::Base
-  belongs_to :session
+  belongs_to :term
   belongs_to :room
   belongs_to :adult
   belongs_to :course

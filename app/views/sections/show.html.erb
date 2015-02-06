@@ -3,8 +3,8 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong>Session:</strong></dt>
-  <dd><%= @section.session.name %></dd>
+  <dt><strong>Term:</strong></dt>
+  <dd><%= @section.term.name %></dd>
   <dt><strong>Instructor:</strong></dt>
   <dd><%= @section.adult ? @section.adult.full_name : "None" %></dd>
   <dt><strong>Room:</strong></dt>
@@ -15,7 +15,7 @@
   <dd><%= number_to_currency(@section.fee) %></dd>
 </dl>
 
-<%= link_to "Back", session_path(@section.session), :class => 'btn btn-default'  %>
-<%= link_to "Edit", edit_section_path(@section.session, @section), :class => 'btn btn-default' %>
-<%= link_to "Destroy", section_path(@section.session, @section), :method => 'delete',
+<%= link_to "Back", @section.term, :class => 'btn btn-default'  %>
+<%= link_to "Edit", edit_section_path(@section.term, @section), :class => 'btn btn-default' %>
+<%= link_to "Destroy", section_path(@section.term, @section), :method => 'delete',
             :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>

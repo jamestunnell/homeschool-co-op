@@ -1,46 +1,46 @@
 class SectionsController < ApplicationController
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
-  # GET /sessions/:session_id/sections/:id
+  # GET /terms/:term_id/sections/:id
   def show
   end
 
-  # GET /sessions/:session_id/sections/new
+  # GET /terms/:term_id/sections/new
   def new
-    @section = Section.new(session_id: params[:session_id])
-    start_day = @section.session.start_date.strftime("%a")
+    @section = Section.new(term_id: params[:term_id])
+    start_day = @section.term.start_date.strftime("%a")
     @section.build_meeting_day_time(day: start_day)
   end
 
-  # GET /sessions/:session_id/sections/:id/edit
+  # GET /terms/:term_id/sections/:id/edit
   def edit
   end
 
-  # POST /sessions/:session_id/sections
+  # POST /terms/:term_id/sections
   def create
     @section = Section.new(section_params)
 
     if @section.save
-      redirect_to @section.session, notice: 'Section was successfully created.'
+      redirect_to @section.term, notice: 'Section was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /sessions/:session_id/sections/:id
+  # PATCH/PUT /terms/:term_id/sections/:id
   def update
     if @section.update(section_params)
-      redirect_to @section.session, notice: 'Section was successfully updated.'
+      redirect_to @section.term, notice: 'Section was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /sessions/:session_id/sections/:id
+  # DELETE /terms/:term_id/sections/:id
   def destroy
-    session = @section.session
+    term = @section.term
     @section.destroy
-    redirect_to session, notice: 'Section was successfully destroyed.'
+    redirect_to term, notice: 'Section was successfully destroyed.'
   end
 
   private
@@ -51,7 +51,7 @@ class SectionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def section_params
-      params.require(:section).permit(:fee, :session_id, :room_id,
+      params.require(:section).permit(:fee, :term_id, :room_id,
                                       :adult_id, :course_id,
                                       meeting_day_time_attributes: [:day, :start_time, :end_time])
     end

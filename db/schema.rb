@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205071207) do
+ActiveRecord::Schema.define(version: 20150206004713) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -27,9 +27,25 @@ ActiveRecord::Schema.define(version: 20150205071207) do
     t.string   "first"
     t.string   "last"
     t.string   "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
+
+  add_index "adults", ["confirmation_token"], name: "index_adults_on_confirmation_token", unique: true
+  add_index "adults", ["reset_password_token"], name: "index_adults_on_reset_password_token", unique: true
 
   create_table "buildings", force: :cascade do |t|
     t.string   "name"
@@ -94,7 +110,7 @@ ActiveRecord::Schema.define(version: 20150205071207) do
 
   create_table "sections", force: :cascade do |t|
     t.decimal  "fee"
-    t.integer  "session_id"
+    t.integer  "term_id"
     t.integer  "room_id"
     t.integer  "adult_id"
     t.integer  "course_id"
@@ -105,16 +121,7 @@ ActiveRecord::Schema.define(version: 20150205071207) do
   add_index "sections", ["adult_id"], name: "index_sections_on_adult_id"
   add_index "sections", ["course_id"], name: "index_sections_on_course_id"
   add_index "sections", ["room_id"], name: "index_sections_on_room_id"
-  add_index "sections", ["session_id"], name: "index_sections_on_session_id"
-
-  create_table "sessions", force: :cascade do |t|
-    t.integer  "term"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "workshop"
-  end
+  add_index "sections", ["term_id"], name: "index_sections_on_term_id"
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"
@@ -125,5 +132,14 @@ ActiveRecord::Schema.define(version: 20150205071207) do
 
   add_index "subjects", ["abbrev"], name: "index_subjects_on_abbrev", unique: true
   add_index "subjects", ["name"], name: "index_subjects_on_name", unique: true
+
+  create_table "terms", force: :cascade do |t|
+    t.integer  "term"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "workshop"
+  end
 
 end
