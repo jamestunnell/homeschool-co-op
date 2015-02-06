@@ -1,46 +1,67 @@
 class EnrollmentsController < ApplicationController
+  before_action :authenticate_user!
+  #before_action :check_user, only: [:new, :create, :index]
   before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
   
-  def show
-  end
-
   def new
-    @enrollable
     if params.has_key?(:child_id)
-      @enrollment = Child.find(params[:child_id]).enrollments.build
+      child = Child.find(params[:child_id])
+      check_user(child.parent)
+      @enrollment = child.enrollments.build
     else
-      @enrollment = Adult.find(params[:adult_id]).enrollments.build
+      user = User.find(params[:user_id])
+      check_user(user)
+      @enrollment = user.enrollments.build
     end
-  end
-
-  def edit
   end
 
   def create
     @enrollment = Enrollment.new(enrollment_params)
+    check_user(@enrollment.user_responsible)
     if @enrollment.save
-      redirect_to @enrollment.enrollable, notice: "Enrollment was successfully added."
+      redirect_to user_enrollments_path(@enrollment.user_responsible), notice: "Enrollment was successfully added."
     else
-      redirect_to @enrollment.enrollable, alert: "Failed to add enrollment"
+      redirect_to user_enrollments_path(@enrollment.user_responsible), alert: "Failed to add enrollment"
     end    
   end
 
+  def index
+    @user = User.find(params[:user_id])
+    check_user(@user)
+    @enrollments = @user.all_enrollments
+  end
+
+  def show
+    check_user(@enrollment.user_responsible)
+  end
+
+  def edit
+    check_user(@enrollment.user_responsible)
+  end
+
   def update
+    check_user(@enrollment.user_responsible)
     if @enrollment.update(enrollment_params)
-      redirect_to @enrollment.enrollable, notice: 'Enrollment was successfully updated.'
+      redirect_to user_enrollments_path(@enrollment.user_responsible), notice: 'Enrollment was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
-    enrollable = @enrollment.adult
+    check_user(@enrollment.user_responsible)
+    user = @enrollment.user_responsible
     @enrollment.destroy
-    redirect_to enrollable, notice: 'Enrollment was successfully removed.'
+    redirect_to user_enrollments_path(user), notice: 'Enrollment was successfully removed.'
   end
   
   private
-    # Use callbacks to share common setup or constraints between actions.
+    def check_user user
+      unless current_user == user
+        redirect_to user_path(current_user), alert: "You user account does not provide access to this section"
+      end
+    end
+
     def set_enrollment
       @enrollment = Enrollment.find(params[:id])
     end

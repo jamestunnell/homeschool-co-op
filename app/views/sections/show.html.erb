@@ -6,7 +6,7 @@
   <dt><strong>Term:</strong></dt>
   <dd><%= @section.term.name %></dd>
   <dt><strong>Instructor:</strong></dt>
-  <dd><%= @section.adult ? @section.adult.full_name : "None" %></dd>
+  <dd><%= @section.user ? @section.user.full_name : "None" %></dd>
   <dt><strong>Room:</strong></dt>
   <dd><%= @section.room ? link_to(@section.room.name, @section.room) : "None" %></dd>
   <dt><strong>Meeting day/time:</strong></dt>

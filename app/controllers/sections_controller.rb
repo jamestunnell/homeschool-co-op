@@ -52,7 +52,7 @@ class SectionsController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def section_params
       params.require(:section).permit(:fee, :term_id, :room_id,
-                                      :adult_id, :course_id,
+                                      :user_id, :course_id,
                                       meeting_day_time_attributes: [:day, :start_time, :end_time])
     end
 end

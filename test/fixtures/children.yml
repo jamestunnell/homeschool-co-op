@@ -5,25 +5,25 @@ one:
   first: Jill
   last: Brickowski
   birth_date: 2011-04-05
-  adult_id: 1
+  user_id: 1
 
 two:
   id: 2
   first: Shadow
   last: Dragon
   birth_date: 2009-03-03
-  adult_id: 2
+  user_id: 2
   
 three:
   id: 3
   first: Nadia
   last: Smart
   birth_date: 2012-06-14
-  adult_id: 3
+  user_id: 3
   
 four:
   id: 4
   first: Sammy
   last: Smart
   birth_date: 2004-11-26
-  adult_id: 3
+  user_id: 3

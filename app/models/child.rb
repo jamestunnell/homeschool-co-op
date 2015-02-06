@@ -1,8 +1,10 @@
 class Child < ActiveRecord::Base
-  belongs_to :adult
+  belongs_to :user
   validates :first, presence: true
   has_many :enrollments, as: :enrollable, dependent: :destroy
-
+  
+  alias :parent :user
+  
   def full_name
     "#{first} #{last}"
   end

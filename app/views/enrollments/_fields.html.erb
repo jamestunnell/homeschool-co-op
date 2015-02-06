@@ -2,4 +2,4 @@
 <%= f.input :enrollable_id, as: :hidden %>
 <%= f.input :enrollable_type, as: :hidden %>
 <%= f.button :submit, :class => 'btn btn-primary' %>
-<%= link_to "Cancel", @enrollment.enrollable, :class => 'btn btn-default' %>
+<%= link_to "Cancel", user_enrollments_path(@enrollment.user_responsible), :class => 'btn btn-default' %>

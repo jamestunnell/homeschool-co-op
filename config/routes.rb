@@ -5,33 +5,30 @@ Rails.application.routes.draw do
   get '/register', to: "static_pages#register", as: 'register'
   root 'static_pages#home'
 
-  devise_for :users
-  resources :users, :only => [:show]
-  
   resources :contact_forms, :only => [:create]
 
   resources :buildings do
-    resources :rooms, :only => [:create, :new]
+    resources :rooms, :only => [:index, :create, :new]
   end
   resources :rooms, :only => [:show, :edit, :destroy, :update]
   
   resources :terms do
-    resources :sections, :only => [:create, :new]
+    resources :sections, :only => [:index, :create, :new]
   end
   resources :sections, :only => [:show, :edit, :destroy, :update]
   
-  resources :adults do
-    resources :children, :only => [:create, :new]
-    resources :enrollments, :only => [:create, :new]
+  devise_for :users
+  resources :users, :only => [:show] do
+    resources :children, :only => [:index,:create, :new]
+    resources :enrollments, :only => [:index, :new, :create]
   end
-  
   resources :children, :only => [:show, :edit, :destroy, :update] do
-    resources :enrollments, :only => [:create, :new]
+    resources :enrollments, :only => [:new, :create]
   end
   resources :enrollments, :only => [:show, :edit, :destroy, :update]
   
   resources :subjects do
-    resources :courses, :only => [:create, :new]
+    resources :courses, :only => [:index, :create, :new]
   end
   resources :courses, :only => [:show, :edit, :destroy, :update]
 

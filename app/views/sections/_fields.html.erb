@@ -1,6 +1,6 @@
 <%= f.association :term, as: :hidden %>
 <%= f.association :course, include_blank: false %>
-<%= f.association :adult, :label_method => :full_name %>
+<%= f.association :user, :label_method => :full_name %>
 <%= f.association :room, :label_method => lambda {|x| "#{x.name} at #{x.building.name} building"} %>
 <%= f.simple_fields_for :meeting_day_time, :html => { :class => 'form-inline' } do |ff| %>
   <%= ff.input :day, collection: MeetingDayTime.days.keys %>
