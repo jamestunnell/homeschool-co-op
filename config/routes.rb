@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/register', to: "static_pages#register", as: 'register'
   root 'static_pages#home'
 
+  devise_for :users
+  resources :users, :only => [:show]
+  
   resources :contact_forms, :only => [:create]
 
   resources :buildings do
@@ -21,6 +24,7 @@ Rails.application.routes.draw do
     resources :children, :only => [:create, :new]
     resources :enrollments, :only => [:create, :new]
   end
+  
   resources :children, :only => [:show, :edit, :destroy, :update] do
     resources :enrollments, :only => [:create, :new]
   end

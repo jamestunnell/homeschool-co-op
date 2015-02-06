@@ -24,7 +24,7 @@ gem 'mail_form'
 # send emails using Mailgun API
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 # Authenticate models with devise
-#gem 'devise'
+gem 'devise'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
