@@ -19,11 +19,8 @@ Rails.application.routes.draw do
   
   devise_for :users
   resources :users, :only => [:show,:edit,:update]
-  
-  resources :students do
-    resources :enrollments, :only => [:index, :new, :create]
-  end
-  resources :enrollments, :only => [:show, :edit, :destroy, :update]
+  resources :students
+  resources :enrollments
   
   resources :subjects do
     resources :courses, :only => [:index, :create, :new]

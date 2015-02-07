@@ -1,6 +1,6 @@
 <h2>Students</h2>
 <% if @students.any? %>
-<%= render @students %>
+<%= render partial: 'students/table', locals: { :students => @students } %>
 <% else %>
 <p>No students have been added.</p>
 <% end %>

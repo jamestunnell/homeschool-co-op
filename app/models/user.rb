@@ -11,12 +11,9 @@ class User < ActiveRecord::Base
   validates_length_of :last, :minimum => 2, :maximum => 36
   
   has_many :students, dependent: :destroy
+  has_many :enrollments, through: :students
   
   def full_name
     "#{first} #{last}"
-  end
-  
-  def all_enrollments
-    students.map {|c| c.enrollments }.flatten
   end
 end

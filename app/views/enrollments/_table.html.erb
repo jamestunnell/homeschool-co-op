@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Section</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% enrollments.each do |enrollment| %>
+      <tr>
+        <td><%= link_to enrollment.student.full_name, enrollment.student %></td>
+        <td><%= link_to enrollment.section.course_and_term, enrollment.section %></td>
+        <td>
+          <%= link_to "Edit", edit_enrollment_path(enrollment), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Remove", enrollment_path(enrollment), :method => :delete,
+                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

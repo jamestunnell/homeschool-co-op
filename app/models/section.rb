@@ -8,4 +8,8 @@ class Section < ActiveRecord::Base
   accepts_nested_attributes_for :meeting_day_time
   
   alias :instructor :user
+  
+  def course_and_term
+    "#{course.title}, #{term.name}"
+  end
 end

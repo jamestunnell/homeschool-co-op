@@ -1,8 +1,8 @@
-<h2><%= @student.first %>'s Enrollments</h2>
+<h2>Enrollments</h2>
 <% if @enrollments.any? %>
-<%= render @enrollments %>
+<%= render partial: "enrollments/table", locals: { :enrollments => @enrollments } %>
 <% else %>
 <p>No enrollments have been added.</p>
 <% end %>
 
-<%= link_to "Add Enrollment", new_student_enrollment_path(@student), :class => 'btn btn-primary' %>
+<%= link_to "Add Enrollment", new_enrollment_path, :class => 'btn btn-primary' %>

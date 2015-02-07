@@ -1,24 +1,27 @@
 class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_user, only: [:new, :create, :index]
+  #before_action :check_user, only: [:new, :create]
   before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
   
   def new
-    @enrollment = Enrollment.new(student_id: params[:student_id])
+    @enrollment = Enrollment.new
   end
 
   def create
+    unless current_user == Student.find(enrollment_params[:student_id]).user
+      redirect_to enrollments_path, alert: "You user account does not provide access to this section"
+    end
+    
     @enrollment = Enrollment.new(enrollment_params)
     if @enrollment.save
-      redirect_to student_enrollments_path(@enrollment.student), notice: "Enrollment was successfully added."
+      redirect_to enrollments_path, notice: "Enrollment was successfully added."
     else
-      redirect_to student_enrollments_path(@enrollment.student), alert: "Failed to add enrollment"
+      redirect_to enrollments_path, alert: "Failed to add enrollment"
     end    
   end
 
   def index
-    @student = Student.find(params[:student_id])
-    @enrollments = @student.enrollments
+    @enrollments = current_user.enrollments
   end
 
   def show
@@ -29,7 +32,7 @@ class EnrollmentsController < ApplicationController
 
   def update
     if @enrollment.update(enrollment_params)
-      redirect_to student_enrollments_path(@enrollment.student), notice: 'Enrollment was successfully updated.'
+      redirect_to enrollments_path, notice: 'Enrollment was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +41,7 @@ class EnrollmentsController < ApplicationController
   def destroy
     student = @enrollment.student
     @enrollment.destroy
-    redirect_to student_enrollments_path(student), notice: 'Enrollment was successfully removed.'
+    redirect_to enrollments_path, notice: 'Enrollment was successfully removed.'
   end
   
   private
