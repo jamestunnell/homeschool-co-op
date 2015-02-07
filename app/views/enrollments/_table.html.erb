@@ -10,7 +10,7 @@
     <% enrollments.each do |enrollment| %>
       <tr>
         <td><%= link_to enrollment.student.full_name, enrollment.student %></td>
-        <td><%= link_to enrollment.section.course_and_term, enrollment.section %></td>
+        <td><%= link_to enrollment.section.short, enrollment.section %></td>
         <td>
           <%= link_to "Edit", edit_enrollment_path(enrollment), :class => 'btn btn-default btn-xs' %>
           <%= link_to "Remove", enrollment_path(enrollment), :method => :delete,

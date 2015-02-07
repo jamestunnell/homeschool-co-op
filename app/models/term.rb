@@ -10,7 +10,18 @@ class Term < ActiveRecord::Base
     workshop ? "Workshop" : "Quarter"
   end
   
-  def name
-    [term, type, ApplicationHelper.range_with_dash(year_range)].join(" ")
+  def short
+    "#{season} #{type}"
   end
+  
+  def long
+    "#{short} #{ApplicationHelper.range_with_dash(year_range)}"
+  end
+  
+  alias :name :long
+  
+  scope :upcoming, -> { where("start_date > ?", Date.today) }
+  scope :past, -> { where("end_date < ?", Date.today) }
+  scope :not_past, -> { where("end_date >= ?", Date.today) }
+  scope :active, -> { where("start_date <= ? AND end_date >= ?", Date.today, Date.today) }
 end

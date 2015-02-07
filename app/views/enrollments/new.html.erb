@@ -1,6 +1,10 @@
 <div class="page-header">
   <h2>Add Enrollment</h2>
 </div>
-<%= simple_form_for(@enrollment, html: { class: 'form-horizontal' }) do |f| %>
-  <%= render :partial => 'fields', :locals => { :f => f } %>
+<% if Section.not_past.any? %>
+  <%= simple_form_for(@enrollment, html: { class: 'form-horizontal' }) do |f| %>
+    <%= render :partial => 'fields', :locals => { :f => f } %>
+  <% end %>
+<% else %>
+  <p>There are no upcoming or active sections to enroll in.</p>
 <% end %>
