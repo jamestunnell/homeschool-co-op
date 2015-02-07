@@ -12,8 +12,29 @@ class User < ActiveRecord::Base
   
   has_many :students, dependent: :destroy
   has_many :enrollments, through: :students
+  has_many :responsibilities, dependent: :destroy
   
   def full_name
     "#{first} #{last}"
+  end
+  
+  def can_coordinate?
+    active_responsibilities.any? {|r| r.kind == "coordination" }
+  end
+  
+  def can_register?
+    active_responsibilities.any? {|r| r.kind == "registration" }
+  end
+  
+  def can_schedule?
+    active_responsibilities.any? {|r| r.kind == "scheduling" }
+  end
+  
+  def can_catalog?
+    active_responsibilities.any? {|r| r.kind == "cataloging" }
+  end
+  
+  def active_responsibilities
+    responsibilities.select {|r| r.active? }
   end
 end
