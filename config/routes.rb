@@ -18,12 +18,10 @@ Rails.application.routes.draw do
   resources :sections, :only => [:show, :edit, :destroy, :update]
   
   devise_for :users
-  resources :users, :only => [:show] do
-    resources :children, :only => [:index,:create, :new]
+  resources :users, :only => [:show,:edit,:update]
+  
+  resources :students do
     resources :enrollments, :only => [:index, :new, :create]
-  end
-  resources :children, :only => [:show, :edit, :destroy, :update] do
-    resources :enrollments, :only => [:new, :create]
   end
   resources :enrollments, :only => [:show, :edit, :destroy, :update]
   

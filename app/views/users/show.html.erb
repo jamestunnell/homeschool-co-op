@@ -1,10 +1,7 @@
-<%= render partial: 'user_navbar' %>
-
 <div class="page-header">
   <h2><%= @user.full_name %></h2>
+  <p><strong>Email: </strong> <%= @user.email %></p>
+  <p>
+    <%= link_to "Edit Account", edit_user_registration_path, :class => "btn btn-default btn-xs" %>
+  </p>
 </div>
-
-<dl class="dl-horizontal">
-  <dt><strong>Email:</strong></dt>
-  <dd><%= @user.email %></dd>
-</dl>

@@ -15,7 +15,6 @@
   <dd><%= number_to_currency(@section.fee) %></dd>
 </dl>
 
-<%= link_to "Back", @section.term, :class => 'btn btn-default'  %>
 <%= link_to "Edit", edit_section_path(@section.term, @section), :class => 'btn btn-default' %>
 <%= link_to "Destroy", section_path(@section.term, @section), :method => 'delete',
             :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-danger' %>

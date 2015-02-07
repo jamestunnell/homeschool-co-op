@@ -5,15 +5,29 @@ class UsersController < ApplicationController
   # GET /users/1
   def show
   end
+  
+  def edit
+  end
+  
+  def update
+    if @user.update(user_name_params)
+      redirect_to user_path(@user), notice: 'Name was successfully updated.'
+    else
+      render :edit
+    end
+
+  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_user
       user = User.find(params[:id])
       unless current_user == user
-        flash[:error] = "You user account does not provide access to this section"
-        redirect_to user_path(current_user)
+        redirect_to user_path(current_user), alert: "You user account does not provide access to this section"
       end
       @user = current_user
+    end
+    
+    def user_name_params
+      params.require(:user).permit(:first, :last)
     end
 end

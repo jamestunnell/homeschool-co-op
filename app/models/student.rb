@@ -1,7 +1,7 @@
-class Child < ActiveRecord::Base
+class Student < ActiveRecord::Base
   belongs_to :user
   validates :first, presence: true
-  has_many :enrollments, as: :enrollable, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
   
   alias :parent :user
   

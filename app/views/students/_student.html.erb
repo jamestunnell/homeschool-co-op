@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p><%= link_to student.full_name, student %></p>
+    <p><strong>Age:</strong> <%= student.years_old %></p>
+  </div>
+  <div class="panel-footer">
+    <%= link_to "Edit", edit_student_path(student), :class => "btn btn-default btn-xs" %>
+    <%= link_to "Remove", student_path(student),
+                    :method => :delete, :class => "btn btn-danger btn-xs",
+                    :data => { :confirm => 'Are you sure?' } %>
+  </div>
+</div>

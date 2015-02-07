@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206072424) do
+ActiveRecord::Schema.define(version: 20150206233314) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -29,17 +29,6 @@ ActiveRecord::Schema.define(version: 20150206072424) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "children", force: :cascade do |t|
-    t.string   "first"
-    t.string   "last"
-    t.date     "birth_date"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "children", ["user_id"], name: "index_children_on_user_id"
-
   create_table "courses", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -53,16 +42,15 @@ ActiveRecord::Schema.define(version: 20150206072424) do
   add_index "courses", ["title"], name: "index_courses_on_title", unique: true
 
   create_table "enrollments", force: :cascade do |t|
-    t.integer  "enrollable_id"
-    t.string   "enrollable_type"
+    t.integer  "student_id"
     t.integer  "section_id"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "paid",            default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "paid",       default: false
   end
 
-  add_index "enrollments", ["enrollable_type", "enrollable_id"], name: "index_enrollments_on_enrollable_type_and_enrollable_id"
   add_index "enrollments", ["section_id"], name: "index_enrollments_on_section_id"
+  add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id"
 
   create_table "meeting_day_times", force: :cascade do |t|
     t.integer  "day"
@@ -98,6 +86,17 @@ ActiveRecord::Schema.define(version: 20150206072424) do
   add_index "sections", ["room_id"], name: "index_sections_on_room_id"
   add_index "sections", ["term_id"], name: "index_sections_on_term_id"
   add_index "sections", ["user_id"], name: "index_sections_on_user_id"
+
+  create_table "students", force: :cascade do |t|
+    t.string   "first"
+    t.string   "last"
+    t.date     "birth_date"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "students", ["user_id"], name: "index_students_on_user_id"
 
   create_table "subjects", force: :cascade do |t|
     t.string   "name"

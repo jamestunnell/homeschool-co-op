@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h2><%= @student.full_name %></h2>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong>Birth date:</strong></dt>
+  <dd><%= @student.birth_date %></dd>
+</dl>
+
+<h3>Enrollments</h3>
+<% if @student.enrollments.any? %>
+  <%= render @student.enrollments %>
+<% else %>
+<p>No enrollments have been added.</p>
+<% end %>
+
+<%= link_to 'Add Enrollment', new_student_enrollment_path(@student), :class => 'btn btn-primary' %>

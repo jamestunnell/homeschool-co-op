@@ -6,4 +6,4 @@
             :discard_day => true, order: [:month, :year] %>
 <%= f.association :user, as: :hidden %>
 <%= f.button :submit, :class => 'btn btn-primary' %>
-<%= link_to "Cancel", user_children_path(@child.user), :class => 'btn btn-default' %>
+<%= link_to "Cancel", students_path, :class => 'btn btn-default' %>

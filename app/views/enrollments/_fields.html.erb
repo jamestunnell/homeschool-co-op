@@ -1,5 +1,4 @@
 <%= f.association :section, :label_method => lambda {|x| x.course.title } %>
-<%= f.input :enrollable_id, as: :hidden %>
-<%= f.input :enrollable_type, as: :hidden %>
+<%= f.input :student_id, as: :hidden %>
 <%= f.button :submit, :class => 'btn btn-primary' %>
-<%= link_to "Cancel", user_enrollments_path(@enrollment.user_responsible), :class => 'btn btn-default' %>
+<%= link_to "Cancel", student_enrollments_path(@enrollment.student), :class => 'btn btn-default' %>

@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p><strong>Student:</strong> <%= enrollment.student.full_name %></p>
+    <%= render enrollment.section %>
+  </div>
+  <div class="panel-footer">
+  <%= link_to "Edit", edit_enrollment_path(enrollment), :class => 'btn btn-xs btn-default' %>
+  <%= link_to "Remove", enrollment_path(enrollment), :method => :delete,
+              :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+  </div>
+</div>

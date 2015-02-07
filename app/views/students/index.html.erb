@@ -1,0 +1,8 @@
+<h2>Students</h2>
+<% if @students.any? %>
+<%= render @students %>
+<% else %>
+<p>No students have been added.</p>
+<% end %>
+
+<%= link_to "Add Student", new_student_path, :class => 'btn btn-primary' %>

@@ -1,39 +1,8 @@
-<%= render partial: 'users/user_navbar' %>
-
-<h2>Enrollments</h2>
+<h2><%= @student.first %>'s Enrollments</h2>
 <% if @enrollments.any? %>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Enrollee</th>
-      <th>Course</th>
-      <th>Term</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @enrollments.each do |enrollment| %>
-      <tr>
-        <td><%= enrollment.enrollable.full_name %></td>
-        <td><%= enrollment.section.course.title %></td>
-        <td><%= enrollment.section.term.name %></td>
-        <td>
-          <%= link_to "Show", enrollment_path(enrollment), :class => "btn btn-default btn-xs" %>
-          <%= link_to "Edit", edit_enrollment_path(enrollment), :class => "btn btn-default btn-xs" %>
-          <%= link_to "Remove", enrollment_path(enrollment),
-                      :method => :delete, :class => "btn btn-danger btn-xs",
-                      :data => { :confirm => 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render @enrollments %>
 <% else %>
-<p>You have no current enrollments.</p>
+<p>No enrollments have been added.</p>
 <% end %>
 
-<h3>Add enrollment for:</h3>
-<% @user.children.each do |child| %>
-  <%= link_to child.first, new_child_enrollment_path(child), :class => 'btn btn-primary' %>
-<% end %>
-<%= link_to @user.first, new_user_enrollment_path(@user), :class => 'btn btn-primary' %>
+<%= link_to "Add Enrollment", new_student_enrollment_path(@student), :class => 'btn btn-primary' %>

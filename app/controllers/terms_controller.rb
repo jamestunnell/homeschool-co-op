@@ -46,7 +46,6 @@ class TermsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_term
       @term = Term.find(params[:id])
     end
