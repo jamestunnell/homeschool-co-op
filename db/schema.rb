@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206233314) do
+ActiveRecord::Schema.define(version: 20150207054300) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -30,23 +30,23 @@ ActiveRecord::Schema.define(version: 20150206233314) do
   end
 
   create_table "courses", force: :cascade do |t|
-    t.string   "title"
+    t.string   "name"
     t.text     "description"
+    t.boolean  "workshop"
     t.integer  "subject_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.boolean  "workshop"
   end
 
+  add_index "courses", ["name"], name: "index_courses_on_name", unique: true
   add_index "courses", ["subject_id"], name: "index_courses_on_subject_id"
-  add_index "courses", ["title"], name: "index_courses_on_title", unique: true
 
   create_table "enrollments", force: :cascade do |t|
+    t.boolean  "paid"
     t.integer  "student_id"
     t.integer  "section_id"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "paid",       default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "enrollments", ["section_id"], name: "index_enrollments_on_section_id"
@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150206233314) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "rooms", ["name"], name: "index_rooms_on_name", unique: true
+  add_index "rooms", ["building_id"], name: "index_rooms_on_building_id"
 
   create_table "sections", force: :cascade do |t|
     t.decimal  "fee"
@@ -109,12 +109,12 @@ ActiveRecord::Schema.define(version: 20150206233314) do
   add_index "subjects", ["name"], name: "index_subjects_on_name", unique: true
 
   create_table "terms", force: :cascade do |t|
-    t.integer  "term"
+    t.integer  "season"
     t.date     "start_date"
     t.date     "end_date"
+    t.boolean  "workshop"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "workshop"
   end
 
   create_table "users", force: :cascade do |t|

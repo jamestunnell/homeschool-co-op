@@ -20,7 +20,7 @@
   <tbody>
     <% @term.sections.each do |section| %>
       <tr>
-        <td><%= section.course.subject.name %> <%= section.course.title %></td>
+        <td><%= section.course.subject.name %> <%= section.course.name %></td>
         <td><%= section.user ? section.user.full_name : "None" %></td>
         <td><%= section.room.name %></td>
         <td><%= section.meeting_day_time.to_s%></td>

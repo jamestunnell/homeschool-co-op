@@ -1,5 +1,5 @@
 class Term < ActiveRecord::Base
-  enum term: [ "Fall", "Winter", "Spring", "Summer" ]
+  enum season: [ "Fall", "Winter", "Spring", "Summer" ]
   has_many :sections, dependent: :destroy
   
   def year_range

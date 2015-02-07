@@ -2,10 +2,9 @@ class CreateRooms < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
       t.string :name
-      t.references :building
-
+      t.references :building, index: true
       t.timestamps null: false
     end
-    add_index :rooms, :name, unique: true
+    add_foreign_key :rooms, :buildings
   end
 end

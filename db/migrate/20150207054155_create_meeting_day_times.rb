@@ -5,7 +5,6 @@ class CreateMeetingDayTimes < ActiveRecord::Migration
       t.time :start_time
       t.time :end_time
       t.references :section, index: true
-
       t.timestamps null: false
     end
     add_foreign_key :meeting_day_times, :sections

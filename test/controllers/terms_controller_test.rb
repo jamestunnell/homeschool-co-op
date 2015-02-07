@@ -18,7 +18,7 @@ class TermsControllerTest < ActionController::TestCase
 
   test "should create term" do
     assert_difference('Term.count') do
-      post :create, term: {  }
+      post :create, season: {  }
     end
 
     assert_redirected_to term_path(assigns(:term))
@@ -35,8 +35,8 @@ class TermsControllerTest < ActionController::TestCase
   end
 
   test "should update term" do
-    patch :update, id: @term, term: {  }
-    assert_redirected_to term_path(assigns(:term))
+    patch :update, id: @term, season: {  }
+    assert_redirected_to term_path(assigns(:season))
   end
 
   test "should destroy term" do

@@ -1,4 +1,4 @@
-<%= f.association :section, :label_method => lambda {|x| x.course.title } %>
+<%= f.association :section, :label_method => lambda {|x| x.course.name } %>
 <%= f.input :student_id, collection: current_user.students, include_blank: false,
                          label_method: :full_name, value_method: :id %>
 <%= f.button :submit, :class => 'btn btn-primary' %>

@@ -3,7 +3,6 @@ class CreateSubjects < ActiveRecord::Migration
     create_table :subjects do |t|
       t.string :name
       t.string :abbrev
-
       t.timestamps null: false
     end
     add_index :subjects, :name, unique: true

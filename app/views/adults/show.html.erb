@@ -47,7 +47,7 @@
     <% @adult.all_enrollments.each do |enrollment| %>
       <tr>
         <td><%= enrollment.enrollable.full_name %></td>
-        <td><%= enrollment.section.course.title %></td>
+        <td><%= enrollment.section.course.name %></td>
         <td><%= enrollment.section.term.name %></td>
         <td>
           <%= link_to "Show", enrollment_path(enrollment), :class => "btn btn-default btn-xs" %>

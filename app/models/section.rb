@@ -10,6 +10,6 @@ class Section < ActiveRecord::Base
   alias :instructor :user
   
   def course_and_term
-    "#{course.title}, #{term.name}"
+    "#{course.name}, #{term.name}"
   end
 end

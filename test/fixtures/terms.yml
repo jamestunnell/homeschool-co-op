@@ -2,14 +2,14 @@
 
 one:
   id: 1
-  term: 0
+  season: 0
   workshop: false
   start_date: 2014-09-23
   end_date: 2014-12-12
 
 two:
   id: 2
-  term: 0
+  season: 0
   workshop: true
   start_date: 2014-09-16
   end_date: 2014-09-16
