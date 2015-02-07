@@ -3,23 +3,23 @@
 one:
   id: 1
   fee: 40
-  session_id: 1
+  term_id: 1
   room_id: 3
-  adult_id: 3
+  user_id:
   course_id: 3
 
 two:
   id: 2
   fee: 25
-  session_id: 1
+  term_id: 1
   room_id: 1
-  adult_id: 1
+  user_id:
   course_id: 1
 
 three:
   id: 3
   fee: 5
-  session_id: 2
+  term_id: 2
   room_id: 2
-  adult_id: 2
+  user_id:
   course_id: 2
