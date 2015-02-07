@@ -1,31 +1,8 @@
 <div class="page-header">
   <h2>Terms</h2>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Term</th>
-      <th>Type</th>
-      <th>Year</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @terms.each do |term| %>
-      <tr>
-        <td><%= term.term %></td>
-        <td><%= term.type %></td>
-        <td><%= range_with_dash(term.year_range) %></td>
-        <td>
-          <%= link_to "Show", term, :class => "btn btn-default btn-xs" %>
-          <%= link_to "Edit", edit_term_path(term), :class => "btn btn-default btn-xs" %>
-          <%= link_to "Destroy", term_path(term),
-                      :method => :delete, :class => "btn btn-danger btn-xs",
-                      :data => { :confirm => 'Are you sure?' } %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render @terms %>
 
-<%= link_to "New", new_term_path, :class => 'btn btn-primary' %>
+<% if user_signed_in? %>
+  <%= link_to "Add Term", new_term_path, :class => 'btn btn-primary' %>
+<% end %>

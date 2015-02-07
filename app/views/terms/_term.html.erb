@@ -1,0 +1,16 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <p><strong>Name:</strong> <%= term.term %></p>
+    <p><strong>Type:</strong> <%= term.type %></p>
+    <p><strong>Year: </strong> <%= range_with_dash(term.year_range) %></p>
+  </div>
+  <% if user_signed_in? %>
+    <div class="panel-footer">
+            <%= link_to "Edit", edit_term_path(term), :class => 'btn btn-default btn-xs' %>
+            <%= link_to "Remove", term_path(term),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+    </div>
+  <% end %>
+</div>

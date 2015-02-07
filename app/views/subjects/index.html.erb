@@ -1,27 +1,8 @@
 <div class="page-header">
   <h2>Subjects</h2>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Abbreviation</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @subjects.each do |subject| %>
-      <tr>
-        <td><%= link_to subject.name, subject_path(subject) %></td>
-        <td><%= subject.abbrev %></td>
-        <td>
-          <%= link_to "Edit", edit_subject_path(subject), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Remove", subject_path(subject), :method => :delete,
-                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render @subjects %>
 
-<%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %>
+<% if user_signed_in? %>
+  <%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %>
+<% end %>
