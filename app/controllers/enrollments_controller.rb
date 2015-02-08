@@ -1,6 +1,7 @@
 class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_enrollment, only: [ :pay, :edit, :update, :destroy]
+  before_action :ensure_registrator, only: [ :mark_paid ]
   
   def new
     sid = nil
@@ -45,10 +46,6 @@ class EnrollmentsController < ApplicationController
   end
   
   def mark_paid
-    unless current_user.can_register?
-      redirect_to request.referrer, notice: "Your account does not give access to this action."
-    end
-    
     @enrollment = Enrollment.find(params[:enrollment_id])
     if @enrollment.paid?
       redirect_to request.referrer, alert: "Enrollment has already been paid"

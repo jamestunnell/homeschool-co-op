@@ -30,26 +30,39 @@ class ResponsibilitiesController < ApplicationController
     end
   end
   
+  def show
+    kind = params[:kind]
+    case kind
+    when "coordination" then ensure_coordinator
+    when "cataloging" then ensure_cataloger
+    when "scheduling" then ensure_scheduler
+    when "registration" then ensure_registrator
+    else
+      redirect_to :status => 404
+    end
+    render kind.to_sym
+  end
+  
   def destroy
     @responsibility.destroy
     redirect_to coordination_path, notice: 'Responsibility was successfully removed.'
   end
   
-  def coordination
-    ensure_coordinator
-  end
-
-  def registration
-    ensure_registrator
-  end
-  
-  def scheduling
-    ensure_scheduler
-  end
-  
-  def cataloging
-    ensure_cataloger
-  end
+  #def coordination
+  #  ensure_coordinator
+  #end
+  #
+  #def enrollment
+  #  ensure_enroller
+  #end
+  #
+  #def scheduling
+  #  ensure_scheduler
+  #end
+  #
+  #def cataloging
+  #  ensure_cataloger
+  #end
   
   private
     def resp_params
