@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Building</th>
       <th>Capacity</th>
       <% if show_actions %>
         <th>Actions</th>
@@ -12,6 +13,7 @@
     <% rooms.each do |room| %>
       <tr>
         <td><%= room.name %></td>
+        <td><%= room.building.name %></td>
         <td>Unknown</td>
         <% if show_actions %>
           <td>

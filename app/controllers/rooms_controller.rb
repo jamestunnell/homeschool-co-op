@@ -8,7 +8,7 @@ class RoomsController < ApplicationController
   end
   
   def new
-    @room = Room.new
+    @room = Room.new(building_id: params[:building_id])
   end
 
   def create
