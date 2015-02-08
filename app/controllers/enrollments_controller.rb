@@ -65,14 +65,14 @@ class EnrollmentsController < ApplicationController
   private
     def check_user
       unless current_user == Student.find(params[:student_id]).user
-        redirect_to user_path(current_user), alert: "You user account does not provide access to this section"
+        redirect_to request.referrer, notice: "Your account does not give access to this action."
       end
     end
 
     def set_enrollment
       enrollment = Enrollment.find(params[:id])
       unless current_user == enrollment.student.user
-        redirect_to user_path(current_user), alert: "You user account does not provide access to this section"
+        redirect_to request.referrer, notice: "Your account does not give access to this action."
       end
       @enrollment = enrollment
     end

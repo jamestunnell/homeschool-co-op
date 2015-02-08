@@ -1,46 +1,44 @@
 class SectionsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
-  # GET /terms/:term_id/sections/:id
+  def index
+    @sections = Section.all
+  end
+
   def show
   end
 
-  # GET /terms/:term_id/sections/new
   def new
-    @section = Section.new(term_id: params[:term_id])
-    start_day = @section.term.start_date.strftime("%a")
-    @section.build_meeting_day_time(day: start_day)
+    @section = Section.new
+    @section.build_meeting_day_time
   end
 
-  # GET /terms/:term_id/sections/:id/edit
   def edit
   end
 
-  # POST /terms/:term_id/sections
   def create
     @section = Section.new(section_params)
 
     if @section.save
-      redirect_to @section.term, notice: 'Section was successfully created.'
+      redirect_to scheduling_path, notice: 'Section was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT /terms/:term_id/sections/:id
   def update
     if @section.update(section_params)
-      redirect_to @section.term, notice: 'Section was successfully updated.'
+      redirect_to scheduling_path, notice: 'Section was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE /terms/:term_id/sections/:id
   def destroy
-    term = @section.term
     @section.destroy
-    redirect_to term, notice: 'Section was successfully destroyed.'
+    redirect_to scheduling_path, notice: 'Section was successfully destroyed.'
   end
 
   private

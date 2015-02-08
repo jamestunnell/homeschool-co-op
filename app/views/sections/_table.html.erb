@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Course Name</th>
+      <th>Instructor</th>
+      <th>Room</th>
+      <th>Meeting Day/Time</th>
+      <th>Fee</th>
+      <% if show_actions %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% sections.each do |section| %>
+      <tr>
+        <td><%= section.course.name %></td>
+        <td><%= section.instructor ? section.instructor.full_name : "None" %></td>
+        <td><%= section.room.name %></td>
+        <td><%= section.meeting_day_time.to_s %></td>
+        <td><%= section.fee %></td>
+        <% if show_actions %>
+          <td>
+          <%= link_to "Edit", edit_section_path(section), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Remove", section_path(section), :method => :delete,
+                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   resources :rooms, :only => [:show, :edit, :destroy, :update]
   
   resources :terms do
-    resources :sections, :only => [:index, :create, :new]
+    resources :sections, :only => [:index]
   end
-  resources :sections, :only => [:show, :edit, :destroy, :update]
+  resources :sections, :except => [:index]
   
   devise_for :users
   resources :users, :only => [:show,:edit,:update]

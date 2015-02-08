@@ -51,20 +51,7 @@ class ResponsibilitiesController < ApplicationController
     ensure_cataloger
   end
   
-  def method_missing method
-    super
-  end
   private
-    def ensure_responsibility predicate_method
-      unless current_user.send(predicate_method)
-        redirect_to root_path, alert: "You are not authorized to take this action"
-      end
-    end
-    def ensure_coordinator;  ensure_responsibility(:can_coordinate?); end
-    def ensure_scheduler; ensure_responsibility(:can_schedule?); end
-    def ensure_registrator; ensure_responsibility(:can_register?); end
-    def ensure_cataloger; ensure_responsibility(:can_catalog?); end
-    
     def resp_params
       params.require(:responsibility).permit(:kind,:user_id,:start_date,:end_date)
     end

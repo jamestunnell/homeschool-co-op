@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Season</th>
+      <th>Type</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <% if show_actions %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% terms.each do |term| %>
+      <tr>
+        <td><%= term.season %></td>
+        <td><%= term.type %></td>
+        <td><%= term.start_date %></td>
+        <td><%= term.end_date %></td>
+        <% if show_actions %>
+          <td>
+            <%= link_to "Edit", edit_term_path(term), :class => 'btn btn-default btn-xs' %>
+            <%= link_to "Remove", term_path(term),
+                        :method => :delete,
+                        :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                        :class => 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

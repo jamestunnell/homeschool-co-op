@@ -1,25 +1,22 @@
 class CoursesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_cataloger, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
 
-  # GET /courses
   def index
     @courses = Course.all
   end
 
-  # GET /courses/1
   def show
   end
 
-  # GET /courses/new
   def new
     @course = Course.new
   end
 
-  # GET /courses/1/edit
   def edit
   end
 
-  # POST /courses
   def create
     @course = Course.new(course_params)
 
@@ -30,7 +27,6 @@ class CoursesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /courses/1
   def update
     if @course.update(course_params)
       redirect_to cataloging_path, notice: 'Course was successfully updated.'
@@ -39,14 +35,12 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
   def destroy
-    subject = @course.subject
     @course.destroy
     redirect_to cataloging_path, notice: 'Course was successfully destroyed.'
   end
 
-  private
+  private    
     def set_course
       @course = Course.find(params[:id])
     end

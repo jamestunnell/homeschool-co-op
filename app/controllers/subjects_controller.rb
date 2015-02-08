@@ -48,12 +48,6 @@ class SubjectsController < ApplicationController
   end
 
   private
-    def ensure_cataloger
-      unless current_user.can_catalog?
-        redirect_to root_path, alert: "You are not authorized to take this action"
-      end
-    end
-    
     def set_subject
       @subject = Subject.find(params[:id])
     end

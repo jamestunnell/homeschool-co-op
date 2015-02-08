@@ -1,8 +1,10 @@
 <div class="page-header">
   <h2>Terms</h2>
 </div>
-<%= render @terms %>
 
-<% if user_signed_in? %>
-  <%= link_to "Add Term", new_term_path, :class => 'btn btn-primary' %>
+<% if Term.any? %>
+  <%= render partial: "terms/table", locals: { :terms => Term.all,
+             :show_actions => false } %>
+<% else %>
+  There are no terms.
 <% end %>
