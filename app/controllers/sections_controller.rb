@@ -1,5 +1,5 @@
 class SectionsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show,:index]
   before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 

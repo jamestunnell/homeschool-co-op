@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show,:index]
   before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
