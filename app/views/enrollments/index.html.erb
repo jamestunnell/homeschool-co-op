@@ -3,7 +3,7 @@
 </div>
 <% if @enrollments.any? %>
 <%= render partial: "enrollments/table", locals: { :enrollments => @enrollments,
-  :show_actions => true, :active_links => true } %>
+  :show_actions => true, :active_links => true, :can_mark_paid => false } %>
 <% else %>
 <p>No enrollments have been added.</p>
 <% end %>

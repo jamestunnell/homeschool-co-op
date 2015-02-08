@@ -1,12 +1,12 @@
 <div class="page-header">
   <h2>Registration</h2>
 </div>
-<% {:active => true,:upcoming => true,:past => false }.each do |scope,can_edit_paid| %>
+<% {:active => true,:upcoming => true,:past => false }.each do |scope,can_mark_paid| %>
   <% enrollments = Term.send(scope).map {|term| term.enrollments }.flatten %>
   <h3><%= scope.to_s.humanize %> Enrollments</h3>
   <% if enrollments.any? %>
     <%= render partial: "enrollments/table", locals: { :enrollments => enrollments,
-      :show_actions => false, :active_links => false } %>
+      :show_actions => false, :active_links => false, :can_mark_paid => can_mark_paid } %>
   <% else %>
     There are no <%= scope.to_s %> enrollments.
   <% end %>

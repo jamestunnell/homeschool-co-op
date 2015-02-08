@@ -20,7 +20,10 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, :only => [:show,:edit,:update]
   resources :students
-  resources :enrollments, except: :show
+  resources :enrollments, except: :show do
+    post 'mark_paid'
+  end
+  
   resources :responsibilities, except: :show
   
   get '/coordination', to: "responsibilities#coordination", as: 'coordination'

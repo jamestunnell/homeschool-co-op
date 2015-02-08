@@ -1,10 +1,14 @@
 class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_enrollment, only: [ :edit, :update, :destroy]
+  before_action :set_enrollment, only: [ :pay, :edit, :update, :destroy]
   
   def new
-    check_user
-    @enrollment = Enrollment.new(student_id: params[:student_id])
+    sid = nil
+    if params.has_key? :student_id
+      check_user
+      sid = params[:student_id]
+    end
+    @enrollment = Enrollment.new(student_id: sid)
   end
 
   def create
@@ -36,9 +40,26 @@ class EnrollmentsController < ApplicationController
   end
 
   def destroy
-    student = @enrollment.student
     @enrollment.destroy
     redirect_to enrollments_path, notice: 'Enrollment was successfully removed.'
+  end
+  
+  def mark_paid
+    unless current_user.can_register?
+      redirect_to request.referrer, notice: "Your account does not give access to this action."
+    end
+    
+    @enrollment = Enrollment.find(params[:enrollment_id])
+    if @enrollment.paid?
+      redirect_to request.referrer, alert: "Enrollment has already been paid"
+    else
+      @enrollment.paid = true
+      if @enrollment.save
+        redirect_to request.referrer, notice: "Enrollment has now been paid"
+      else
+        redirect_to request.referrer, alert: "Enrollment could not be paid"
+      end
+    end
   end
   
   private

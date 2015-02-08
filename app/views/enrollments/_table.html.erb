@@ -20,7 +20,13 @@
           <td><%= enrollment.section.short %></td>
         <% end %>
         
-        <td><%= enrollment.paid ? "Yes" : "No" %></td>
+        <td>
+          <%= enrollment.paid ? "Yes" : "No" %>
+          <% if !enrollment.paid && can_mark_paid %>
+            <%= link_to "Mark Payed", enrollment_mark_paid_path(enrollment),
+                        :method => :post, :class => 'btn btn-primary btn-xs' %>
+          <% end %>
+        </td>
         
         <% if show_actions %>
           <td>
