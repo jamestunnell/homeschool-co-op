@@ -1,7 +1,0 @@
-<div class="page-header">
-  <h2><%= @room.name %></h2>
-  <i>In the <%= link_to @room.building.name, building_path(@room.building) %> building</i>
-</div>
-<p></p>
-
-<%= link_to "Edit", edit_room_path(@room), :class => 'btn btn-default' %>

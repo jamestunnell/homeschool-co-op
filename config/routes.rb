@@ -7,14 +7,10 @@ Rails.application.routes.draw do
 
   resources :contact_forms, :only => [:create]
 
-  resources :buildings do
-    resources :rooms, :only => [:index, :create, :new]
-  end
-  resources :rooms, :only => [:show, :edit, :destroy, :update]
+  resources :buildings
+  resources :rooms, :except => [:index,:show]
   
-  resources :terms do
-    resources :sections, :only => [:index]
-  end
+  resources :terms
   resources :sections, :except => [:index]
   
   devise_for :users

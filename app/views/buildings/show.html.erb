@@ -7,26 +7,9 @@
 <p><%= @building.address.city %>, <%= @building.address.state %> <%= @building.address.zip %></p>
 
 <h3>Rooms</h3>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @building.rooms.each do |room| %>
-      <tr>
-        <td><%= link_to room.name, room_path(room) %></td>
-        <td>
-          <%= link_to "Edit", edit_room_path(room), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Remove", room_path(room), :method => :delete,
-                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to "Edit", edit_building_path(@building), :class => 'btn btn-default' %>
-<%= link_to 'Add Room', new_building_room_path(@building), :class => 'btn btn-primary' %>
+<% if Room.any? %>
+  <%= render partial: "rooms/table", locals: { :rooms => @building.rooms,
+             :show_actions => false } %>
+<% else %>
+  There are no rooms.
+<% end %>

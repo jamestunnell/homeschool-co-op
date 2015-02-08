@@ -1,8 +1,6 @@
 <div class="page-header">
   <h2>Buildings</h2>
 </div>
-<%= render @buildings %>
-
-<% if user_signed_in? %>
-  <%= link_to "Add Building", new_building_path, :class => 'btn btn-primary' %>
+<% @buildings.each do |building| %>
+<p><%= link_to building.name, building %></p>
 <% end %>

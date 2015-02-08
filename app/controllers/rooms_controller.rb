@@ -1,44 +1,43 @@
 class RoomsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
-  # GET /buildings/:building_id/rooms/:id
-  def show
+  def index
+    @rooms = Room.all
   end
-
-  # GET /buildings/:building_id/rooms/new
+  
   def new
-    @room = Room.new(building_id: params[:building_id])
+    @room = Room.new
   end
 
-  # GET /buildings/:building_id/rooms/:id/edit
-  def edit
-  end
-
-  # POST /buildings/:building_id/rooms
   def create
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to @room.building, notice: 'Room was successfully created.'
+      redirect_to scheduling_path, notice: 'Room was successfully created.'
     else
       render :new
     end
   end
 
-  # PATCH/PUT buildings/:building_id/rooms/:id
+  def show
+  end
+
+  def edit
+  end
+
   def update
     if @room.update(room_params)
-      redirect_to @room.building, notice: 'Room was successfully updated.'
+      redirect_to scheduling_path, notice: 'Room was successfully updated.'
     else
       render :edit
     end
   end
 
-  # DELETE buildings/:building_id/rooms/:id
   def destroy
-    building = @room.building
     @room.destroy
-    redirect_to building, notice: 'Room was successfully destroyed.'
+    redirect_to scheduling_path, notice: 'Room was successfully destroyed.'
   end
 
   private
