@@ -1,0 +1,14 @@
+<div class="page-header">
+  <h2>Responsibilities</h2>
+</div>
+<% {:active => true,:upcoming => false,:past => false }.each do |scope,active_links| %>
+  <% selected = current_user.responsibilities.send(scope) %>
+  <h3><%= scope.to_s.humanize %> Responsibilities</h3>
+  <% if selected.any? %>
+    <%= render partial: "responsibilities/table", locals: {
+      :responsibilities => selected, :show_actions => false,
+      :active_links => active_links} %>
+  <% else %>
+    There are no <%= scope.to_s %> responsibilities.
+  <% end %>
+<% end %>

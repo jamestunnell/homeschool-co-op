@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :responsibilities
-
   get '/home', to: "static_pages#home", as: 'home'
   get '/about', to: "static_pages#about", as: 'about'
   get '/contact', to: "static_pages#contact", as: 'contact'
@@ -23,6 +21,12 @@ Rails.application.routes.draw do
   resources :users, :only => [:show,:edit,:update]
   resources :students
   resources :enrollments
+  resources :responsibilities, except: :show
+  
+  get '/coordination', to: "responsibilities#coordination", as: 'coordination'
+  get '/registration', to: "responsibilities#registration", as: 'registration'
+  get '/scheduling', to: "responsibilities#scheduling", as: 'scheduling'
+  get '/cataloging', to: "responsibilities#cataloging", as: 'cataloging'
   
   resources :subjects do
     resources :courses, :only => [:index, :create, :new]

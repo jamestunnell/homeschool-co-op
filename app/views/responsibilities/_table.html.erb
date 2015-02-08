@@ -1,0 +1,33 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <% if show_actions %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% responsibilities.each do |responsibility| %>
+      <tr>
+        <% if active_links %>
+          <td><%= link_to responsibility.kind.humanize,
+                  send("#{responsibility.kind}_path".to_sym) %></td>
+        <% else %>
+          <td><%= responsibility.kind.humanize %></td>
+        <% end %>
+        <td><%= responsibility.start_date %></td>
+        <td><%= responsibility.end_date %></td>
+        <% if show_actions %>
+          <td>
+          <%= link_to "Edit", edit_responsibility_path(responsibility), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Remove", responsibility_path(responsibility), :method => :delete,
+                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

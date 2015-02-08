@@ -19,19 +19,19 @@ class User < ActiveRecord::Base
   end
   
   def can_coordinate?
-    active_responsibilities.any? {|r| r.kind == "coordination" }
+    active_responsibilities.any? {|r| r.coordination? }
   end
   
   def can_register?
-    active_responsibilities.any? {|r| r.kind == "registration" }
+    active_responsibilities.any? {|r| r.registration? }
   end
   
   def can_schedule?
-    active_responsibilities.any? {|r| r.kind == "scheduling" }
+    active_responsibilities.any? {|r| r.scheduling? }
   end
   
   def can_catalog?
-    active_responsibilities.any? {|r| r.kind == "cataloging" }
+    active_responsibilities.any? {|r| r.cataloging? }
   end
   
   def active_responsibilities

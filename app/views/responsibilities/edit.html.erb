@@ -1,0 +1,6 @@
+<div class="page-header">
+  <h2>Edit Responsibility</h2>
+</div>
+<%= simple_form_for(@responsibility, html: { class: 'form-horizontal' }) do |f| %>
+  <%= render :partial => 'fields', :locals => { :f => f } %>
+<% end %>

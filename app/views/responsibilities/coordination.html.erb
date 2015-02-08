@@ -1,0 +1,15 @@
+<div class="page-header">
+  <h2>Coordination</h2>
+</div>
+<%= link_to "Add Responsibility", new_responsibility_path, :class => 'btn btn-primary' %>
+<% {:active => true,:upcoming => true,:past => false }.each do |scope,show_actions| %>
+  <% selected = current_user.responsibilities.send(scope) %>
+  <h3><%= scope.to_s.humanize %> Responsibilities</h3>
+  <% if selected.any? %>
+    <%= render partial: "responsibilities/table", locals: {
+      :responsibilities => selected, :show_actions => show_actions,
+      :active_links => false} %>
+  <% else %>
+    There are no <%= scope.to_s %> responsibilities.
+  <% end %>
+<% end %>

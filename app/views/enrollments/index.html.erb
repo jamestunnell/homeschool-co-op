@@ -1,4 +1,6 @@
-<h2>Enrollments</h2>
+<div class="page-header">
+  <h2>Enrollments</h2>
+</div>
 <% if @enrollments.any? %>
 <%= render partial: "enrollments/table", locals: { :enrollments => @enrollments } %>
 <% else %>
