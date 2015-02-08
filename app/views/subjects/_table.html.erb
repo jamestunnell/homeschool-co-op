@@ -1,0 +1,30 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Abbreviation</th>
+      <% if show_actions %>
+        <th>Actions</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% subjects.each do |subject| %>
+      <tr>
+        <% if active_links %>
+          <td><%= link_to subject.name, subject %></td>
+        <% else %>
+          <td><%= subject.name %></td>
+        <% end %>
+        <td><%= subject.abbrev %></td>
+        <% if show_actions %>
+          <td>
+          <%= link_to "Edit", edit_subject_path(subject), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Remove", subject_path(subject), :method => :delete,
+                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

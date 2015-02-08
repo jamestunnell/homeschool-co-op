@@ -1,6 +1,6 @@
 <div class="page-header">
   <h2>New Course</h2>
 </div>
-<%= simple_form_for([@course.subject, @course], html: { class: 'form-horizontal' }) do |f| %>
+<%= simple_form_for(@course, html: { class: 'form-horizontal' }) do |f| %>
   <%= render :partial => 'fields', :locals => { :f => f } %>
 <% end %>

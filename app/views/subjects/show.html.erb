@@ -1,29 +1,6 @@
 <div class="page-header">
   <h2><%= @subject.name %> Courses</h2>
 </div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Type</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @subject.courses.each do |course| %>
-      <tr>
-        <td><%= link_to course.name, course_path(course) %></td>
-        <td><%= course.description %></td>
-        <td><%= course.type %></td>
-        <td>
-          <%= link_to "Edit", edit_course_path(course), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Remove", course_path(course), :method => :delete,
-                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to "Add Course", new_subject_course_path(@subject), :class => 'btn btn-primary' %>
+<%= render partial: "courses/table", locals: {
+  :courses => @subject.courses,
+  :show_actions => false, :active_links => true, } %>

@@ -1,6 +1,8 @@
 class SubjectsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_cataloger, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_subject, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /subjects
   def index
     @subjects = Subject.all
@@ -24,7 +26,7 @@ class SubjectsController < ApplicationController
     @subject = Subject.new(subject_params)
 
     if @subject.save
-      redirect_to @subject, notice: 'Subject was successfully created.'
+      redirect_to cataloging_path, notice: 'Subject was successfully created.'
     else
       render :new
     end
@@ -33,7 +35,7 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   def update
     if @subject.update(subject_params)
-      redirect_to @subject, notice: 'Subject was successfully updated.'
+      redirect_to cataloging_path, notice: 'Subject was successfully updated.'
     else
       render :edit
     end
@@ -42,10 +44,16 @@ class SubjectsController < ApplicationController
   # DELETE /subjects/1
   def destroy
     @subject.destroy
-    redirect_to subjects_url, notice: 'Subject was successfully destroyed.'
+    redirect_to cataloging_path, notice: 'Subject was successfully destroyed.'
   end
 
   private
+    def ensure_cataloger
+      unless current_user.can_catalog?
+        redirect_to root_path, alert: "You are not authorized to take this action"
+      end
+    end
+    
     def set_subject
       @subject = Subject.find(params[:id])
     end

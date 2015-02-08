@@ -2,8 +2,6 @@
   <h2><%= @course.name %></h1>
 </div>
 
-<p><strong>Subject:</strong> <%= @course.subject.name %></p>
+<p><strong>Subject:</strong> <%= link_to @course.subject.name, @course.subject %></p>
 <p><strong>Type:</strong> <%= @course.type %></p>
 <p><strong>Description:</strong> <%= @course.description %></p>
-
-<%= link_to "Edit", edit_course_path(@course), :class => 'btn btn-default' %>

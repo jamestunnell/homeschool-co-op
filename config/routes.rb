@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   get '/cataloging', to: "responsibilities#cataloging", as: 'cataloging'
   
   resources :subjects do
-    resources :courses, :only => [:index, :create, :new]
+    resources :courses, :only => [:index]
   end
-  resources :courses, :only => [:show, :edit, :destroy, :update]
+  resources :courses, :except => [:index]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

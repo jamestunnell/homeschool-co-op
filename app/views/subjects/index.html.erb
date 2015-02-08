@@ -1,8 +1,9 @@
 <div class="page-header">
   <h2>Subjects</h2>
 </div>
-<%= render @subjects %>
-
-<% if user_signed_in? %>
-  <%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %>
+<% if Subject.any? %>
+  <%= render partial: "subjects/table", locals: { :subjects => Subject.all,
+             :show_actions => false, :active_links => true } %>
+<% else %>
+  There are no subjects.
 <% end %>
