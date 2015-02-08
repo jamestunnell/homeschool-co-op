@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   
   resources :responsibilities, except: :show
-  get '/responsibilities/:kind', to: "responsibilities#show", as: "show_responsibility"
+  get '/responsibilities/:kind', to: "responsibilities#kind", as: "responsibility_kind"
   
   resources :subjects do
     resources :courses, :only => [:index]

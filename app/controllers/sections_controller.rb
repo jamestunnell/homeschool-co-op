@@ -22,7 +22,7 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
 
     if @section.save
-      redirect_to scheduling_path, notice: 'Section was successfully created.'
+      redirect_to responsibility_kind_path(:scheduling), notice: 'Section was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class SectionsController < ApplicationController
 
   def update
     if @section.update(section_params)
-      redirect_to scheduling_path, notice: 'Section was successfully updated.'
+      redirect_to responsibility_kind_path(:scheduling), notice: 'Section was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class SectionsController < ApplicationController
 
   def destroy
     @section.destroy
-    redirect_to scheduling_path, notice: 'Section was successfully destroyed.'
+    redirect_to responsibility_kind_path(:scheduling), notice: 'Section was successfully destroyed.'
   end
 
   private

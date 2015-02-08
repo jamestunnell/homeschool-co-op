@@ -16,7 +16,7 @@ class BuildingsController < ApplicationController
     @building = Building.new(building_params)
     
     if @building.save
-      redirect_to scheduling_path, notice: 'Building was successfully created.'
+      redirect_to responsibility_kind_path(:scheduling), notice: 'Building was successfully created.'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class BuildingsController < ApplicationController
 
   def update
     if @building.update(building_params)
-      redirect_to scheduling_path, notice: 'Building was successfully updated.'
+      redirect_to responsibility_kind_path(:scheduling), notice: 'Building was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +38,7 @@ class BuildingsController < ApplicationController
 
   def destroy
     @building.destroy
-    redirect_to scheduling_path, notice: 'Building was successfully destroyed.'
+    redirect_to responsibility_kind_path(:scheduling), notice: 'Building was successfully destroyed.'
   end
 
   private

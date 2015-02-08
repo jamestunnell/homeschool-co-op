@@ -1,7 +1,10 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Type</th>
+      <% if show_person %>
+        <th>Name</th>
+      <% end %>
+      <th>Responsibility</th>
       <th>Start Date</th>
       <th>End Date</th>
       <% if show_actions %>
@@ -12,8 +15,11 @@
   <tbody>
     <% responsibilities.each do |responsibility| %>
       <tr>
+        <% if show_person %>
+          <td><%= responsibility.user.full_name %></td>
+        <% end %>
         <% if active_links %>
-          <td><%= link_to responsibility.kind.humanize, show_responsibility_path(responsibility.kind) %></td>
+          <td><%= link_to responsibility.kind.humanize, responsibility_kind_path(responsibility.kind) %></td>
         <% else %>
           <td><%= responsibility.kind.humanize %></td>
         <% end %>

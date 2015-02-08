@@ -26,7 +26,7 @@ class TermsController < ApplicationController
     @term = Term.new(term_params)
 
     if @term.save
-      redirect_to scheduling_path, notice: 'Term was successfully created.'
+      redirect_to responsibility_kind_path(:scheduling), notice: 'Term was successfully created.'
     else
       render :new
     end
@@ -35,7 +35,7 @@ class TermsController < ApplicationController
   # PATCH/PUT /terms/1
   def update
     if @term.update(term_params)
-      redirect_to scheduling_path, notice: 'Term was successfully updated.'
+      redirect_to responsibility_kind_path(:scheduling), notice: 'Term was successfully updated.'
     else
       render :edit
     end
@@ -44,7 +44,7 @@ class TermsController < ApplicationController
   # DELETE /terms/1
   def destroy
     @term.destroy
-    redirect_to scheduling_path, notice: 'Term was successfully destroyed.'
+    redirect_to responsibility_kind_path(:scheduling), notice: 'Term was successfully destroyed.'
   end
 
   private

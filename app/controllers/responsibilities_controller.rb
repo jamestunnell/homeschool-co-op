@@ -13,9 +13,9 @@ class ResponsibilitiesController < ApplicationController
   def create
     @responsibility = Responsibility.new(resp_params)
     if @responsibility.save
-      redirect_to coordination_path, notice: "Responsibility was successfully added"
+      redirect_to responsibility_kind_path(:coordination), notice: "Responsibility was successfully added"
     else
-      redirect_to coordination_path, alert: "Failed to add responsibility"
+      redirect_to responsibility_kind_path(:coordination), alert: "Failed to add responsibility"
     end
   end
 
@@ -24,13 +24,18 @@ class ResponsibilitiesController < ApplicationController
   
   def update
     if @responsibility.update(resp_params)
-      redirect_to coordination_path, notice: "Responsibility was successfully udpated"
+      redirect_to responsibility_kind_path(:coordination), notice: "Responsibility was successfully udpated"
     else
       render :edit
     end
   end
   
-  def show
+  def destroy
+    @responsibility.destroy
+    redirect_to responsibility_kind_path(:coordination), notice: 'Responsibility was successfully removed.'
+  end
+  
+  def kind
     kind = params[:kind]
     case kind
     when "coordination" then ensure_coordinator
@@ -42,28 +47,7 @@ class ResponsibilitiesController < ApplicationController
     end
     render kind.to_sym
   end
-  
-  def destroy
-    @responsibility.destroy
-    redirect_to coordination_path, notice: 'Responsibility was successfully removed.'
-  end
-  
-  #def coordination
-  #  ensure_coordinator
-  #end
-  #
-  #def enrollment
-  #  ensure_enroller
-  #end
-  #
-  #def scheduling
-  #  ensure_scheduler
-  #end
-  #
-  #def cataloging
-  #  ensure_cataloger
-  #end
-  
+    
   private
     def resp_params
       params.require(:responsibility).permit(:kind,:user_id,:start_date,:end_date)

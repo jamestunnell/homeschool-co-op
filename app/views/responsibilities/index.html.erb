@@ -7,7 +7,7 @@
   <% if selected.any? %>
     <%= render partial: "responsibilities/table", locals: {
       :responsibilities => selected, :show_actions => false,
-      :active_links => active_links} %>
+      :active_links => active_links, :show_person => false} %>
   <% else %>
     There are no <%= scope.to_s %> responsibilities.
   <% end %>
