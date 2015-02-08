@@ -16,7 +16,7 @@
       <tr>
         <td><%= section.course.name %></td>
         <td><%= section.instructor ? section.instructor.full_name : "None" %></td>
-        <td><%= section.room.name %></td>
+        <td><%= section.room ? section.room.name : "None" %></td>
         <td><%= section.meeting_day_time.to_s %></td>
         <td><%= section.fee %></td>
         <% if show_actions %>
