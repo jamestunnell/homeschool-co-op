@@ -1,2 +1,16 @@
-<h1>Register</h1>
-<p>Registration time, woo hoo!</p>
+<h2>How to Register</h2>
+
+<h4>Step 1: Sign Up</h4>
+To register your children and enroll them for classes,
+you need to have a user account. So the first step is to 
+<%= link_to "Sign Up", new_user_registration_path %>
+
+<h4>Step 2: Add Children</h4>
+Now that you have an account, go to the
+<%= link_to "Students", students_path %> section and add
+each child you would like to enroll.
+
+<h4>Step 3: Add Enrollments</h4>
+Go to the <%= link_to "Enrollments", enrollments_path %>
+section and start enrolling your children in classes. Each
+enrollment will add one child to one class section.
