@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users, :only => [:show,:edit,:update]
   resources :students
-  resources :enrollments
+  resources :enrollments, except: :show
   resources :responsibilities, except: :show
   
   get '/coordination', to: "responsibilities#coordination", as: 'coordination'

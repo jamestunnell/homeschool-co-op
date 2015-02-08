@@ -14,4 +14,4 @@
 <p>No enrollments have been added.</p>
 <% end %>
 
-<%= link_to 'Add Enrollment', new_student_enrollment_path(@student), :class => 'btn btn-primary' %>
+<%= link_to 'Add Enrollment', new_enrollment_path(:student_id => @student), :class => 'btn btn-primary' %>

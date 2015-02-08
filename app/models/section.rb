@@ -6,15 +6,16 @@ class Section < ActiveRecord::Base
   
   has_one :meeting_day_time, dependent: :destroy
   accepts_nested_attributes_for :meeting_day_time
+  has_many :enrollments
   
   alias :instructor :user
   
   def short
-    "#{course.name} / #{instructor.last} / #{term.short} / #{meeting_day_time.start_str}"
+    "#{course.name} / #{instructor ? instructor.last : "None"} / #{term.short} / #{meeting_day_time.start_str}"
   end
   
   def long
-    "#{course.name} with #{instructor.full_name}, #{term.long} at #{meeting_day_time}"
+    "#{course.name} with #{instructor ? instructor.full_name : "None"}, #{term.long} at #{meeting_day_time}"
   end
   
   alias :name :short

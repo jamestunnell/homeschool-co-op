@@ -2,5 +2,5 @@
   <h2>Edit Enrollment</h2>
 </div>
 <%= simple_form_for(@enrollment, html: { class: 'form-horizontal' }) do |f| %>
-  <%= render :partial => 'fields', :locals => { :f => f } %>
+  <%= render :partial => 'fields', :locals => { :f => f, :enrollment => @enrollment } %>
 <% end %>

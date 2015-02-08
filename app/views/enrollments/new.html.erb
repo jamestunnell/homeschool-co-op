@@ -3,7 +3,7 @@
 </div>
 <% if Section.not_past.any? %>
   <%= simple_form_for(@enrollment, html: { class: 'form-horizontal' }) do |f| %>
-    <%= render :partial => 'fields', :locals => { :f => f } %>
+    <%= render :partial => 'fields', :locals => { :f => f, :enrollment => @enrollment } %>
   <% end %>
 <% else %>
   <p>There are no upcoming or active sections to enroll in.</p>

@@ -3,19 +3,32 @@
     <tr>
       <th>Student</th>
       <th>Section</th>
-      <th>Actions</th>
+      <th>Paid</th>
+      <% if show_actions %>
+        <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
     <% enrollments.each do |enrollment| %>
       <tr>
-        <td><%= link_to enrollment.student.full_name, enrollment.student %></td>
-        <td><%= link_to enrollment.section.short, enrollment.section %></td>
-        <td>
+        <% if active_links %>
+          <td><%= link_to enrollment.student.full_name, enrollment.student %></td>
+          <td><%= link_to enrollment.section.short, enrollment.section %></td>
+        <% else %>
+          <td><%= enrollment.student.full_name %></td>
+          <td><%= enrollment.section.short %></td>
+        <% end %>
+        
+        <td><%= enrollment.paid ? "Yes" : "No" %></td>
+        
+        <% if show_actions %>
+          <td>
           <%= link_to "Edit", edit_enrollment_path(enrollment), :class => 'btn btn-default btn-xs' %>
           <%= link_to "Remove", enrollment_path(enrollment), :method => :delete,
                       :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
-        </td>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

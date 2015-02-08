@@ -1,10 +1,10 @@
 class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
-  #before_action :check_user, only: [:new, :create]
-  before_action :set_enrollment, only: [:show, :edit, :update, :destroy]
+  before_action :set_enrollment, only: [ :edit, :update, :destroy]
   
   def new
-    @enrollment = Enrollment.new
+    check_user
+    @enrollment = Enrollment.new(student_id: params[:student_id])
   end
 
   def create
@@ -23,10 +23,7 @@ class EnrollmentsController < ApplicationController
   def index
     @enrollments = current_user.enrollments
   end
-
-  def show
-  end
-
+  
   def edit
   end
 

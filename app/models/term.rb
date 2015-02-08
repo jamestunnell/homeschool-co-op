@@ -1,6 +1,7 @@
 class Term < ActiveRecord::Base
   enum season: [ "Fall", "Winter", "Spring", "Summer" ]
   has_many :sections, dependent: :destroy
+  has_many :enrollments, through: :sections
   
   def year_range
     start_date.year..end_date.year
