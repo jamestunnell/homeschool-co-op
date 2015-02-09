@@ -1,22 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  id: 1
-  name: Pre-algebra
+algebra:
+  name: Algebra
   description: Boring stuff about math.
-  subject_id: 1
+  subject: math
   workshop: false
 
-two:
-  id: 2
-  name: Geology of Washington State
+rocks:
+  name: Rocks of Washington State
   description: Boring stuff about rocks.
-  subject_id: 2
+  subject: geol
   workshop: true
 
-three:
-  id: 3
+music_theory:
   name: Music Theory
   description: Boring stuff about music.
-  subject_id: 3
+  subject: music
   workshop: false

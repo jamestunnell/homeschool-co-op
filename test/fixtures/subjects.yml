@@ -1,16 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  id: 1
+math:
   name: Mathematics
-  abbrev: Mat
+  abbrev: Math
 
-two:
-  id: 2
+geol:
   name: Geology
-  abbrev: Geo
+  abbrev: Geol
 
-three:
-  id: 3
+music:
   name: Music
-  abbrev: Mus
+  abbrev: Music
