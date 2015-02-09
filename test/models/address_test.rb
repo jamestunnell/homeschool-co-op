@@ -23,13 +23,6 @@ class AddressTest < ActiveSupport::TestCase
     end
   end
   
-  test "can belong to a building" do
-    b = Building.new(:name => "My Place")
-    assert b.save
-    @oddfellows.building_id = b.id
-    assert_equal @oddfellows.building, b
-  end
-  
   test "positions in one-line string" do
     positions = Hash[
       [:street,:city,:state,:zip].map do |attr_sym|
