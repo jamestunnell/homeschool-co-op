@@ -1,9 +1,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  id: 1
+oddfellows:
   street: 307 N Pine St
   city: Ellensburg
   state: 46
   zip: 98926
-  building_id: 1
+  building: oddfellows
+
+ldschurch:
+  street: 1700 Brick Rd
+  city: Ellensburg
+  state: 46
+  zip: 98926
+  building: ldschurch

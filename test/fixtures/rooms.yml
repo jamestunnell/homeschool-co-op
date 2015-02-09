@@ -1,16 +1,16 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+ballroom:
   id: 1
   name: Ballroom
-  building_id: 1
+  building: oddfellows
 
-two:
+small:
   id: 2
   name: Small
-  building_id: 1
+  building: oddfellows
 
-three:
+mess:
   id: 3
   name: Mess hall
-  building_id: 1
+  building: oddfellows
