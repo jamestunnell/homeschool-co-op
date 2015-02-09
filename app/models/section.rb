@@ -10,15 +10,15 @@ class Section < ActiveRecord::Base
   
   alias :instructor :user
   
-  def short
-    "#{course.name} / #{instructor ? instructor.last : "None"} / #{term.short} / #{meeting_day_time.start_str}"
+  def short_name
+    "#{course.name} / #{instructor ? instructor.last : "None"} / #{term.short_name} / #{meeting_day_time.start_str}"
   end
   
-  def long
-    "#{course.name} with #{instructor ? instructor.full_name : "None"}, #{term.long} at #{meeting_day_time}"
+  def long_name
+    "#{course.name} with #{instructor ? instructor.full_name : "None"}, #{term.name} at #{meeting_day_time}"
   end
   
-  alias :name :short
+  alias :name :short_name
 
   def self.past
     Term.past.map {|term| term.sections }.flatten

@@ -1,5 +1,4 @@
 <%= simple_form_for(@term) do |f| %>
-  <%= f.input :season, collection: Term.seasons.keys, include_blank: false %>
   <%= f.input :workshop %>
   <%= f.input :start_date %>
   <%= f.input :end_date %>

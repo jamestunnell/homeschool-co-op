@@ -14,10 +14,10 @@
       <tr>
         <% if active_links %>
           <td><%= link_to enrollment.student.full_name, enrollment.student %></td>
-          <td><%= link_to enrollment.section.short, enrollment.section %></td>
+          <td><%= link_to enrollment.section.short_name, enrollment.section %></td>
         <% else %>
           <td><%= enrollment.student.full_name %></td>
-          <td><%= enrollment.section.short %></td>
+          <td><%= enrollment.section.short_name %></td>
         <% end %>
         
         <td>
