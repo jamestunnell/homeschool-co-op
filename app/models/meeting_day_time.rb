@@ -1,5 +1,7 @@
 class MeetingDayTime < ActiveRecord::Base
   belongs_to :section
+  validates_presence_of :start_time
+  validates_presence_of :end_time
   
   enum day: ["Mon","Tue","Wed","Thu","Fri","Sat"]
   

@@ -1,25 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  id: 1
-  fee: 40
-  term_id: 1
-  room_id: 3
-  user_id:
-  course_id: 3
+rocks_a:
+  fee: 10
+  term: fallw2014
+  room: ballroom
+  course: rocks
 
-two:
-  id: 2
-  fee: 25
-  term_id: 1
-  room_id: 1
-  user_id:
-  course_id: 1
+algebra_a:
+  fee: 20
+  term: fallq2014
+  room: ballroom
+  course: algebra
 
-three:
-  id: 3
-  fee: 5
-  term_id: 2
-  room_id: 2
-  user_id:
-  course_id: 2
+algebra_b:
+  fee: 20
+  term: fallq2014
+  room: ballroom
+  course: algebra
+
+music_theory_a:
+  fee: 15
+  term: fallq2014
+  room: small
+  course: music_theory

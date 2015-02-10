@@ -1,22 +1,25 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  id: 1
+rocks_a:
   day: 1
   start_time: 2015-02-03 10:00:00
-  end_time: 2015-02-03 11:00:00
-  section_id: 1
+  end_time: 2015-02-03 12:00:00
+  section: rocks_a
 
-two:
-  id: 2
+algebra_a:
+  day: 1
+  start_time: 2015-02-03 10:00:00
+  end_time: 2015-02-03 10:50:00
+  section: algebra_a
+
+algebra_b:
   day: 1
   start_time: 2015-02-03 09:00:00
   end_time: 2015-02-03 09:50:00
-  section_id: 2
-
-three:
-  id: 3
+  section: algebra_b
+  
+music_theory_a:
   day: 1
   start_time: 2015-02-03 11:00:00
   end_time: 2015-02-03 11:50:00
-  section_id: 3
+  section: music_theory_a
