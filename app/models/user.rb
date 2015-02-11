@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  MIN_NAME_LENGTH = 2
+  MAX_NAME_LENGTH = 36
+  
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,8 +10,8 @@ class User < ActiveRecord::Base
          
   validates_presence_of :first
   validates_presence_of :last
-  validates_length_of :first, :minimum => 2, :maximum => 36
-  validates_length_of :last, :minimum => 2, :maximum => 36
+  validates_length_of :first, :minimum => MIN_NAME_LENGTH, :maximum => MAX_NAME_LENGTH
+  validates_length_of :last, :minimum => MIN_NAME_LENGTH, :maximum => MAX_NAME_LENGTH
   
   has_many :students, dependent: :destroy
   has_many :enrollments, through: :students
@@ -18,6 +21,10 @@ class User < ActiveRecord::Base
     "#{first} #{last}"
   end
   
+  def active_responsibilities
+    responsibilities.select {|r| r.active? }
+  end
+
   def can_coordinate?
     active_responsibilities.any? {|r| r.coordination? }
   end
@@ -32,9 +39,5 @@ class User < ActiveRecord::Base
   
   def can_catalog?
     active_responsibilities.any? {|r| r.cataloging? }
-  end
-  
-  def active_responsibilities
-    responsibilities.select {|r| r.active? }
-  end
+  end  
 end
