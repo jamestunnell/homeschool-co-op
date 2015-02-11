@@ -6,7 +6,12 @@ class Student < ActiveRecord::Base
   alias :parent :user
   
   def full_name
-    "#{first} #{last ? last : parent.last}"
+    if last && !last.empty?
+      last_str = last
+    else
+      last_str = parent.last
+    end
+    "#{first} #{last_str}"
   end
   
   def years_old

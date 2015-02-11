@@ -37,9 +37,15 @@ class StudentTest < ActiveSupport::TestCase
     assert_equal((Regexp.new(@joe.first) =~ @joe.full_name), 0)
   end
   
-  test "full_name uses last name if present" do
+  test "full_name uses last name if present and not empty" do
     @joe.last = "Montana"
     assert(Regexp.new(@joe.last) =~ @joe.full_name)
+  end
+
+  test "full_name uses parent's name if present and empty" do
+    @joe.last = ""
+    @joe.parent.last = "Blow"
+    assert(Regexp.new(@joe.parent.last) =~ @joe.full_name)
   end
   
   test "full_name uses parent's name if not present" do
