@@ -1,1 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+sue:
+  first: Sue
+  birth_date: "2008-05-04"
+  user: sam
+    
+joe:
+  first: Joe
+  birth_date: "2007-09-14"
+  user: josie

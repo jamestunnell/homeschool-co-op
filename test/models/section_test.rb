@@ -19,4 +19,12 @@ class SectionTest < ActiveSupport::TestCase
     @rocks_a.destroy
     assert MeetingDayTime.where(:id => mdt_id).empty?
   end
+  
+  test "when destroyed, enrollments are also destroyed" do
+    @algebra_a.enrollments.create(:student => students(:sue))
+    @algebra_a.enrollments.create(:student => students(:joe))
+    e_ids = @algebra_a.enrollments.ids
+    @algebra_a.destroy
+    e_ids.each {|e_id| assert Enrollment.where(:id => e_id).empty? }
+  end
 end
