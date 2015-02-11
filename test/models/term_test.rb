@@ -31,7 +31,9 @@ class TermTest < ActiveSupport::TestCase
   end
   
   test "weeks_long method" do
-    assert ((@fallq2014.weeks_long * 7) - @fallq2014.days_long).abs < 7
+    [@fallq2014,@fallw2014,@springq2015].each do |term|
+      assert ((term.weeks_long * 7) - term.days_long).abs < 7
+    end
   end
   
   test "start_season_year method" do
@@ -44,5 +46,12 @@ class TermTest < ActiveSupport::TestCase
     }.each do |term,str|
       assert_equal term.start_season_year, str
     end
+  end
+  
+  test "when destroyed, sections are also destroyed" do
+    assert_not @fallq2014.sections.empty?
+    s_ids = @fallq2014.sections.ids
+    @fallq2014.destroy
+    s_ids.each {|s_id| assert Section.where(:id => s_id).empty? }
   end
 end
