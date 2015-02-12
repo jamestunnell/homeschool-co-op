@@ -23,4 +23,17 @@ class ApplicationController < ActionController::Base
   def ensure_scheduler; ensure_responsibility(:can_schedule?); end
   def ensure_registrator; ensure_responsibility(:can_register?); end
   def ensure_cataloger; ensure_responsibility(:can_catalog?); end
+  
+  def set_coordinating
+    @coordinating = user_signed_in? && current_user.can_coordinate?
+  end
+  def set_registering
+    @registering = user_signed_in? && current_user.can_register?
+  end
+  def set_scheduling
+    @scheduling = user_signed_in? && current_user.can_schedule?
+  end
+  def set_cataloging
+    @cataloging = user_signed_in? && current_user.can_catalog?
+  end
 end

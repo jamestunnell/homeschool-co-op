@@ -1,9 +1,15 @@
 <div class="page-header">
   <h2>Subjects</h2>
 </div>
-<% if Subject.any? %>
-  <%= render partial: "subjects/table", locals: { :subjects => Subject.all,
-             :show_actions => false, :active_links => true } %>
+
+<% if @subjects.any? %>
+<%= render partial: "subjects/table", locals: {
+  :subjects => @subjects,
+  :show_actions => @cataloging, :active_links => true, } %>
 <% else %>
   There are no subjects.
+<% end %>
+
+<% if @cataloging %>
+  <%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %>
 <% end %>

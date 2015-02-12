@@ -1,6 +1,13 @@
 <div class="page-header">
-  <h2><%= @subject.name %> Courses</h2>
+  <h2><%= @subject.name %></h2>
 </div>
-<%= render partial: "courses/table", locals: {
-  :courses => @subject.courses,
-  :show_actions => false, :active_links => true, } %>
+
+<h3>Courses</h3>
+<% if @subject.courses.any? %>
+  <%= render partial: "courses/table", locals: {
+    :courses => @subject.courses, :show_actions => false, :active_links => true } %>
+<% else %>
+  <p>This subject has no courses.</p>
+<% end %>
+
+<p><%= link_to raw("&larr; Back to Subjects"), subjects_path %></p>

@@ -1,6 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th>Subject</th>
       <th>Name</th>
       <th>Description</th>
       <th>Type</th>
@@ -10,8 +11,9 @@
     </tr>
   </thead>
   <tbody>
-    <% courses.each do |course| %>
+    <% courses.order("subject_id").each do |course| %>
       <tr>
+        <td><%= course.subject.name %></td>
         <% if active_links %>
           <td><%= link_to course.name, course %></td>
         <% else %>

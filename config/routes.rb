@@ -23,10 +23,8 @@ Rails.application.routes.draw do
   resources :responsibilities, except: :show
   get '/responsibilities/:kind', to: "responsibilities#kind", as: "responsibility_kind"
   
-  resources :subjects do
-    resources :courses, :only => [:index]
-  end
-  resources :courses, :except => [:index]
+  resources :subjects
+  resources :courses
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -2,7 +2,8 @@ class CoursesController < ApplicationController
   before_action :authenticate_user!, except: [:show,:index]
   before_action :ensure_cataloger, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_cataloging, only: [:index]
+  
   def index
     @courses = Course.all
   end
@@ -21,7 +22,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     if @course.save
-      redirect_to responsibility_kind_path(:cataloging), notice: 'Course was successfully created.'
+      redirect_to courses_path, notice: 'Course was successfully created.'
     else
       render :new
     end
@@ -29,7 +30,7 @@ class CoursesController < ApplicationController
 
   def update
     if @course.update(course_params)
-      redirect_to responsibility_kind_path(:cataloging), notice: 'Course was successfully updated.'
+      redirect_to courses_path, notice: 'Course was successfully updated.'
     else
       render :edit
     end
@@ -37,7 +38,7 @@ class CoursesController < ApplicationController
 
   def destroy
     @course.destroy
-    redirect_to responsibility_kind_path(:cataloging), notice: 'Course was successfully destroyed.'
+    redirect_to courses_path, notice: 'Course was successfully destroyed.'
   end
 
   private    

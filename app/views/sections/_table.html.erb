@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th>Course Name</th>
+      <th>Term</th>
       <th>Instructor</th>
       <th>Room</th>
       <th>Meeting Day/Time</th>
@@ -15,6 +16,7 @@
     <% sections.each do |section| %>
       <tr>
         <td><%= section.course.name %></td>
+        <td><%= section.term.name %></td>
         <td><%= section.instructor ? section.instructor.full_name : "None" %></td>
         <td><%= section.room ? section.room.name : "None" %></td>
         <td><%= section.meeting_day_time.to_s %></td>

@@ -2,20 +2,5 @@
   <h2>Cataloging</h2>
 </div>
 
-<h3>Subjects</h3>
-<% if Subject.any? %>
-  <%= render partial: "subjects/table", locals: { :subjects => Subject.all,
-             :show_actions => true, :active_links => true } %>
-<% else %>
-  There are no subjects.
-<% end %>
-<%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %>
-
-<h3>Courses</h3>
-<% if Course.any? %>
-  <%= render partial: "courses/table", locals: {
-    :courses => Course.all, :show_actions => true, :active_links => true } %>
-<% else %>
-  There are no courses.
-<% end %>
-<%= link_to "Add Course", new_course_path, :class => 'btn btn-primary' %>
+<p><%= link_to "Subjects", subjects_path %></p>
+<p><%= link_to "Courses", courses_path %></p>
