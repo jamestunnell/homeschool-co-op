@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
-      <th>Season</th>
+      <th>Starts</th>
       <th>Type</th>
       <th>Start Date</th>
       <th>End Date</th>
@@ -13,7 +13,7 @@
   <tbody>
     <% terms.each do |term| %>
       <tr>
-        <td><%= term.start_season_year %></td>
+        <td><%= link_to term.start_season_year, term %></td>
         <td><%= term.type %></td>
         <td><%= term.start_date %></td>
         <td><%= term.end_date %></td>

@@ -11,7 +11,7 @@
   <tbody>
     <% buildings.each do |building| %>
       <tr>
-        <td><%= building.name %></td>
+        <td><%= link_to building.name, building %></td>
         <td><%= building.address.oneline %></td>
         <% if show_actions %>
           <td>

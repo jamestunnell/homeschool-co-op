@@ -2,6 +2,7 @@ class BuildingsController < ApplicationController
   before_action :authenticate_user!, except: [:show,:index]
   before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_building, only: [:show, :edit, :update, :destroy]
+  before_action :set_scheduling, only: [:index, :show]
 
   def index
     @buildings = Building.all
@@ -16,7 +17,7 @@ class BuildingsController < ApplicationController
     @building = Building.new(building_params)
     
     if @building.save
-      redirect_to responsibility_kind_path(:scheduling), notice: 'Building was successfully created.'
+      redirect_to buildings_path, notice: 'Building was successfully created.'
     else
       render :new
     end
@@ -30,7 +31,7 @@ class BuildingsController < ApplicationController
 
   def update
     if @building.update(building_params)
-      redirect_to responsibility_kind_path(:scheduling), notice: 'Building was successfully updated.'
+      redirect_to buildings_path, notice: 'Building was successfully updated.'
     else
       render :edit
     end
@@ -38,7 +39,7 @@ class BuildingsController < ApplicationController
 
   def destroy
     @building.destroy
-    redirect_to responsibility_kind_path(:scheduling), notice: 'Building was successfully destroyed.'
+    redirect_to buildings_path, notice: 'Building was successfully destroyed.'
   end
 
   private

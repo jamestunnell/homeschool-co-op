@@ -7,9 +7,9 @@
   :courses => @courses,
   :show_actions => @cataloging, :active_links => true, } %>
 <% else %>
-  There are no courses.
+  <p>There are no courses.</p>
 <% end %>
 
 <% if @cataloging %>
-  <%= link_to "Add Course", new_course_path, :class => 'btn btn-primary' %>
+  <p><%= link_to "Add Course", new_course_path, :class => 'btn btn-primary' %></p>
 <% end %>

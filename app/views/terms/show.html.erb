@@ -7,7 +7,13 @@
 <h3>Sections</h3>
 <% if @term.sections.any? %>
 <%= render partial: "sections/table", locals: { :sections => @term.sections,
-           :show_actions => false } %>
+           :show_actions => @scheduling } %>
 <% else %>
-<p>There are no sections in this term.</p>
+  <p>There are no sections in this term.</p>
 <% end %>
+
+<% if @scheduling %>
+  <p><%= link_to "Add Section", new_term_section_path(@term), :class => 'btn btn-primary' %></p>
+<% end %>
+
+<p><%= link_to raw("&larr; Back to Terms"), terms_path %></p>

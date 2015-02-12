@@ -8,14 +8,14 @@ class RoomsController < ApplicationController
   end
   
   def new
-    @room = Room.new(building_id: params[:building_id])
+    @room = Building.find(params[:building_id]).rooms.build
   end
 
   def create
     @room = Room.new(room_params)
 
     if @room.save
-      redirect_to responsibility_kind_path(:scheduling), notice: 'Room was successfully created.'
+      redirect_to building_path(@room.building), notice: 'Room was successfully created.'
     else
       render :new
     end
@@ -29,15 +29,16 @@ class RoomsController < ApplicationController
 
   def update
     if @room.update(room_params)
-      redirect_to responsibility_kind_path(:scheduling), notice: 'Room was successfully updated.'
+      redirect_to building_path(@room.building), notice: 'Room was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
+    building = @room.building
     @room.destroy
-    redirect_to responsibility_kind_path(:scheduling), notice: 'Room was successfully destroyed.'
+    redirect_to building_path(building), notice: 'Room was successfully destroyed.'
   end
 
   private

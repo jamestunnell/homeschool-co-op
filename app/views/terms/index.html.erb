@@ -1,6 +1,15 @@
 <div class="page-header">
   <h2>Terms</h2>
 </div>
-<% @terms.each do |term| %>
-<p><%= link_to term.name, term %></p>
+
+<% if Term.any? %>
+  <%= render partial: "terms/table", locals: {
+    :terms => Term.all, :show_actions => @scheduling } %>
+<% else %>
+  <p>There are no terms.</p>
+<% end %>
+
+<% if @scheduling %>
+  <p><%= link_to "Add Term", new_term_path, :class => 'btn btn-primary' %></p>
+  <p><%= link_to raw("&larr; Back to Scheduling"), responsibility_kind_path(:scheduling) %></p>
 <% end %>

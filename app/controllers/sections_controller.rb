@@ -11,7 +11,7 @@ class SectionsController < ApplicationController
   end
 
   def new
-    @section = Section.new
+    @section = Term.find(params[:term_id]).sections.build
     @section.build_meeting_day_time
   end
 
@@ -22,7 +22,7 @@ class SectionsController < ApplicationController
     @section = Section.new(section_params)
 
     if @section.save
-      redirect_to responsibility_kind_path(:scheduling), notice: 'Section was successfully created.'
+      redirect_to term_path(@section.term), notice: 'Section was successfully created.'
     else
       render :new
     end
@@ -30,15 +30,16 @@ class SectionsController < ApplicationController
 
   def update
     if @section.update(section_params)
-      redirect_to responsibility_kind_path(:scheduling), notice: 'Section was successfully updated.'
+      redirect_to term_path(@section.term), notice: 'Section was successfully updated.'
     else
       render :edit
     end
   end
 
   def destroy
+    term = @section.term
     @section.destroy
-    redirect_to responsibility_kind_path(:scheduling), notice: 'Section was successfully destroyed.'
+    redirect_to term_path(term), notice: 'Section was successfully destroyed.'
   end
 
   private

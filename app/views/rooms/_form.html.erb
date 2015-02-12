@@ -1,11 +1,7 @@
 <%= simple_form_for @room, :html => { :class => 'form-horizontal' } do |f| %>
   <%= f.input :name %>
-  <% if @room.building_id %>
-    <%= f.association :building, as: :hidden %>
-  <% else %>
-    <%= f.association :building, include_blank: false %>
-  <% end %>
+  <%= f.association :building, as: :hidden %>
   <%= f.button :submit, :class => 'btn-primary' %>
-  <%= link_to "Cancel", responsibility_kind_path(:scheduling), :class => 'btn btn-default' %>
+  <%= link_to "Cancel", building_path(@room.building), :class => 'btn btn-default' %>
 <% end %>
 

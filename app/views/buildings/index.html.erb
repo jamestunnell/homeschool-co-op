@@ -1,6 +1,15 @@
 <div class="page-header">
   <h2>Buildings</h2>
 </div>
-<% @buildings.each do |building| %>
-<p><%= link_to building.name, building %></p>
+
+<% if Building.any? %>
+  <%= render partial: "buildings/table", locals: { :buildings => Building.all,
+             :show_actions => @scheduling } %>
+<% else %>
+  <p>There are no buildings.</p>
+<% end %>
+
+<% if @scheduling %>
+  <p><%= link_to "Add Building", new_building_path, :class => 'btn btn-primary' %></p>
+  <p><%= link_to raw("&larr; Back to Scheduling"), responsibility_kind_path(:scheduling) %></p>
 <% end %>

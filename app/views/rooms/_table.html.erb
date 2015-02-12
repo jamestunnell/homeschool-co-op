@@ -17,8 +17,8 @@
         <td>Unknown</td>
         <% if show_actions %>
           <td>
-          <%= link_to "Edit", edit_room_path(room.building,room), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Remove", room_path(room.building,room), :method => :delete,
+          <%= link_to "Edit", edit_room_path(room), :class => 'btn btn-default btn-xs' %>
+          <%= link_to "Remove", room_path(room), :method => :delete,
                       :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
           </td>
         <% end %>

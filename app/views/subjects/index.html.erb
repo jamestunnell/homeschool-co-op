@@ -7,9 +7,9 @@
   :subjects => @subjects,
   :show_actions => @cataloging, :active_links => true, } %>
 <% else %>
-  There are no subjects.
+  <p>There are no subjects.</p>
 <% end %>
 
 <% if @cataloging %>
-  <%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %>
+  <p><%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %></p>
 <% end %>

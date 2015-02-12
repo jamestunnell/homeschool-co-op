@@ -2,38 +2,5 @@
   <h2>Scheduling</h2>
 </div>
 
-<h3>Buildings</h3>
-<% if Building.any? %>
-  <%= render partial: "buildings/table", locals: { :buildings => Building.all,
-             :show_actions => true } %>
-<% else %>
-  There are no buildings.
-<% end %>
-<%= link_to "Add Building", new_building_path, :class => 'btn btn-primary' %>
-
-<h3>Rooms</h3>
-<% if Room.any? %>
-  <%= render partial: "rooms/table", locals: { :rooms => Room.all,
-             :show_actions => true } %>
-<% else %>
-  There are no rooms.
-<% end %>
-<%= link_to "Add Room", new_room_path, :class => 'btn btn-primary' %>
-
-<h3>Terms</h3>
-<% if Term.any? %>
-  <%= render partial: "terms/table", locals: { :terms => Term.all,
-             :show_actions => true, :active_links => true } %>
-<% else %>
-  There are no terms.
-<% end %>
-<%= link_to "Add Term", new_term_path, :class => 'btn btn-primary' %>
-
-<h3>Sections</h3>
-<% if Section.any? %>
-  <%= render partial: "sections/table", locals: {
-    :sections => Section.all, :show_actions => true } %>
-<% else %>
-  There are no sections.
-<% end %>
-<%= link_to "Add Section", new_section_path, :class => 'btn btn-primary' %>
+<p><%= link_to "Buildings", buildings_path %></p>
+<p><%= link_to "Terms", terms_path %></p>
