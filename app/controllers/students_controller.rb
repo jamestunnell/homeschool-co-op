@@ -16,10 +16,15 @@ class StudentsController < ApplicationController
   end
   
   def index
-    @students = current_user.students
-  end
-  
-  def show
+    if params.has_key? :registering
+      ensure_registrar
+      set_registering
+      @students = Student.all
+      @name = "All"
+    else
+      @students = current_user.students
+      @name = "Your"
+    end
   end
   
   def edit
@@ -34,7 +39,6 @@ class StudentsController < ApplicationController
   end
   
   def destroy
-    user = @student.user
     @student.destroy
     redirect_to students_path, notice: 'Student was successfully removed.'
   end
@@ -43,7 +47,7 @@ class StudentsController < ApplicationController
     def set_student
       student = Student.find(params[:id])
       unless current_user == student.user
-        redirect_to user_path(current_user), alert: "You user account does not provide access to this section"
+        redirect_to current_user, alert: "You user account does not provide access to this section"
       end
       @student = student
     end

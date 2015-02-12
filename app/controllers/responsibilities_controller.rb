@@ -41,7 +41,7 @@ class ResponsibilitiesController < ApplicationController
     when "coordination" then ensure_coordinator
     when "cataloging" then ensure_cataloger
     when "scheduling" then ensure_scheduler
-    when "registration" then ensure_registrator
+    when "registration" then ensure_registrar
     else
       redirect_to :status => 404
     end

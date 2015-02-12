@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
   def ensure_coordinator;  ensure_responsibility(:can_coordinate?); end
   def ensure_scheduler; ensure_responsibility(:can_schedule?); end
-  def ensure_registrator; ensure_responsibility(:can_register?); end
+  def ensure_registrar; ensure_responsibility(:can_register?); end
   def ensure_cataloger; ensure_responsibility(:can_catalog?); end
   
   def set_coordinating

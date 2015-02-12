@@ -2,9 +2,14 @@
   <h2>Students</h2>
 </div>
 <% if @students.any? %>
-<%= render partial: 'students/table', locals: { :students => @students } %>
+<%= render partial: 'students/table', locals: { :students => @students, :registering => @registering } %>
 <% else %>
 <p>No students have been added.</p>
 <% end %>
 
-<%= link_to "Add Student", new_student_path, :class => 'btn btn-primary' %>
+<% if @registering %>
+  <p><%= link_to raw("&larr; Back to Registration"), responsibility_kind_path(:registration) %></p>
+<% else %>
+  <p><%= link_to "Add Student", new_student_path, :class => 'btn btn-primary' %></p>
+  <p><%= link_to raw("&larr; Back to Account"), current_user %></p>
+<% end %>

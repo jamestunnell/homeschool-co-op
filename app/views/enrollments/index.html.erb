@@ -1,11 +1,16 @@
 <div class="page-header">
-  <h2>Enrollments</h2>
+  <h2><%= @name %> Enrollments</h2>
 </div>
 <% if @enrollments.any? %>
 <%= render partial: "enrollments/table", locals: { :enrollments => @enrollments,
-  :show_actions => true, :active_links => true, :can_mark_paid => false } %>
+  :registering => @registering } %>
 <% else %>
-<p>No enrollments have been added.</p>
+<p>There are no enrollments to display.</p>
 <% end %>
 
-<%= link_to "Add Enrollment", new_enrollment_path, :class => 'btn btn-primary' %>
+<% if @registering %>
+  <p><%= link_to raw("&larr; Back to Registration"), responsibility_kind_path(:registration) %></p>
+<% else %>
+  <p><%= link_to "Add Enrollment", new_enrollment_path, :class => 'btn btn-primary' %></p>
+  <p><%= link_to raw("&larr; Back to Account"), current_user %></p>
+<% end %>

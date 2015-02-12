@@ -18,8 +18,10 @@ Rails.application.routes.draw do
   resources :sections, :except => [:index,:new]
   
   devise_for :users
-  resources :users, :only => [:show,:edit,:update]
-  resources :students
+  resources :users, :only => [:show,:edit,:update] do
+    resources :enrollments, only: [:index]
+  end
+  resources :students, except: :show
   resources :enrollments, except: :show do
     post 'mark_paid'
   end

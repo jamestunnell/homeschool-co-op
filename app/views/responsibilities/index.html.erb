@@ -12,3 +12,9 @@
     There are no <%= scope.to_s %> responsibilities.
   <% end %>
 <% end %>
+
+<% if @coordinating %>
+  <p><%= link_to raw("&larr; Back to Coordination"), responsibility_kind_path(:coordination) %></p>
+<% else %>
+  <p><%= link_to raw("&larr; Back to Account"), current_user %></p>
+<% end %>

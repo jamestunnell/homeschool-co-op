@@ -3,7 +3,9 @@
     <tr>
       <th>Name</th>
       <th>Age</th>
-      <th>Actions</th>
+      <% if registering %>
+        <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -11,11 +13,13 @@
       <tr>
         <td><%= student.full_name %></td>
         <td><%= student.years_old %></td>
-        <td>
-          <%= link_to "Edit", edit_student_path(student), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Remove", student_path(student), :method => :delete,
-                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
-        </td>
+        <% if !registering %>
+          <td>
+            <%= link_to "Edit", edit_student_path(student), :class => 'btn btn-default btn-xs' %>
+            <%= link_to "Remove", student_path(student), :method => :delete,
+                        :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+          </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

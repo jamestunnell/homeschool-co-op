@@ -1,32 +1,37 @@
 class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_enrollment, only: [ :pay, :edit, :update, :destroy]
-  before_action :ensure_registrator, only: [ :mark_paid ]
-  
+  before_action :ensure_registrar, only: [ :mark_paid ]
+
   def new
-    sid = nil
-    if params.has_key? :student_id
-      check_user
-      sid = params[:student_id]
+    unless current_user.students.any?
+      redirect_to enrollments_path, alert: "There are no students to enroll"
     end
-    @enrollment = Enrollment.new(student_id: sid)
+    unless Section.not_past.any?
+      redirect_to enrollments_path, alert: "There are no upcoming or active sections to enroll in"
+    end
+    @enrollment = Enrollment.new
   end
 
   def create
-    unless current_user == Student.find(enrollment_params[:student_id]).user
-      redirect_to enrollments_path, alert: "You user account does not provide access to this section"
-    end
-    
     @enrollment = Enrollment.new(enrollment_params)
     if @enrollment.save
       redirect_to enrollments_path, notice: "Enrollment was successfully added."
     else
       redirect_to enrollments_path, alert: "Failed to add enrollment"
-    end    
+    end
   end
 
   def index
-    @enrollments = current_user.enrollments
+    if params.has_key? :registering
+      ensure_registrar
+      set_registering
+      @enrollments = Enrollment.all
+      @name = "All"
+    else
+      @enrollments = current_user.enrollments
+      @name = "Your"
+    end
   end
   
   def edit
@@ -69,7 +74,7 @@ class EnrollmentsController < ApplicationController
     def set_enrollment
       enrollment = Enrollment.find(params[:id])
       unless current_user == enrollment.student.user
-        redirect_to request.referrer, notice: "Your account does not give access to this action."
+        redirect_to current_user, notice: "Your account does not give access to this action."
       end
       @enrollment = enrollment
     end

@@ -4,37 +4,27 @@
       <th>Student</th>
       <th>Section</th>
       <th>Paid</th>
-      <% if show_actions %>
-        <th>Actions</th>
-      <% end %>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody>
     <% enrollments.each do |enrollment| %>
       <tr>
-        <% if active_links %>
-          <td><%= link_to enrollment.student.full_name, enrollment.student %></td>
-          <td><%= link_to enrollment.section.name, enrollment.section %></td>
-        <% else %>
-          <td><%= enrollment.student.full_name %></td>
-          <td><%= enrollment.section.name %></td>
-        <% end %>
-        
+        <td><%= enrollment.student.full_name %></td>
+        <td><%= link_to enrollment.section.name, enrollment.section %></td>
+        <td><%= enrollment.paid ? "Yes" : "No" %></td>
         <td>
-          <%= enrollment.paid ? "Yes" : "No" %>
-          <% if !enrollment.paid && can_mark_paid %>
-            <%= link_to "Mark Payed", enrollment_mark_paid_path(enrollment),
-                        :method => :post, :class => 'btn btn-primary btn-xs' %>
+          <% if registering %>
+            <% if !enrollment.paid %>
+              <%= link_to "Mark Payed", enrollment_mark_paid_path(enrollment),
+                          :method => :post, :class => 'btn btn-primary btn-xs' %>
+            <% end %>
+          <% else%>
+            <%= link_to "Edit", edit_enrollment_path(enrollment), :class => 'btn btn-default btn-xs' %>
+            <%= link_to "Remove", enrollment_path(enrollment), :method => :delete,
+                        :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
           <% end %>
         </td>
-        
-        <% if show_actions %>
-          <td>
-          <%= link_to "Edit", edit_enrollment_path(enrollment), :class => 'btn btn-default btn-xs' %>
-          <%= link_to "Remove", enrollment_path(enrollment), :method => :delete,
-                      :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
-          </td>
-        <% end %>
       </tr>
     <% end %>
   </tbody>

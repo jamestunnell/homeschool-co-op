@@ -18,3 +18,6 @@
 
 # Ignore secret application config data
 /config/application.yml
+
+# Ignore RubyMine files
+.idea/*
