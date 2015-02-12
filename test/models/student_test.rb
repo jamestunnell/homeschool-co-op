@@ -15,6 +15,14 @@ class StudentTest < ActiveSupport::TestCase
     assert_not @joe.valid?
   end
   
+  test "not valid if first is shorter than MIN_NAME_LENGTH or longer than MAX_NAME_LENGTH" do
+    @joe.first = "A"*(User::MIN_NAME_LENGTH-1)
+    assert_not @joe.valid?
+    
+    @joe.first = "A"*(User::MAX_NAME_LENGTH+1)
+    assert_not @joe.valid?
+  end
+  
   test "valid without a last name" do
     @joe.last = nil
     assert @joe.valid?

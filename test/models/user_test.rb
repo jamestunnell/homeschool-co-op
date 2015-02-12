@@ -4,6 +4,9 @@ class UserTest < ActiveSupport::TestCase
   setup do
     @sam = users(:sam)
     @josie = users(:josie)
+    @joe = User.create(:first => "Joe", :last => "Blow",
+                       :email => "mememe@ggg.com", :password => "12345678")
+    @joe.save
   end
   
   test "fixtures are valid" do
@@ -21,6 +24,11 @@ class UserTest < ActiveSupport::TestCase
       @sam.email = str
       assert_not @sam.valid?
     end
+  end
+  
+  test "email must be unique" do
+    @sam.email = @josie.email
+    assert_not @sam.valid?
   end
   
   test "not valid without first name" do
@@ -71,5 +79,42 @@ class UserTest < ActiveSupport::TestCase
     ids = @sam.students.ids
     @sam.destroy
     ids.each {|id| assert Responsibility.where(id: id).empty? }
+  end
+  
+  
+  test "active_responsibilities returns all responsibilities that are active (and none that are not)" do
+    @joe.responsibilities.create(kind: :coordination, :start_date => Date.today-10, :end_date => Date.today+10)
+    @joe.responsibilities.create(kind: :registration, :start_date => Date.today-20, :end_date => Date.today+1)
+    @joe.responsibilities.create(kind: :scheduling, :start_date => Date.today+5, :end_date => Date.today+10)
+    @joe.responsibilities.create(kind: :cataloging, :start_date => Date.today-20, :end_date => Date.today-2)
+    ars = @joe.active_responsibilities
+    kinds = ars.map{|ar| ar.kind }
+    assert_equal ars.count, 2
+    assert kinds.include?("coordination")
+    assert kinds.include?("registration")
+  end
+  
+  test "can_coordinate? returns true only if an active responsibility is coordination" do
+    assert_not @joe.can_coordinate?
+    @joe.responsibilities.create(kind: :coordination, :start_date => Date.today-10, :end_date => Date.today+10)
+    assert @joe.can_coordinate?
+  end
+  
+  test "can_register? returns true only if an active responsibility is registration" do
+    assert_not @joe.can_register?
+    @joe.responsibilities.create(kind: :registration, :start_date => Date.today-10, :end_date => Date.today+10)
+    assert @joe.can_register?
+  end
+  
+  test "can_schedule? returns true only if an active responsibility is scheduling" do
+    assert_not @joe.can_schedule?
+    @joe.responsibilities.create(kind: :scheduling, :start_date => Date.today-10, :end_date => Date.today+10)
+    assert @joe.can_schedule?
+  end
+
+  test "can_catalog? returns true only if an active responsibility is cataloging" do
+    assert_not @joe.can_catalog?
+    @joe.responsibilities.create(kind: :cataloging, :start_date => Date.today-10, :end_date => Date.today+10)
+    assert @joe.can_catalog?
   end
 end
