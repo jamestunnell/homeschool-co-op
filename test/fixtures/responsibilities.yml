@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  kind: 1
+sam_coordinates:
+  kind: "coordination"
   start_date: 2015-02-07
   end_date: 2015-02-07
-  user_id: 
+  user: sam
 
-two:
-  kind: 1
+josie_schedules:
+  kind: "scheduling"
   start_date: 2015-02-07
   end_date: 2015-02-07
-  user_id: 
+  user: josie

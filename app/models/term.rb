@@ -1,13 +1,3 @@
-class TermEndValidator < ActiveModel::Validator
-  def validate(term)
-    if term.errors[:end_date].empty? && term.errors[:start_date].empty?
-      unless term.end_date >= term.start_date
-        term.errors[:end_date] << 'End date must be >= start date.'
-      end
-    end
-  end
-end
-
 class Term < ActiveRecord::Base
   has_many :sections, dependent: :destroy
   has_many :enrollments, through: :sections
@@ -16,7 +6,7 @@ class Term < ActiveRecord::Base
   validates_presence_of :end_date
   
   include ActiveModel::Validations
-  validates_with TermEndValidator
+  validates_with EndDateValidator
   
   def year_range
     start_date.year..end_date.year

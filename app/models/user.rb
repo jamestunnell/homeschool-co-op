@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   end
   
   def active_responsibilities
-    responsibilities.select {|r| r.active? }
+    responsibilities.active
   end
 
   def can_coordinate?
