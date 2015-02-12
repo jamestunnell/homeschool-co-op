@@ -4,6 +4,15 @@ class ResponsibilitiesController < ApplicationController
   before_action :set_responsibility, only: [:edit,:update,:destroy]
 
   def index
+    if params.has_key? :coordinating
+      ensure_coordinator
+      set_coordinating
+      @responsibilities = Responsibility.all
+      @name = "All"
+    else
+      @responsibilities = current_user.responsibilities
+      @name = "Your"
+    end
   end
   
   def new
@@ -13,9 +22,9 @@ class ResponsibilitiesController < ApplicationController
   def create
     @responsibility = Responsibility.new(resp_params)
     if @responsibility.save
-      redirect_to responsibility_kind_path(:coordination), notice: "Responsibility was successfully added"
+      redirect_to responsibilities_path(coordinating: true), notice: "Responsibility was successfully added"
     else
-      redirect_to responsibility_kind_path(:coordination), alert: "Failed to add responsibility"
+      redirect_to responsibilities_path(coordinating: true), alert: "Failed to add responsibility"
     end
   end
 
@@ -24,7 +33,7 @@ class ResponsibilitiesController < ApplicationController
   
   def update
     if @responsibility.update(resp_params)
-      redirect_to responsibility_kind_path(:coordination), notice: "Responsibility was successfully udpated"
+      redirect_to responsibilities_path(coordinating: true), notice: "Responsibility was successfully udpated"
     else
       render :edit
     end
@@ -32,7 +41,7 @@ class ResponsibilitiesController < ApplicationController
   
   def destroy
     @responsibility.destroy
-    redirect_to responsibility_kind_path(:coordination), notice: 'Responsibility was successfully removed.'
+    redirect_to responsibilities_path(coordinating: true), notice: 'Responsibility was successfully removed.'
   end
   
   def kind
