@@ -11,9 +11,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :first
     devise_parameter_sanitizer.for(:sign_up) << :last
     devise_parameter_sanitizer.for(:sign_up) << :avatar
-    devise_parameter_sanitizer.for(:account_update) << :first
-    devise_parameter_sanitizer.for(:account_update) << :last
-    devise_parameter_sanitizer.for(:account_update) << :avatar
+    devise_parameter_sanitizer.for(:sign_up) << :bio
   end
   
   def ensure_responsibility predicate_method

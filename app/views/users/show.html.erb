@@ -1,15 +1,19 @@
+<div class="page-header">
+  <h2><%= @user.full_name %></h2>
+  <p><i><%= @user.email %></i></p>
+  <p><%= link_to "Change Email/Password", edit_user_registration_path, :class => "btn btn-default btn-xs" %></p>
+</div>
 <div class="row">
-  <div class="col-lg-3">
-    <h2><%= @user.full_name %></h2>
+  <div class="col-sm-3">
+    <h3>Important Links</h3>
     <p><%= link_to "Students", students_path %></p>
     <p><%= link_to "Enrollments", enrollments_path %></p>
     <p><%= link_to "Responsibilities", responsibilities_path %></p>
   </div>
-  <div class="col-lg-5">
-    <%= image_tag(@user.avatar_url(:standard), :alt => "Mugshot") %>
-    <p><strong>Email: </strong> <%= @user.email %></p>
-    <p>
-      <%= link_to "Edit Account", edit_user_registration_path, :class => "btn btn-default btn-xs" %>
-    </p>
+  <div class="col-sm-9">
+    <h3>Personal Information</h3>
+    <p><%= image_tag(@user.avatar_url(:standard), :alt => "Mugshot") %></p>
+    <p><%= @user.bio %></p>
+    <p><%= link_to "Change Personal Information", edit_user_path(@user), :class => "btn btn-default btn-xs" %></p>
   </div>
 </div>

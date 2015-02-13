@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   
   devise_for :users
   get '/account', to: 'users#show', as: 'account'
+  resources :users, only: [:edit,:update]
   resources :students, except: :show
   resources :enrollments, except: :show do
     post 'mark_paid'
