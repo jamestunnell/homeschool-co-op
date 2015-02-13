@@ -16,7 +16,8 @@ class User < ActiveRecord::Base
   has_many :students, dependent: :destroy
   has_many :enrollments, through: :students
   has_many :responsibilities, dependent: :destroy
-  
+  mount_uploader :avatar, AvatarUploader
+
   def full_name
     "#{first} #{last}"
   end

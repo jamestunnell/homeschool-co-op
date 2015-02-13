@@ -19,12 +19,12 @@ gem 'simple_form'
 gem 'turbolinks'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
-# gems for email/contact form
-gem 'mail_form'
-# send emails using Mailgun API
-gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
-# Authenticate models with devise
-gem 'devise'
+
+gem 'mail_form' # email/contact form
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun' # send emails using Mailgun API
+gem 'devise' # Authenticate models with devise
+gem 'carrierwave' # file upload integration
+gem 'cloudinary' # cloud file storage service API
 
 # Use Unicorn as the app server
 # gem 'unicorn'

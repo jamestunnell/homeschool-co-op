@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209201535) do
+ActiveRecord::Schema.define(version: 20150213062631) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -146,6 +146,7 @@ ActiveRecord::Schema.define(version: 20150209201535) do
     t.datetime "updated_at"
     t.string   "first"
     t.string   "last"
+    t.string   "avatar"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

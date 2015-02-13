@@ -16,5 +16,5 @@
   <p><%= link_to "Add Responsibility", new_responsibility_path, :class => 'btn btn-primary' %></p>
   <p><%= link_to raw("&larr; Back to Coordination"), responsibility_kind_path(:coordination) %></p>
 <% else %>
-  <p><%= link_to raw("&larr; Back to Account"), current_user %></p>
+  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
 <% end %>

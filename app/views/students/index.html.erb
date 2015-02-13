@@ -11,5 +11,5 @@
   <p><%= link_to raw("&larr; Back to Registration"), responsibility_kind_path(:registration) %></p>
 <% else %>
   <p><%= link_to "Add Student", new_student_path, :class => 'btn btn-primary' %></p>
-  <p><%= link_to raw("&larr; Back to Account"), current_user %></p>
+  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
 <% end %>

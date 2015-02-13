@@ -47,7 +47,7 @@ class StudentsController < ApplicationController
     def set_student
       student = Student.find(params[:id])
       unless current_user == student.user
-        redirect_to current_user, alert: "You user account does not provide access to this section"
+        redirect_to account_path, alert: "You user account does not provide access to this section"
       end
       @student = student
     end
