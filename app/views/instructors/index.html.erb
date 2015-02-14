@@ -1,0 +1,18 @@
+<h2>Instructors</h2>
+<% @instructors.each do |instructor| %>
+  <h3><%= instructor.full_name %></h3>
+  <div class="row">
+    <div class="col-sm-6">
+      <p style="text-align: left"><%= instructor.bio %></p>
+    </div>
+    <div class="col-sm-2">
+      <% courses = instructor.sections.map {|s| s.course}.uniq %>
+      <p><b><i><%= courses.map{|c| c.name }.join(", ") %></i></b></p>
+    </div>
+    <div class="col-sm-4">
+        <% if !instructor.avatar.blank? %>
+          <%= image_tag(instructor.avatar_url(:standard), :alt => "Mugshot") %></p>
+        <% end %>
+    </div>
+  </div>
+<% end %>

@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates_length_of :last, :minimum => MIN_NAME_LENGTH, :maximum => MAX_NAME_LENGTH
   
   has_many :students, dependent: :destroy
+  has_many :sections
   has_many :enrollments, through: :students
   has_many :responsibilities, dependent: :destroy
   mount_uploader :avatar, AvatarUploader
