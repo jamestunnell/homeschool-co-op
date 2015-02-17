@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-4">
+  <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Welcome</h3>
@@ -27,46 +27,49 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-4">
+  <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Important Dates</h3>
       </div>
       <div class="panel-body">
-        <p>These dates include co-op specific dates, and fieldtrip dates open to
+<!--        <p>These dates include co-op specific dates, and fieldtrip dates open to
         the ENTIRE homeschool community. To RSVP for fieldtrips, please follow the
         link to the FB page event.</p>
-        
+
         <p>​Registration event for classes at Downtown D&M from 9-11 on Tuesday Jan
         6th. If registration is completed and paid for by the 6th the Co-Op fee is
         discounted from $10 per class to $5 per class.</p>
-        
+
         <p>January  13th - First Day of Winter Quarter</p>
-        <p>March 10th - Last Day of Winter Quarter</p>
+        <p>March 10th - Last Day of Winter Quarter</p>-->
+        <table class="table table-striped">
+          <% @date_descriptions.each do |date,descr| %>
+            <tr>
+              <td><%= date.strftime("%a, %b %-d") %></td>
+              <td><%= descr %></td>
+            </tr>
+          <% end %>
+        </table>
       </div>
     </div>
-  </div>
-  <div class="col-lg-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Meet the Other Parents</h3>
+      </div>
+      <div class="panel-body">
+        <p>Head over to our Facebook group and meet the other parents who are participating in the co-op.</p>
+        <%= render partial: 'layouts/facebook_badge' %>
+      </div>
+    </div>
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Have an Idea for a Class?</h3>
       </div>
       <div class="panel-body">
         <p>We are always searching for class and workshop ideas. If you would like to
-        make a suggestion, use this form to contact our planning committee!</p>
-        
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">Contact Us</h4>
-          </div>
-          <div class="panel-body">
-            <%= simple_form_for ContactForm.new do |f| %>
-              <%= render :partial => 'contact_forms/fields', :locals => { :f => f } %>
-            <% end %>
-          </div>
-        </div>
-        <br>
-        <%= image_tag "cwu-event.jpg", size: "305x227", style:"box-shadow: 0px 4px 10px #505050; display: block; margin-left: auto; margin-right: auto"%>
+          make a suggestion, head over to the <%= link_to "Contact", contact_path %> page
+          to contact our planning committee!</p>
       </div>
     </div>
   </div>
