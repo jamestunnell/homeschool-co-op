@@ -14,3 +14,11 @@
   <dt><strong>Fee:</strong></dt>
   <dd><%= number_to_currency(@section.fee) %></dd>
 </dl>
+
+<% if @teaching %>
+  <h3>Students Enrolled</h3>
+  <%= render :partial => 'students/table', :locals => { students: @section.students, teaching: true, registering: false } %>
+  <p><%= link_to raw("&larr; Back to Teaching"), teaching_path %></p>
+<% else %>
+  <p><%= link_to raw("&larr; Back to Term"), term_path(@section.term) %></p>
+<% end %>

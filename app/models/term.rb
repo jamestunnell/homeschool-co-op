@@ -72,6 +72,19 @@ class Term < ActiveRecord::Base
   scope :not_past, -> { where("end_date >= ?", Date.today) }
   scope :active, -> { where("start_date <= ? AND end_date >= ?", Date.today, Date.today) }
 
+  def past?
+    end_date < Date.today
+  end
+
+  def active?
+    d = Date.today
+    start_date <= d && end_date >= d
+  end
+
+  def upcoming?
+    start_date > Date.today
+  end
+
   def end_date_not_before_start_date
     end_date >= start_date
   end

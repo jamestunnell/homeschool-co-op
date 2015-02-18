@@ -7,7 +7,7 @@
 <h3>Sections</h3>
 <% if @term.sections.any? %>
 <%= render partial: "sections/table", locals: { :sections => @term.sections,
-           :show_actions => @scheduling } %>
+           :show_actions => @scheduling, :teaching => false } %>
 <% else %>
   <p>There are no sections in this term.</p>
 <% end %>

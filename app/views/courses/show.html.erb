@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2><%= @course.name %></h1>
+  <h2><%= @course.name %></h2>
 </div>
 
 <p><strong>Subject:</strong> <%= link_to @course.subject.name, subject_path(@course.subject) %></p>
@@ -9,7 +9,7 @@
 <h3>Sections</h3>
 <% if @course.sections.any? %>
   <%= render partial: "sections/table", locals: {
-    :sections => @course.sections, :show_actions => false } %>
+    :sections => @course.sections, :show_actions => false, :teaching => false } %>
 <% else %>
   This course has no sections.
 <% end %>

@@ -4,7 +4,7 @@
       <th>Name</th>
       <th>Age</th>
       <th>Medical Considerations</th>
-      <% if !registering %>
+      <% if !registering && !teaching %>
         <th>Actions</th>
       <% end %>
     </tr>
@@ -15,7 +15,7 @@
         <td><%= student.full_name %></td>
         <td><%= student.years_old %></td>
         <td><%= student.medical %></td>
-        <% if !registering %>
+        <% if !registering && !teaching %>
           <td>
             <%= link_to "Edit", edit_student_path(student), :class => 'btn btn-default btn-xs' %>
             <%= link_to "Remove", student_path(student), :method => :delete,

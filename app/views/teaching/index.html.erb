@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h2>Teaching</h2>
+</div>
+
+<% if current_user.sections.any? %>
+  <% {:active => true,:upcoming => false,:past => false }.each do |scope,active_links| %>
+    <% sections = current_user.send("#{scope}_sections".to_sym) %>
+    <h3><%= scope.to_s.humanize %> Sections</h3>
+    <% if sections.any? %>
+      <%= render partial: "sections/table", locals: {
+                :sections => sections, :teaching => true, :show_actions => false } %>
+    <% else %>
+      <p>There are no <%= scope.to_s %> class sections.</p>
+    <% end %>
+  <% end %>
+<% else %>
+<p>You have no assigned class sections.</p>
+<% end %>
+
+<p><%= link_to raw("&larr; Back to Account"), account_path %></p>

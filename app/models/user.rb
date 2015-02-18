@@ -33,6 +33,18 @@ class User < ActiveRecord::Base
     responsibilities.active
   end
 
+  def upcoming_sections
+    sections.select {|s| s.term.upcoming? }
+  end
+
+  def active_sections
+    sections.select {|s| s.term.active? }
+  end
+
+  def past_sections
+    sections.select {|s| s.term.past? }
+  end
+
   def can_coordinate?
     active_responsibilities.any? {|r| r.coordination? }
   end

@@ -7,6 +7,7 @@ class Section < ActiveRecord::Base
   has_one :meeting_day_time, dependent: :destroy
   accepts_nested_attributes_for :meeting_day_time
   has_many :enrollments, dependent: :destroy
+  has_many :students, through: :enrollments
   
   alias :instructor :user
   
