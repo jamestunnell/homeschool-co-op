@@ -5,6 +5,8 @@ class UserTest < ActiveSupport::TestCase
     @sam = users(:sam)
     @josie = users(:josie)
     @joe = User.create(:first => "Joe", :last => "Blow",
+                       :phone => "3605681234", :emergency_name => "Bill",
+                       :emergency_phone => "3605671235",
                        :email => "mememe@ggg.com", :password => "12345678")
     @joe.save
   end
@@ -56,7 +58,38 @@ class UserTest < ActiveSupport::TestCase
     @sam.last = "A"*(User::MAX_NAME_LENGTH+1)
     assert_not @sam.valid?
   end
-  
+
+  # test "not valid without phone number" do
+  #   @sam.phone = nil
+  #   assert_not @sam.valid?
+  # end
+
+  # test "not valid without emergency name" do
+  #   @sam.emergency_name = nil
+  #   assert_not @sam.valid?
+  # end
+
+  # test "not valid without emergency phone number" do
+  #   @sam.emergency_phone = nil
+  #   assert_not @sam.valid?
+  # end
+
+  test "phone number must have correct format" do
+    @sam.phone = "360568123"
+    assert_not @sam.valid?
+
+    @sam.phone = "360568123z"
+    assert_not @sam.valid?
+  end
+
+  test "emergency phone number must have correct format" do
+    @sam.emergency_phone = "360568123"
+    assert_not @sam.valid?
+
+    @sam.emergency_phone = "360568123z"
+    assert_not @sam.valid?
+  end
+
   test "full_name starts with first name" do
     assert_equal((Regexp.new(@sam.first) =~ @sam.full_name), 0)
   end

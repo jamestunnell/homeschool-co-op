@@ -4,10 +4,8 @@ class Term < ActiveRecord::Base
   
   validates_presence_of :start_date
   validates_presence_of :end_date
-  
-  include ActiveModel::Validations
-  validates_with EndDateValidator
-  
+  validate :end_date_not_before_start_date
+
   def year_range
     start_date.year..end_date.year
   end
@@ -73,4 +71,8 @@ class Term < ActiveRecord::Base
   scope :past, -> { where("end_date < ?", Date.today) }
   scope :not_past, -> { where("end_date >= ?", Date.today) }
   scope :active, -> { where("start_date <= ? AND end_date >= ?", Date.today, Date.today) }
+
+  def end_date_not_before_start_date
+    end_date >= start_date
+  end
 end

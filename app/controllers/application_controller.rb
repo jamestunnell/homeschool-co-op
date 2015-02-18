@@ -12,6 +12,9 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:sign_up) << :last
     devise_parameter_sanitizer.for(:sign_up) << :avatar
     devise_parameter_sanitizer.for(:sign_up) << :bio
+    devise_parameter_sanitizer.for(:sign_up) << :phone
+    devise_parameter_sanitizer.for(:sign_up) << :emergency_phone
+    devise_parameter_sanitizer.for(:sign_up) << :emergency_name
   end
   
   def ensure_responsibility predicate_method

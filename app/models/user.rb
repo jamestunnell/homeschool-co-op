@@ -7,12 +7,18 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable
-         
+
+  phony_normalize :phone, :default_country_code => 'US'
+  phony_normalize :emergency_phone, :default_country_code => 'US'
+
   validates_presence_of :first
   validates_presence_of :last
   validates_length_of :first, :minimum => MIN_NAME_LENGTH, :maximum => MAX_NAME_LENGTH
   validates_length_of :last, :minimum => MIN_NAME_LENGTH, :maximum => MAX_NAME_LENGTH
-  
+
+  validates :phone, phony_plausible: true
+  validates :emergency_phone, phony_plausible: true
+
   has_many :students, dependent: :destroy
   has_many :sections
   has_many :enrollments, through: :students
@@ -22,7 +28,7 @@ class User < ActiveRecord::Base
   def full_name
     "#{first} #{last}"
   end
-  
+
   def active_responsibilities
     responsibilities.active
   end

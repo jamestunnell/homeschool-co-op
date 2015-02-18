@@ -10,9 +10,7 @@ class Responsibility < ActiveRecord::Base
 
   validates_presence_of :start_date
   validates_presence_of :end_date
-  
-  include ActiveModel::Validations
-  validates_with EndDateValidator
+  validate :end_date_not_before_start_date
   
   scope :upcoming, -> { where("start_date > ?", Date.today) }
   scope :past, -> { where("end_date <= ?", Date.today) }
@@ -26,5 +24,9 @@ class Responsibility < ActiveRecord::Base
 
   def past?
     Date.today >= end_date
+  end
+
+  def end_date_not_before_start_date
+    end_date >= start_date
   end
 end

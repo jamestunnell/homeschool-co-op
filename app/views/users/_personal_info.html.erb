@@ -1,0 +1,8 @@
+<%= f.input :first, required: true, autofocus: true %>
+<%= f.input :last, required: true %>
+<%= f.input :phone, as: :tel, label: 'Phone number' %>
+<%= f.input :emergency_name, label: 'Emergency contact name' %>
+<%= f.input :emergency_phone, as: :tel, label: 'Emergency contact phone number' %>
+<%= f.input :bio %>
+<%= f.hidden_field(:avatar_cache) %>
+<%= f.input :avatar, as: :file, label: 'Photo' %>

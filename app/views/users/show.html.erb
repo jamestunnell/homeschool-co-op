@@ -1,7 +1,7 @@
 <div class="page-header">
   <h2><%= @user.full_name %></h2>
   <p><i><%= @user.email %></i></p>
-  <p><%= link_to "Change Email/Password", edit_user_registration_path, :class => "btn btn-default btn-xs" %></p>
+  <p><%= link_to "Edit Account Credentials", edit_user_registration_path, :class => "btn btn-default btn-xs" %></p>
 </div>
 <div class="row">
   <div class="col-sm-3">
@@ -13,7 +13,9 @@
   <div class="col-sm-9">
     <h3>Personal Information</h3>
     <p><%= image_tag(@user.avatar_url(:standard), :alt => "Mugshot") %></p>
-    <p><%= @user.bio %></p>
-    <p><%= link_to "Change Personal Information", edit_user_path(@user), :class => "btn btn-default btn-xs" %></p>
+    <p><b>Phone:</b> <%= phone_formatted(@user.phone) if @user.phone %></p>
+    <p><b>Emergency name: </b><%= @user.emergency_name %></p>
+    <p><b>Emergency phone: </b><%= phone_formatted(@user.emergency_phone) if @user.emergency_phone %></p>
+    <p><%= link_to "Edit Personal Information", edit_user_path(@user), :class => "btn btn-default btn-xs" %></p>
   </div>
 </div>

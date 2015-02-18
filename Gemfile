@@ -25,7 +25,7 @@ gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun' # send emails using Mailgun AP
 gem 'devise' # Authenticate models with devise
 gem 'carrierwave' # file upload integration
 gem 'cloudinary' # cloud file storage service API
-
+gem 'phony_rails' # validate phone numbers
 # Use Unicorn as the app server
 # gem 'unicorn'
 

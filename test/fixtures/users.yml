@@ -2,8 +2,14 @@ sam:
     first: Sam
     last: Duggins
     email: sambo@momo.net
+    phone: 360-568-1234
+    emergency_name: Bob
+    emergency_phone: 360-568-1235
     
 josie:
     first: Josie
     last: Pie
     email: jpie@mystuff.com
+    phone: 425-359-1234
+    emergency_name: Nathan
+    emergency_phone: 425-359-1235
