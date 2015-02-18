@@ -14,8 +14,8 @@
     <h3>Personal Information</h3>
     <p><%= image_tag(@user.avatar_url(:standard), :alt => "Mugshot") %></p>
     <p><b>Phone:</b> <%= phone_formatted(@user.phone) if @user.phone %></p>
-    <p><b>Emergency name: </b><%= @user.emergency_name %></p>
-    <p><b>Emergency phone: </b><%= phone_formatted(@user.emergency_phone) if @user.emergency_phone %></p>
+    <p><b>Emergency contact name: </b><%= @user.emergency_name %></p>
+    <p><b>Emergency contact phone: </b><%= phone_formatted(@user.emergency_phone) if @user.emergency_phone %></p>
     <p><%= link_to "Edit Personal Information", edit_user_path(@user), :class => "btn btn-default btn-xs" %></p>
   </div>
 </div>

@@ -3,7 +3,8 @@
     <tr>
       <th>Name</th>
       <th>Age</th>
-      <% if registering %>
+      <th>Medical Considerations</th>
+      <% if !registering %>
         <th>Actions</th>
       <% end %>
     </tr>
@@ -13,6 +14,7 @@
       <tr>
         <td><%= student.full_name %></td>
         <td><%= student.years_old %></td>
+        <td><%= student.medical %></td>
         <% if !registering %>
           <td>
             <%= link_to "Edit", edit_student_path(student), :class => 'btn btn-default btn-xs' %>
