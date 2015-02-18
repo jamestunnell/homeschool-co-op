@@ -1,8 +1,8 @@
 <div class="page-header">
 <h2><%= @term.name %></h2>
 </div>
-<p><strong>Start date: </strong><%= @term.start_date %></p>
-<p><strong>End date: </strong><%= @term.end_date %></p>
+<p><i><%= @term.start_date %></i> to <i><%= @term.end_date %></i></p>
+<p><%= link_to "View Schedule", term_schedule_path(@term, :day => @term.active_days.first ) %></p>
 
 <h3>Sections</h3>
 <% if @term.sections.any? %>

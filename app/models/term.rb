@@ -39,6 +39,35 @@ class Term < ActiveRecord::Base
   def weeks_long
     (days_long/7.0).round
   end
+
+  def active_days
+    sections.map {|section| section.meeting_day_time.day }.uniq
+  end
+
+  def time_range_activity day
+    sd = start_date
+    secs = sections.select {|section| section.meeting_day_time.day == day }
+    time_points = []
+    secs.each do |s|
+      time_points.push(s.start_time_on(sd))
+      time_points.push(s.end_time_on(sd))
+    end
+    time_points = time_points.uniq.sort
+    time_range_activity = {}
+    (1...time_points.size).each do |i|
+      l = time_points[i-1]
+      r = time_points[i]
+      active_secs = secs.select do |s|
+        sl = s.start_time_on(sd)
+        sr = s.end_time_on(sd)
+        (sl >= l && sl < r) || (sr > l && sr <= r)
+      end
+      if active_secs.any?
+        time_range_activity[l..r] = active_secs
+      end
+    end
+    return time_range_activity
+  end
   
   scope :upcoming, -> { where("start_date > ?", Date.today) }
   scope :past, -> { where("end_date < ?", Date.today) }

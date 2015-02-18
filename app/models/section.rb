@@ -11,7 +11,19 @@ class Section < ActiveRecord::Base
   alias :instructor :user
   
   def name
-    "#{course.name} / #{instructor ? instructor.last : "None"} / #{term.name} / #{meeting_day_time.start_str}"
+    "#{course_instructor} / #{term.name} / #{meeting_day_time.start_str}"
+  end
+
+  def course_instructor
+    "#{course.name} / #{instructor ? instructor.last : "None"}"
+  end
+
+  def start_time_on date
+    "#{date} #{meeting_day_time.start_time.strftime("%H:%M")}".to_time
+  end
+
+  def end_time_on date
+    "#{date} #{meeting_day_time.end_time.strftime("%H:%M")}".to_time
   end
 
   def self.past

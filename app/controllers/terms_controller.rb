@@ -1,7 +1,7 @@
 class TermsController < ApplicationController
-  before_action :authenticate_user!, except: [:show,:index]
+  before_action :authenticate_user!, except: [:show,:index,:schedule]
   before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
-  before_action :set_term, only: [:show, :edit, :update, :destroy]
+  before_action :set_term, only: [:show, :schedule, :edit, :update, :destroy]
   before_action :set_scheduling, only: [:index,:show]
 
   def index
@@ -9,6 +9,16 @@ class TermsController < ApplicationController
   end
 
   def show
+  end
+
+  # Renders a table showing all the class times at-a-glance for the term
+  def schedule
+    @active_days = @term.active_days
+    @day_activity = Hash[
+      MeetingDayTime.days.keys.map {|day| [day, @active_days.include?(day)]}
+    ]
+    @day = params[:day]
+    @time_range_activity = @term.time_range_activity(@day)
   end
 
   def new

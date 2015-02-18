@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :terms do
     resources :sections, only: [:new]
   end
+  get 'terms/:id/schedule/:day', :to => 'terms#schedule', :as => 'term_schedule'
   resources :sections, :except => [:index,:new]
   
   devise_for :users

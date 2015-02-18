@@ -1,0 +1,11 @@
+<%= nav_bar do %>
+  <%= menu_group do %>
+    <% day_activity.each do |day,active| %>
+      <% if active %>
+        <%= menu_item day, term_schedule_path(term, :day => day) %>
+      <% else %>
+        <%= menu_text day %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>

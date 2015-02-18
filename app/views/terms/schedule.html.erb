@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h2><%= @term.name %></h2>
+  <h3>Schedule for <%= @day %></h3>
+</div>
+
+<%= render partial: 'schedule_navbar', locals: {
+           term: @term, day_activity: @day_activity } %>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Section</th>
+    <% @time_range_activity.keys.each do |time_range| %>
+      <th><%= "#{time_range.first.strftime("%l:%M%p")}-#{time_range.last.strftime("%l:%M%p")}" %></th>
+    <% end %>
+  </tr>
+  </thead>
+  <tbody>
+  <% @term.sections.each do |section| %>
+    <tr>
+      <td><%= link_to section.course_instructor, section %></td>
+      <% @time_range_activity.each do |time_range,sections| %>
+        <td><%= sections.include?(section) ? 'X':'' %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to raw("&larr; Back to Term"), term_path(@term) %></p>
