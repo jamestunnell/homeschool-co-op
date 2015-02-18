@@ -52,7 +52,7 @@ class ResponsibilitiesController < ApplicationController
     when "scheduling" then ensure_scheduler
     when "registration" then ensure_registrar
     else
-      redirect_to :status => 404
+      render status: 404
     end
     render kind.to_sym
   end

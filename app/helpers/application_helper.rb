@@ -7,4 +7,12 @@ module ApplicationHelper
   def phone_formatted phone_str
     phone_str.phony_formatted(:format => :international, :spaces => ".")
   end
+
+  def formal_date date_obj
+    date_obj.strftime("%a, %b %-d, %Y")
+  end
+
+  def formal_date_time time_obj
+    time_obj.strftime("%a, %b %-d, %Y at %l:%M %p")
+  end
 end

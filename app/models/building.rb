@@ -7,4 +7,5 @@ class Building < ActiveRecord::Base
   accepts_nested_attributes_for :address
   
   has_many :rooms, dependent: :destroy
+  has_many :events, dependent: :destroy
 end

@@ -1,0 +1,15 @@
+<div class="page-title">
+  <h2>Events</h2>
+</div>
+
+<% if @events.any? %>
+<%= render partial: "events/table", locals: { :events => @events,
+:show_actions => @coordinating } %>
+<% else %>
+<p>There are no events.</p>
+<% end %>
+
+<% if @coordinating %>
+<p><%= link_to "Add Event", new_event_path, :class => 'btn btn-primary' %></p>
+<p><%= link_to raw("&larr; Back to Coordination"), responsibility_kind_path(:coordination) %></p>
+<% end %>

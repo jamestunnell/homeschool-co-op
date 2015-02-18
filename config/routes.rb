@@ -30,7 +30,9 @@ Rails.application.routes.draw do
   
   resources :responsibilities, except: :show
   get '/responsibilities/:kind', to: "responsibilities#kind", as: "responsibility_kind"
-  
+
+  resources :events
+
   resources :subjects
   resources :courses
 

@@ -44,9 +44,9 @@
         <p>January  13th - First Day of Winter Quarter</p>
         <p>March 10th - Last Day of Winter Quarter</p>-->
         <table class="table table-striped">
-          <% @date_descriptions.each do |date,descr| %>
+          <% @date_descriptions.each do |date_or_time,descr| %>
             <tr>
-              <td><%= date.strftime("%a, %b %-d") %></td>
+              <td><%= date_or_time.is_a?(Time) ? formal_date_time(date_or_time) : formal_date(date_or_time) %></td>
               <td><%= descr %></td>
             </tr>
           <% end %>

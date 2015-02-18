@@ -1,0 +1,22 @@
+<div class="page-header">
+  <h2><%= @event.title %></h2>
+</div>
+
+<% if !@event.photo.blank? %>
+  <div class="center-block">
+    <p><%= image_tag(@event.photo_url(:standard)) %></p>
+  </div>
+<% end %>
+
+<p><%= @event.description %></p>
+
+<dl class="dl-horizontal">
+  <dt><strong>Building:</strong></dt>
+  <dd><%= link_to @event.building.name, @event.building %></dd>
+  <dt><strong>Starts:</strong></dt>
+  <dd><%= formal_date_time @event.start_time %></dd>
+  <dt><strong>Ends:</strong></dt>
+  <dd><%= formal_date_time @event.end_time %></dd>
+</dl>
+
+<p><%= link_to raw("&larr; Back to Events"), events_path %></p>
