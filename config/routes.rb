@@ -27,6 +27,10 @@ Rails.application.routes.draw do
   resources :enrollments, except: :show do
     post 'mark_paid'
   end
+  get 'agreements', to: 'agreements#index', as: 'agreements'
+  get 'agreements/:kind', to: 'agreements#show', as: 'agreement'
+  post 'agreements/:kind', to: 'agreements#submit'
+  post 'agreements/:kind/reset_all', to: 'agreements#reset_all', as: 'reset_all_agreements'
   
   resources :responsibilities, except: :show
   get '/responsibilities/:kind', to: "responsibilities#kind", as: "responsibility_kind"

@@ -2,6 +2,7 @@ class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_enrollment, only: [ :pay, :edit, :update, :destroy]
   before_action :ensure_registrar, only: [ :mark_paid ]
+  before_action :ensure_parent_agreement, only: [:new,:create]
 
   def new
     unless current_user.students.any?
@@ -77,6 +78,12 @@ class EnrollmentsController < ApplicationController
         redirect_to account_path, notice: "Your account does not give access to this action."
       end
       @enrollment = enrollment
+    end
+
+    def ensure_parent_agreement
+      unless current_user.parent_agreement
+        redirect_to agreement_path(:parent), alert: "You must read the latest parent agreement before adding enrollments"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

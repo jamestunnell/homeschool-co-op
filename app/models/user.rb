@@ -59,5 +59,5 @@ class User < ActiveRecord::Base
   
   def can_catalog?
     active_responsibilities.any? {|r| r.cataloging? }
-  end  
+  end
 end

@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h2>Agreements</h2>
+</div>
+
+<p><%= link_to "Parent Agreement", agreement_path(:parent) %>
+  <% if @coordinating %>
+    <%= link_to "Reset for All Users", reset_all_agreements_path(:parent), :method => :post,
+        :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+  <% end %>
+</p>
+<% if @coordinating %>
+  <p><%= link_to raw("&larr; Back to Coordination"), responsibility_kind_path(:coordination) %></p>
+<% end %>

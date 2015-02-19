@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150218223713) do
+ActiveRecord::Schema.define(version: 20150219202240) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 20150218223713) do
     t.string   "phone"
     t.string   "emergency_name"
     t.string   "emergency_phone"
+    t.boolean  "parent_agreement"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

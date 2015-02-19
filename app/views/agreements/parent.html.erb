@@ -1,0 +1,63 @@
+<div class="page-header">
+  <h2>Parent Agreement</h2>
+</div>
+
+<p>
+  <ul>
+    <li>
+      I understand that EHC classes are supplemental to what is being taught in
+      the home and are meant for enrichment purposes only. As the parent, I also
+      realize that these classes will not complete any curriculum, only enhance
+      them. The instructors do not teach the entire subject matter, but are only
+      enriching and assisting my instruction at home.
+    </li>
+    <li>
+      I understand that EHC does not keep permanent academic records or assign grades.
+    </li>
+    <li>
+      I understand that EHC does not give credit toward high school graduation
+      requirements; although parents may use class time toward fulfilling some
+      requirements in a given subject, according to the parent’s own discretion.
+    </li>
+    <li>
+      I agree that my children will strive to regularly attend all classes for
+      which I have registered them. They will arrive on time, fully participate
+      in the class by completing any homework assignments and engage with other
+      students and the instructor during class time.
+    </li>
+    <li>
+      I have read the Student Expectations (see <%= link_to "About", about_path %>
+      page) and agree to be responsible for their behavior while at the EHC.
+    </li>
+    <li>
+      I understand and agree that I must remain on the premises the entire time
+      and be responsible for my children regardless of their age whenever they
+      are participating in co-op.
+    </li>
+    <li>
+      I understand and agree that the co-operative planning committee, instructors
+      or our physical location will at no time be responsible for mishaps, injuries,
+      or accidents that may occur during the year.
+    </li>
+    <li>
+      I understand that a full refund is only available if I cancel my class before
+      or on the first day of class.
+    </li>
+  </ul>
+</p>
+
+<% if user_signed_in? %>
+  <% if current_user.parent_agreement %>
+    <p><b>You have already agreed to the latest agreement.</b></p>
+  <% else %>
+    <%= form_tag do %>
+      <p>
+        <%= check_box_tag(:agree) %>
+        <%= label_tag(:agree_label, "I understand and agree to terms and conditions of this agreement.") %>
+      </p>
+      <p><%= submit_tag("Submit") %></p>
+    <% end %>
+  <% end %>
+<% else %>
+  <p><b>You must be <%= link_to "signed in", new_user_session_path %> to agree.</b></p>
+<% end %>
