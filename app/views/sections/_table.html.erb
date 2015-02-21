@@ -15,7 +15,7 @@
   <tbody>
     <% sections.each do |section| %>
       <tr>
-        <td><%= link_to section.course.name, section_path(section, teaching ? {:teaching => teaching} : {} ) %></td>
+        <td><%= link_to section.course.name, section %></td>
         <td><%= section.term.name %></td>
         <td><%= section.instructor ? section.instructor.full_name : "None" %></td>
         <td><%= section.room ? section.room.name : "None" %></td>

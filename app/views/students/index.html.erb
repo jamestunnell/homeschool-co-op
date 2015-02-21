@@ -2,7 +2,8 @@
   <h2><%= @name %> Students</h2>
 </div>
 <% if @students.any? %>
-<%= render partial: 'students/table', locals: { :students => @students, :registering => @registering } %>
+<%= render partial: 'students/table', locals:
+  { :students => @students, :teaching => false, :registering => @registering } %>
 <% else %>
 <p>No students have been added.</p>
 <% end %>

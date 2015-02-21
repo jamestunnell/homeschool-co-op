@@ -8,11 +8,7 @@ class SectionsController < ApplicationController
   end
 
   def show
-    @teaching = false
-    if params[:teaching].present?
-      unless current_user == @section.user
-        redirect_to account_path, alert: "Your account does not give access to this action."
-      end
+    if user_signed_in? && current_user == @section.user
       @teaching = true
     end
   end

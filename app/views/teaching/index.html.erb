@@ -8,7 +8,7 @@
     <h3><%= scope.to_s.humanize %> Sections</h3>
     <% if sections.any? %>
       <%= render partial: "sections/table", locals: {
-                :sections => sections, :teaching => true, :show_actions => false } %>
+                :sections => sections, :show_actions => false } %>
     <% else %>
       <p>There are no <%= scope.to_s %> class sections.</p>
     <% end %>

@@ -9,7 +9,7 @@
 <h3>Sections</h3>
 <% if @course.sections.any? %>
   <%= render partial: "sections/table", locals: {
-    :sections => @course.sections, :show_actions => false, :teaching => false } %>
+    :sections => @course.sections, :show_actions => false } %>
 <% else %>
   This course has no sections.
 <% end %>
