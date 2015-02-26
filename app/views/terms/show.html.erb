@@ -2,7 +2,9 @@
 <h2><%= @term.name %></h2>
 </div>
 <p><i><%= @term.start_date %></i> to <i><%= @term.end_date %></i></p>
-<p><%= link_to "View Schedule", term_schedule_path(@term, :day => @term.active_days.first ) %></p>
+<% if @term.sections.any? %>
+  <p><%= link_to "View Schedule", term_schedule_path(@term, :day => @term.active_days.first ) %></p>
+<% end %>
 
 <h3>Sections</h3>
 <% if @term.sections.any? %>
