@@ -11,5 +11,5 @@ webmaster = User.create(
   password: "123456789")
 webmaster.save
 resp = webmaster.responsibilities.create(
-  kind: "coordination", start_date: "2015-02-7", end_date: "2015-02-28")
+  kind: "coordination", start_date: Date.today, end_date: Date.today + 20)
 resp.save
