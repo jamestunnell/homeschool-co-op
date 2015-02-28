@@ -8,6 +8,9 @@ class SectionsController < ApplicationController
   end
 
   def show
+    set_scheduling
+    set_registering
+    set_coordinating
     if user_signed_in? && current_user == @section.user
       @teaching = true
     end
