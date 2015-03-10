@@ -14,7 +14,7 @@ class MeetingDayTime < ActiveRecord::Base
   end
   
   def to_s
-    "#{day} #{ApplicationHelper.range_with_dash(start_str..end_str)}"
+    "#{day} #{start_str} - #{end_str}"
   end
   
   def self.time_to_s time
