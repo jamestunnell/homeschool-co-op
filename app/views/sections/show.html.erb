@@ -15,6 +15,13 @@
   <dd><%= number_to_currency(@section.fee) %></dd>
 </dl>
 
+<div class="panel panel-default">
+  <div class="panel-heading"><b>Description</b></div>
+  <div class="panel-body">
+    <p><%= @section.course.description %></p>
+  </div>
+</div>
+
 <% if @teaching || @scheduling || @registering || @coordinating %>
   <h3>Students Enrolled</h3>
   <%= render :partial => 'students/table', :locals =>
