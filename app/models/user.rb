@@ -58,6 +58,6 @@ class User < ActiveRecord::Base
   end
   
   def can_catalog?
-    active_responsibilities.any? {|r| r.cataloging? }
+    active_responsibilities.any? {|r| r.cataloging? } || can_schedule?
   end
 end
