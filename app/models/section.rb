@@ -12,7 +12,7 @@ class Section < ActiveRecord::Base
   alias :instructor :user
   
   def name
-    "#{course_instructor} / #{term.name} / #{meeting_day_time.start_str}"
+    "#{course_instructor} / #{term.name} / #{meeting_day_time.start_str} / $#{total_fee.to_i}"
   end
 
   def course_instructor
@@ -25,6 +25,19 @@ class Section < ActiveRecord::Base
 
   def end_time_on date
     "#{date} #{meeting_day_time.end_time.strftime("%H:%M")}".to_time
+  end
+  
+  def instructor_fee
+    fee
+  end
+
+  COOP_REG_FEE = 10
+  def registration_fee
+    COOP_REG_FEE
+  end
+
+  def total_fee
+    instructor_fee + registration_fee
   end
 
   def self.past

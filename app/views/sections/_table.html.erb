@@ -6,7 +6,8 @@
       <th>Instructor</th>
       <th>Room</th>
       <th>Meeting Day/Time</th>
-      <th>Fee</th>
+      <th>Instructor Fee</th>
+      <th>Registration Fee</th>
       <% if show_actions %>
         <th>Actions</th>
       <% end %>
@@ -20,7 +21,8 @@
         <td><%= section.instructor ? section.instructor.full_name : "None" %></td>
         <td><%= section.room ? section.room.name : "None" %></td>
         <td><%= section.meeting_day_time.to_s %></td>
-        <td><%= number_to_currency(section.fee) %></td>
+        <td><%= number_to_currency(section.instructor_fee) %></td>
+        <td><%= number_to_currency(section.registration_fee) %></td>
         <% if show_actions %>
           <td>
           <%= link_to "Edit", edit_section_path(section), :class => 'btn btn-default btn-xs' %>

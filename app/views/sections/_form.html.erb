@@ -8,7 +8,7 @@
     <%= ff.input :start_time %>
     <%= ff.input :end_time %>
   <% end %>
-  <%= f.input :fee %>
+  <%= f.input :fee, :label => "Instructor Fee" %>
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to "Cancel", term_path(@section.term), :class => 'btn btn-default' %>
 <% end %>
