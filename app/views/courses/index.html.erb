@@ -1,6 +1,8 @@
 <div class="page-header">
-  <h2>Courses</h2>
+  <h2>Course Catalog</h2>
 </div>
+
+<p><%= link_to "Subjects", subjects_path %></p>
 
 <% if @courses.any? %>
 <%= render partial: "courses/table", locals: {
