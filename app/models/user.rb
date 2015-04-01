@@ -2,6 +2,8 @@ class User < ActiveRecord::Base
   MIN_NAME_LENGTH = 2
   MAX_NAME_LENGTH = 36
   
+  MAX_BIO_LENGTH = 1000
+
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -15,6 +17,8 @@ class User < ActiveRecord::Base
   validates_presence_of :last
   validates_length_of :first, :minimum => MIN_NAME_LENGTH, :maximum => MAX_NAME_LENGTH
   validates_length_of :last, :minimum => MIN_NAME_LENGTH, :maximum => MAX_NAME_LENGTH
+
+  validates_length_of :bio, :maximum => MAX_BIO_LENGTH
 
   validates :phone, phony_plausible: true
   validates :emergency_phone, phony_plausible: true

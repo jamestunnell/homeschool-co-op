@@ -59,6 +59,11 @@ class UserTest < ActiveSupport::TestCase
     assert_not @sam.valid?
   end
 
+  test "not valid if bio is longer than MAX_BIO_LENGTH" do
+    @sam.bio = "A"*(User::MAX_BIO_LENGTH+1)
+    assert_not @sam.valid?
+  end
+
   # test "not valid without phone number" do
   #   @sam.phone = nil
   #   assert_not @sam.valid?
