@@ -1,11 +1,21 @@
 class TermsController < ApplicationController
-  before_action :authenticate_user!, except: [:show,:index,:schedule]
+  before_action :authenticate_user!, except: [:show,:index,:current,:upcoming,:schedule]
   before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_term, only: [:show, :schedule, :edit, :update, :destroy]
-  before_action :set_scheduling, only: [:index,:show]
+  before_action :set_scheduling, only: [:index,:current,:upcoming,:show]
 
   def index
     @terms = Term.all
+  end
+
+   def current
+    @terms = Term.active
+    render 'index'
+  end
+
+  def upcoming
+    @terms = Term.upcoming
+    render 'index'
   end
 
   def show

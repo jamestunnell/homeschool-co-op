@@ -2,6 +2,8 @@
             :brand_link => root_path, :responsive => true) do %>
   <%= menu_group :pull => :left do %>
     <%= menu_item "Home", root_path %>
+    <%= menu_item "Current", current_path %>
+    <%= menu_item "Upcoming", upcoming_path %>
     <%= menu_item "About", about_path %>
     <%= menu_item "Contact", contact_path %>
     <%= drop_down "More" do %>

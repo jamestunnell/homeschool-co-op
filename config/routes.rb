@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   get '/home', to: "static_pages#home", as: 'home'
+  get '/current', to: "terms#current", as: 'current'
+  get '/upcoming', to: "terms#upcoming", as: 'upcoming'
   get '/about', to: "static_pages#about", as: 'about'
   get '/contact', to: "static_pages#contact", as: 'contact'
   get '/register', to: "static_pages#register", as: 'register'
