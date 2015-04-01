@@ -12,14 +12,13 @@
       <%= menu_item "Current", current_path %>
       <%= menu_item "Upcoming", upcoming_path %>
     <% end %>
+    <%= menu_item "Events", events_path %>
     <%= drop_down "More" do %>
       <%= menu_item "Locations", buildings_path %>
       <%= menu_item "Terms", terms_path %>
       <%= menu_item "Courses", courses_path %>
       <%= menu_item "Subjects", subjects_path %>
       <%= menu_item "Instructors", instructors_path %>
-      <%= menu_item "Events", events_path %>
-      <%= menu_item "How to Register", register_path %>
       <%= menu_item "Parent Agreement", agreement_path(:parent) %>
     <% end %>
     
