@@ -6,6 +6,8 @@
       <th>Instructor</th>
       <th>Room</th>
       <th>Meeting Day/Time</th>
+      <th>Enrolled</th>
+      <th>Enrollment Limit</th>
       <th>Instructor Fee</th>
       <th>Registration Fee</th>
       <% if show_actions %>
@@ -21,6 +23,8 @@
         <td><%= section.instructor ? section.instructor.full_name : "None" %></td>
         <td><%= section.room ? section.room.name : "None" %></td>
         <td><%= section.meeting_day_time.to_s %></td>
+        <td><%= section.enrolled.to_s %></td>
+        <td><%= section.enrollment_limit ? section.enrollment_limit.to_s : "None"%></td>        
         <td><%= number_to_currency(section.instructor_fee) %></td>
         <td><%= number_to_currency(section.registration_fee) %></td>
         <% if show_actions %>

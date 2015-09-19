@@ -47,4 +47,12 @@ class Section < ActiveRecord::Base
   def self.not_past
     Term.not_past.map {|term| term.sections }.flatten
   end
+
+  def enrolled
+    enrollments.size
+  end
+
+  def enrollment_limit_met?
+    enrollment_limit ? (enrolled >= enrollment_limit) : false
+  end
 end

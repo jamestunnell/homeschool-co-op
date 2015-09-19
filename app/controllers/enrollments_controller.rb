@@ -16,10 +16,15 @@ class EnrollmentsController < ApplicationController
 
   def create
     @enrollment = Enrollment.new(enrollment_params)
-    if @enrollment.save
-      redirect_to enrollments_path, notice: "Enrollment was successfully added."
+
+    unless @enrollment.section.enrollment_limit_met?
+      if @enrollment.save
+        redirect_to enrollments_path, notice: "Enrollment was successfully added."
+      else
+        redirect_to enrollments_path, alert: "Failed to add enrollment"
+      end
     else
-      redirect_to enrollments_path, alert: "Failed to add enrollment"
+      redirect_to enrollments_path, alert: "Failed to add enrollment. Enrollment limit for the section has been met"
     end
   end
 

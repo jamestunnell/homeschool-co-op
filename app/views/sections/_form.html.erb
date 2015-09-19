@@ -8,7 +8,8 @@
     <%= ff.input :start_time %>
     <%= ff.input :end_time %>
   <% end %>
-  <%= f.input :fee, :label => "Instructor Fee" %>
+  <%= f.input :enrollment_limit, input_html: { :min => 1 } %>
+  <%= f.input :fee, :label => "Instructor Fee", input_html: { :value => 0, :min => 0 } %>
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to "Cancel", term_path(@section.term), :class => 'btn btn-default' %>
 <% end %>

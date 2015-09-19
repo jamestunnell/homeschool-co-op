@@ -11,6 +11,10 @@
   <dd><%= @section.room ? link_to(@section.room.name, @section.room) : "None" %></dd>
   <dt><strong>Meeting day/time:</strong></dt>
   <dd><%= @section.meeting_day_time.to_s %></dd>
+  <dt><strong>Enrolled:</strong></dt>
+  <dd><%= @section.enrolled.to_s %></dd>
+  <dt><strong>Enrollment limit:</strong></dt>
+  <dd><%= @section.enrollment_limit ? @section.enrollment_limit.to_s : "None" %></dd>
   <dt><strong>Instructor Fee:</strong></dt>
   <dd><%= number_to_currency(@section.instructor_fee) %></dd>
   <dt><strong>Registration Fee:</strong></dt>
