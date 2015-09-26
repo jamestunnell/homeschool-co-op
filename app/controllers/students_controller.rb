@@ -20,10 +20,10 @@ class StudentsController < ApplicationController
       ensure_registrar
       set_registering
       @students = Student.all
-      @name = "All"
+      @name = "All Students"
     else
       @students = current_user.students
-      @name = "Your"
+      @name = "Your Children"
     end
   end
   

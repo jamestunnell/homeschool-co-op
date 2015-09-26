@@ -1,5 +1,18 @@
-<%= f.input :name, :required => false %>
-<%= f.input :email, :required => false %>
-<%= f.input :message, :as => :text, :required => false %>
+<% if name %>
+  <%= f.input :name, :input_html => { :value => name } %>
+<% else %>
+  <%= f.input :name, :required => true %>
+<% end %>
+
+<% if email %>
+  <%= f.input :email, :input_html => { :value => email } %>
+<% else %>
+  <%= f.input :email, :required => true %>
+<% end %>
+
+<%= f.input :subject, :input_html => { :value => subject } %>
+
+<%= f.input :message, :as => :text, :required => true %>
+<%= f.input :recipient, :as => :hidden, :input_html => { :value => recipient } %>
 <%= f.input :nickname, :as => :hidden, :hint => 'Leave this field blank!' %>
 <%= f.button :submit, 'Send message' %>

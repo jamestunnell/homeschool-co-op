@@ -1,16 +1,19 @@
-<div class="page-header">
-  <h2><%= @name %> Enrollments</h2>
-</div>
-<% if @enrollments.any? %>
-<%= render partial: "enrollments/table", locals: { :enrollments => @enrollments,
-  :registering => @registering } %>
+<% if @enrollments.values.flatten.any? %>
+  <% @enrollments.each do |name, enrollments| %>
+    <% if enrollments.any? %>
+      <div class="page-header">
+        <h2><%= name %> Enrollments</h2>
+      </div>
+      <%= render partial: "enrollments/table", locals: { :enrollments => enrollments,
+        :registering => @registering } %>
+    <% end %>
+  <% end %>
 <% else %>
-<p>There are no enrollments to display.</p>
+<h2>Enrollments</h2>
+<p>No enrollments to display.</p>
 <% end %>
 
-<% if @registering %>
-  <p><%= link_to raw("&larr; Back to Registration"), responsibility_kind_path(:registration) %></p>
-<% else %>
+<% if !@registering %>
   <p><%= link_to "Add Enrollment", new_enrollment_path, :class => 'btn btn-primary' %></p>
-  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
 <% end %>
+<p><%= link_to raw("&larr; Back to Account"), account_path %></p>

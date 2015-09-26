@@ -52,6 +52,8 @@ class Section < ActiveRecord::Base
     enrollments.size
   end
 
+  def teacher; user; end
+
   def enrollment_limit_met?
     enrollment_limit ? (enrolled >= enrollment_limit) : false
   end

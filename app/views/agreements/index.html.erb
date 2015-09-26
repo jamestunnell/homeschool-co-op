@@ -8,6 +8,7 @@
         :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
   <% end %>
 </p>
-<% if @coordinating %>
-  <p><%= link_to raw("&larr; Back to Coordination"), responsibility_kind_path(:coordination) %></p>
+
+<% if user_signed_in? %>
+  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
 <% end %>

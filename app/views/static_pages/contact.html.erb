@@ -1,5 +1,25 @@
 <h1>Contact</h1>
-<p>Just fill out the form to contact our planning committee!</p>
+<% if @user %>
+  <h3>Message For: <%= @user.full_name %></h3>
+<% else %>
+  <p>Just fill out the form to contact our planning committee!</p>
+<% end %>
+
 <%= simple_form_for ContactForm.new do |f| %>
-  <%= render :partial => 'contact_forms/fields', :locals => { :f => f } %>
+  <% locals = { :f => f,
+    :name => nil,
+    :email => nil, 
+    :recipient => ENV['contact_email'],
+    :subject =>'Contact Form Response' } %>
+
+  <% if user_signed_in? %>
+    <% locals[:name] = current_user.full_name %>
+    <% locals[:email] = current_user.email %>
+  <% end %>
+
+  <% if @user %>
+    <% locals[:recipient] = @user.email %>
+  <% end %>
+
+  <%= render :partial => 'contact_forms/fields', :locals => locals %>
 <% end %>

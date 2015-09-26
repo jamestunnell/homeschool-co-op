@@ -13,4 +13,7 @@
 <% if @cataloging %>
   <p><%= link_to "Add Subject", new_subject_path, :class => 'btn btn-primary' %></p>
 <% end %>
-<p><%= link_to raw("&larr; Back to Course Catalog"), courses_path %></p>
+
+<% if user_signed_in? %>
+  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
+<% end %>

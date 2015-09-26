@@ -19,14 +19,19 @@ class ApplicationController < ActionController::Base
   
   def ensure_responsibility predicate_method
     unless current_user.send(predicate_method)
-      redirect_to request.referrer, notice: "Your account does not give access to this action."
+      redirect_to (request.referrer || account_path), alert: "Your account does not give access to this action."
     end
   end
   def ensure_coordinator;  ensure_responsibility(:can_coordinate?); end
   def ensure_scheduler; ensure_responsibility(:can_schedule?); end
   def ensure_registrar; ensure_responsibility(:can_register?); end
   def ensure_cataloger; ensure_responsibility(:can_catalog?); end
-  
+  def ensure_admin
+    unless current_user.is_admin?
+      redirect_to (request.referrer || account_path), alert: "Your account does not give access to this action."
+    end
+  end
+
   def set_coordinating
     @coordinating = user_signed_in? && current_user.can_coordinate?
   end
@@ -38,5 +43,8 @@ class ApplicationController < ActionController::Base
   end
   def set_cataloging
     @cataloging = user_signed_in? && current_user.can_catalog?
+  end
+  def set_admin
+    @admin = user_signed_in? && current_user.is_admin?
   end
 end

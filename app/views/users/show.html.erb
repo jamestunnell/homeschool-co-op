@@ -5,11 +5,39 @@
 </div>
 <div class="row">
   <div class="col-sm-3">
-    <h3>Important Links</h3>
-    <p><%= link_to "Students", students_path %></p>
+    <h3>Parenting</h3>
+    <p><%= link_to "Children", students_path %></p>
     <p><%= link_to "Enrollments", enrollments_path %></p>
-    <p><%= link_to "Responsibilities", responsibilities_path %></p>
-    <p><%= link_to "Teaching", teaching_path %></p>
+    <p><%= link_to "Teachers", users_path(:show_teachers => true) %></p>
+    <h3>Teaching</h3>
+    <p><%= link_to "Sections", sections_path %></p>
+    <p><%= link_to "Parents", users_path(:show_parents => true) %></p>
+    <% if @admin %>
+      <h3>Administration</h3>
+      <p><%= link_to "Parents", users_path(:admin => true, :show_parents => true) %></p>
+      <p><%= link_to "Teachers", users_path(:admin => true, :show_teachers => true) %></p>
+
+      <% if @coordinating %>
+        <h4>Coordination</h4>
+        <p><%= link_to "Responsibilities", responsibilities_path %></p>
+        <p><%= link_to "Events", events_path %></p>
+        <p><%= link_to "Agreements", agreements_path %></p>
+      <% end %>
+
+      <% if @registering %>
+        <h4>Registration</h4>
+        <p><%= link_to "Enrollments", enrollments_path(:registering => true) %></p>
+        <p><%= link_to "Students", students_path(:registering => true) %></p>
+      <% end %>
+
+      <% if @scheduling %>
+        <h4>Scheduling</h4>
+        <p><%= link_to "Subjects", subjects_path %></p>
+        <p><%= link_to "Courses", courses_path %></p>
+        <p><%= link_to "Buildings", buildings_path %></p>
+        <p><%= link_to "Terms", terms_path %></p>
+      <% end %>
+    <% end %>
   </div>
   <div class="col-sm-9">
     <h3>Personal Information</h3>

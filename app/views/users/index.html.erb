@@ -1,0 +1,12 @@
+<% @users.each do |label,users| %>
+  <div class="page-header">
+    <h2><%= label %></h2>
+  </div>
+  <% if users.any? %>
+    <%= render partial: "users/table", locals: { :users => users, :admin => @admin } %>
+  <% else %>
+    <p>No <%= label.downcase %> to display.</p>
+  <% end %>
+<% end %>
+
+<p><%= link_to raw("&larr; Back to Account"), account_path %></p>

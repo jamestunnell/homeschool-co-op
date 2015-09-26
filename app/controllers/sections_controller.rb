@@ -1,10 +1,15 @@
 class SectionsController < ApplicationController
-  before_action :authenticate_user!, except: [:show,:index]
+  before_action :authenticate_user!, except: [:show]
   before_action :ensure_scheduler, only: [:new,:create,:edit,:update,:destroy]
   before_action :set_section, only: [:show, :edit, :update, :destroy]
 
   def index
-    @sections = Section.all
+    sections = current_user.sections
+    @sections = {
+      "Active" => sections.select {|s| s.term.active? },
+      "Upcoming" => sections.select {|s| s.term.upcoming? },
+      "Past" => sections.select {|s| s.term.past? },
+    }
   end
 
   def show

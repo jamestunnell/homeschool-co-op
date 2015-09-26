@@ -20,13 +20,13 @@ Rails.application.routes.draw do
     resources :sections, only: [:new]
   end
   get 'terms/:id/schedule/:day', :to => 'terms#schedule', :as => 'term_schedule'
-  resources :sections, :except => [:index,:new]
+  resources :sections, :except => [:new]
   
   devise_for :users
   get '/account', to: 'users#show', as: 'account'
   resources :users, only: [:edit,:update]
   get 'instructors/', to: 'instructors#index', as: 'instructors'
-  get 'teaching/', to: 'teaching#index', as: 'teaching'
+  get 'users/', to: 'users#index', as: 'users'
   resources :students, except: :show
   resources :enrollments, except: :show do
     post 'mark_paid'
@@ -37,7 +37,6 @@ Rails.application.routes.draw do
   post 'agreements/:kind/reset_all', to: 'agreements#reset_all', as: 'reset_all_agreements'
   
   resources :responsibilities, except: :show
-  get '/responsibilities/:kind', to: "responsibilities#kind", as: "responsibility_kind"
 
   resources :events
 

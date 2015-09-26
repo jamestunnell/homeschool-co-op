@@ -11,5 +11,8 @@
 
 <% if @scheduling %>
   <p><%= link_to "Add Term", new_term_path, :class => 'btn btn-primary' %></p>
-  <p><%= link_to raw("&larr; Back to Scheduling"), responsibility_kind_path(:scheduling) %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
 <% end %>

@@ -4,15 +4,8 @@ class ResponsibilitiesController < ApplicationController
   before_action :set_responsibility, only: [:edit,:update,:destroy]
 
   def index
-    if params.has_key? :coordinating
-      ensure_coordinator
-      set_coordinating
-      @responsibilities = Responsibility.all
-      @name = "All"
-    else
-      @responsibilities = current_user.responsibilities
-      @name = "Your"
-    end
+    ensure_coordinator
+    @responsibilities = Responsibility.all
   end
   
   def new

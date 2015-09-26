@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h2>Sections</h2>
+</div>
+
+<% if @sections.values.flatten.any? %>
+  <% @sections.each do |label,sections| %>
+    <% if sections.any? %>
+      <h3><%= label %> Sections</h3>
+      <%= render partial: "sections/table", locals: {
+                :sections => sections, :show_actions => false } %>
+    <% end %>    
+  <% end %>
+<% else %>
+  <p>No sections to display.</p>
+<% end %>
+
+<p><%= link_to raw("&larr; Back to Account"), account_path %></p>

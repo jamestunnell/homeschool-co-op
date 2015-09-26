@@ -61,3 +61,5 @@
 <% else %>
   <p><b>You must be <%= link_to "signed in", new_user_session_path %> to agree.</b></p>
 <% end %>
+
+<p><%= link_to raw("&larr; Back to Agreements"), agreements_path %></p>

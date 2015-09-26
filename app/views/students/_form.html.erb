@@ -7,6 +7,6 @@
               :discard_day => true, order: [:month, :year] %>
   <%= f.association :user, as: :hidden %>
   <%= f.input :medical, label: "Medical/dietary considerations, including allergies" %>
-  <%= f.button :submit, :class => 'btn btn-primary' %>
+  <%= f.button :submit, "Add Child", :class => 'btn btn-primary' %>
   <%= link_to "Cancel", students_path, :class => 'btn btn-default' %>
 <% end %>

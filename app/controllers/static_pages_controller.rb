@@ -17,6 +17,14 @@ class StaticPagesController < ApplicationController
   end
 
   def contact
+    if params.has_key? :user_id
+      authenticate_user!
+      @user = User.find(params[:user_id].to_i)
+
+      unless current_user.can_contact? @user
+        redirect_to root_path, "Your account does not give you access to this action."
+      end
+    end
   end
 
   def register

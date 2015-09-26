@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h2><%= @name %> Responsibilities</h2>
+  <h2>Responsibilities</h2>
 </div>
 <% if @responsibilities.any? %>
   <% {:active => true,:upcoming => false,:past => false }.each do |scope,active_links| %>
@@ -7,18 +7,14 @@
     <h3><%= scope.to_s.humanize %> Responsibilities</h3>
     <% if responsibilities.any? %>
       <%= render partial: "responsibilities/table", locals: {
-        :responsibilities => responsibilities, :coordinating => @coordinating } %>
+        :responsibilities => responsibilities } %>
     <% else %>
       <p>There are no <%= scope.to_s %> responsibilities.</p>
     <% end %>
   <% end %>
 <% else %>
-  <p>You have no assigned responsibilities.</p>
+  <p>No responsibilities to display.</p>
 <% end %>
 
-<% if @coordinating %>
-  <p><%= link_to "Add Responsibility", new_responsibility_path, :class => 'btn btn-primary' %></p>
-  <p><%= link_to raw("&larr; Back to Coordination"), responsibility_kind_path(:coordination) %></p>
-<% else %>
-  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
-<% end %>
+<p><%= link_to "Add Responsibility", new_responsibility_path, :class => 'btn btn-primary' %></p>
+<p><%= link_to raw("&larr; Back to Account"), account_path %></p>

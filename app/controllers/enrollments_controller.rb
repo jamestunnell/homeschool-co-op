@@ -29,14 +29,19 @@ class EnrollmentsController < ApplicationController
   end
 
   def index
+    @enrollments = {}
+
     if params.has_key? :registering
       ensure_registrar
       set_registering
-      @enrollments = Enrollment.all
-      @name = "All"
+
+      @enrollments["All Upcoming"] = Enrollment.upcoming
+      @enrollments["All Current"] = Enrollment.active
+      @enrollments["All Past"] = Enrollment.past
     else
-      @enrollments = current_user.enrollments
-      @name = "Your"
+      @enrollments["Your Upcoming"] = current_user.upcoming_enrollments
+      @enrollments["Your Current"] = current_user.active_enrollments
+      @enrollments["Your Past"] = current_user.past_enrollments
     end
   end
   
@@ -59,13 +64,13 @@ class EnrollmentsController < ApplicationController
   def mark_paid
     @enrollment = Enrollment.find(params[:enrollment_id])
     if @enrollment.paid?
-      redirect_to request.referrer, alert: "Enrollment has already been paid"
+      redirect_to (request.referrer || account_path), alert: "Enrollment has already been paid"
     else
       @enrollment.paid = true
       if @enrollment.save
-        redirect_to request.referrer, notice: "Enrollment has now been paid"
+        redirect_to (request.referrer || account_path), notice: "Enrollment has now been paid"
       else
-        redirect_to request.referrer, alert: "Enrollment could not be paid"
+        redirect_to (request.referrer || account_path), alert: "Enrollment could not be paid"
       end
     end
   end

@@ -76,6 +76,10 @@ class Term < ActiveRecord::Base
     end_date < Date.today
   end
 
+  def not_past?
+    end_date >= Date.today
+  end
+
   def active?
     d = Date.today
     start_date <= d && end_date >= d

@@ -10,6 +10,9 @@
 <% end %>
 
 <% if @coordinating %>
-<p><%= link_to "Add Event", new_event_path, :class => 'btn btn-primary' %></p>
-<p><%= link_to raw("&larr; Back to Coordination"), responsibility_kind_path(:coordination) %></p>
+  <p><%= link_to "Add Event", new_event_path, :class => 'btn btn-primary' %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
 <% end %>

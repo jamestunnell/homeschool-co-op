@@ -33,6 +33,26 @@ class User < ActiveRecord::Base
     "#{first} #{last}"
   end
 
+  # can contact the given user if a) is admin, b) is teacher 
+  # of the user's child, or c) is parent of user's student
+  def can_contact? user
+    if is_admin?
+      return true
+    else
+      students = not_past_sections.map {|s| s.students }.flatten.uniq
+      if (students & user.students).any?
+        return true
+      else
+        teachers = not_past_enrollments.map {|e| e.teacher }
+        return teachers.include? user
+      end
+    end
+  end
+
+  def unpaid_enrollments
+    enrollments.select {|e| !e.paid }
+  end
+
   def active_responsibilities
     responsibilities.active
   end
@@ -41,12 +61,36 @@ class User < ActiveRecord::Base
     sections.select {|s| s.term.upcoming? }
   end
 
+  def upcoming_enrollments
+    enrollments.select {|e| e.section.term.upcoming? }
+  end
+
+  def active_enrollments
+    enrollments.select {|e| e.section.term.active? }
+  end
+
+  def past_enrollments
+    enrollments.select {|e| e.section.term.past? }
+  end
+
+  def not_past_enrollments
+    enrollments.select {|e| e.section.term.not_past? }
+  end
+
   def active_sections
     sections.select {|s| s.term.active? }
   end
 
   def past_sections
     sections.select {|s| s.term.past? }
+  end
+
+  def not_past_sections
+    sections.select {|s| s.term.not_past? }
+  end
+
+  def is_admin?
+    can_coordinate? || can_register? || can_schedule?
   end
 
   def can_coordinate?
