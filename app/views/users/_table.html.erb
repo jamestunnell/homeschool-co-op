@@ -5,16 +5,25 @@
       <th>Email</th>
       <% if admin %>
         <th>Phone</th>
+        <th>Owed</th>
       <% end %>
+
     </tr>
   </thead>
   <tbody>
     <% users.each do |user| %>
       <tr>
         <td><%= user.full_name %></td>
-        <td><%= link_to "Send Message", contact_path(:user_id => user.id), :class => 'btn btn-default btn-xs' %></td>
+        <td>
+          <% if admin %>
+            <%= user.email %>
+          <% end %>
+          <%= link_to "Send Message", contact_path(:user_id => user.id), :class => 'btn btn-default btn-xs' %>
+        </td>
         <% if admin %>
           <td><%= number_to_phone(user.phone, area_code: true) %></td>
+          <% unpaid_fees = user.unpaid_enrollments.map {|e| e.section_fees } %>
+          <td><%= number_to_currency(unpaid_fees.inject(0.0,:+)) %></td>
         <% end %>
       </tr>
     <% end %>
