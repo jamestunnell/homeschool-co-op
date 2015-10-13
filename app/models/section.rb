@@ -11,8 +11,12 @@ class Section < ActiveRecord::Base
   
   alias :instructor :user
   
-  def name
-    "#{course_instructor} / #{term.name} / #{meeting_day_time.start_str} / $#{total_fee.to_i}"
+  def summary
+    "#{course_instructor} / #{term.name} / #{meeting_day_time.start_str}"
+  end
+
+  def summary_plus_fees
+    summary + " / $" + total_fee.to_i.to_s
   end
 
   def course_instructor

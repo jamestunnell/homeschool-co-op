@@ -1,6 +1,6 @@
 class EnrollmentsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_enrollment, only: [ :pay, :edit, :update, :destroy]
+  before_action :set_enrollment, only: [ :pay, :destroy]
   before_action :ensure_registrar, only: [ :mark_paid ]
   before_action :ensure_parent_agreement, only: [:new,:create]
 
@@ -35,30 +35,19 @@ class EnrollmentsController < ApplicationController
       ensure_registrar
       set_registering
 
-      @enrollments["All Upcoming"] = Enrollment.upcoming
-      @enrollments["All Current"] = Enrollment.active
-      @enrollments["All Past"] = Enrollment.past
+      @enrollments[:upcoming] = Enrollment.upcoming
+      @enrollments[:active] = Enrollment.active
+      @enrollments[:past] = Enrollment.past
     else
-      @enrollments["Your Upcoming"] = current_user.upcoming_enrollments
-      @enrollments["Your Current"] = current_user.active_enrollments
-      @enrollments["Your Past"] = current_user.past_enrollments
-    end
-  end
-  
-  def edit
-  end
-
-  def update
-    if @enrollment.update(enrollment_params)
-      redirect_to enrollments_path, notice: 'Enrollment was successfully updated.'
-    else
-      render :edit
+      @enrollments[:upcoming] = current_user.upcoming_enrollments
+      @enrollments[:active] = current_user.active_enrollments
+      @enrollments[:past] = current_user.past_enrollments
     end
   end
 
   def destroy
     @enrollment.destroy
-    redirect_to enrollments_path, notice: 'Enrollment was successfully removed.'
+    redirect_to (request.referrer || enrollments_path), notice: 'Enrollment was successfully removed.'
   end
   
   def mark_paid

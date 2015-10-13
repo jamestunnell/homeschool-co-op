@@ -3,24 +3,30 @@
     <tr>
       <th>Student</th>
       <th>Section</th>
+      <th>Fees</th>
       <th>Paid</th>
-      <th>Actions</th>
+      <% if !past || registering %>
+        <th>Actions</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
-    <% enrollments.each do |enrollment| %>
+    <% enrollments.sort_by {|e| e.student.first }.each do |enrollment| %>
       <tr>
         <td><%= enrollment.student.full_name %></td>
-        <td><%= link_to enrollment.section.name, enrollment.section %></td>
+        <td><%= link_to enrollment.section.summary, enrollment.section %></td>
+        <td><%= number_to_currency(enrollment.section_fees) %></td>
         <td><%= enrollment.paid ? "Yes" : "No" %></td>
         <td>
           <% if registering %>
-            <% if !enrollment.paid %>
+            <% if enrollment.paid %>
+              <%= link_to "Refund", enrollment_path(enrollment), :method => :delete,
+                        :data => { :confirm => 'This will remove the enrollment. Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
+            <% else %>
               <%= link_to "Mark Payed", enrollment_mark_paid_path(enrollment),
                           :method => :post, :class => 'btn btn-primary btn-xs' %>
             <% end %>
-          <% else%>
-            <%= link_to "Edit", edit_enrollment_path(enrollment), :class => 'btn btn-default btn-xs' %>
+          <% elsif !past && !enrollment.paid %>
             <%= link_to "Remove", enrollment_path(enrollment), :method => :delete,
                         :data => { :confirm => 'Are you sure?' }, :class => 'btn btn-xs btn-danger' %>
           <% end %>

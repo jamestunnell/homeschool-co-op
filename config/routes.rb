@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'instructors/', to: 'instructors#index', as: 'instructors'
   get 'users/', to: 'users#index', as: 'users'
   resources :students, except: :show
-  resources :enrollments, except: :show do
+  resources :enrollments, except: [:show, :edit] do
     post 'mark_paid'
   end
   get 'agreements', to: 'agreements#index', as: 'agreements'

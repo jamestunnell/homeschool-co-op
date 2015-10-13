@@ -1,19 +1,44 @@
-<% if @enrollments.values.flatten.any? %>
-  <% @enrollments.each do |name, enrollments| %>
-    <% if enrollments.any? %>
-      <div class="page-header">
-        <h2><%= name %> Enrollments</h2>
+<% [:upcoming,:active,:past].each do |scope| %>
+  <% if @enrollments[scope].any? %>
+    <div class="page-header">
+      <h2><%= scope.to_s.humanize %> Enrollments</h2>
+    </div>
+    <% enrollments = @enrollments[scope] %>
+    <% users = enrollments.map {|e| e.user }.uniq %>
+    <% users.sort_by {|u| u.last }.each do |user| %>
+      <div class="panel panel-default">
+        <% if @registering %>
+          <div class="panel-heading">
+            <h4 style="display: inline"><%= user.full_name %></h4>
+            &nbsp;
+            &nbsp;
+            <%= user.email %>
+            <% if user.phone %>
+              &nbsp;
+              &nbsp;
+              <%= phone_formatted(user.phone) %>
+            <% end %>
+          </div>
+        <% end %>
+        
+        <div class="panel-body">
+          <% user_enrollments = enrollments.select {|e| e.user == user } %>
+          <%= render partial: "enrollments/table", locals: { :enrollments => user_enrollments,
+            :registering => @registering, :past => (scope == :past) } %>
+
+          <% unpaid = user_enrollments.select {|e| !e.paid } %>
+          <% total_due = unpaid.map {|e| e.section_fees }.inject(0,:+) %>
+          <p><b>Total due: </b><%= number_to_currency(total_due) %></p>
+        </div>
       </div>
-      <%= render partial: "enrollments/table", locals: { :enrollments => enrollments,
-        :registering => @registering } %>
     <% end %>
   <% end %>
-<% else %>
-<h2>Enrollments</h2>
-<p>No enrollments to display.</p>
+
+  <% if scope == :upcoming %>
+    <% if !@registering %>
+      <p><%= link_to "Add Enrollment", new_enrollment_path, :class => 'btn btn-primary' %></p>
+    <% end %>
+  <% end %>
 <% end %>
 
-<% if !@registering %>
-  <p><%= link_to "Add Enrollment", new_enrollment_path, :class => 'btn btn-primary' %></p>
-<% end %>
 <p><%= link_to raw("&larr; Back to Account"), account_path %></p>
