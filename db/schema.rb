@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150919222757) do
+ActiveRecord::Schema.define(version: 20160105152441) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street"
@@ -95,14 +95,15 @@ ActiveRecord::Schema.define(version: 20150919222757) do
   add_index "rooms", ["building_id"], name: "index_rooms_on_building_id"
 
   create_table "sections", force: :cascade do |t|
-    t.decimal  "fee"
+    t.decimal  "fee",              precision: 5, scale: 2, default: 0.0
     t.integer  "term_id"
     t.integer  "room_id"
     t.integer  "user_id"
     t.integer  "course_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",                                              null: false
+    t.datetime "updated_at",                                              null: false
     t.integer  "enrollment_limit"
+    t.decimal  "registration_fee", precision: 5, scale: 2, default: 10.0
   end
 
   add_index "sections", ["course_id"], name: "index_sections_on_course_id"

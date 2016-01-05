@@ -35,11 +35,6 @@ class Section < ActiveRecord::Base
     fee
   end
 
-  COOP_REG_FEE = 10
-  def registration_fee
-    COOP_REG_FEE
-  end
-
   def total_fee
     instructor_fee + registration_fee
   end
